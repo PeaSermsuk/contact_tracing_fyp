@@ -15,17 +15,15 @@ class _SettingsTabState extends State<SettingsTab> {
   var switch2 = true;
   var switch3 = true;
 
-  Widget _buildList() {
+  Widget build(BuildContext context) {
     return ListView(
       children: [
-        Padding(padding: EdgeInsets.only(top: 24)),
+        Padding(padding: EdgeInsets.only(top: 25)),
         ListTile(
           title: Text('College CID'),
           // The Material switch has a platform adaptive constructor.
-          trailing: Switch.adaptive(
-            value: switch1,
-            onChanged: (value) => setState(() => switch1 = value),
-          ),
+          trailing: Text('XXXXXXXX'),
+          tileColor: Colors.white,
         ),
         ListTile(
           title: Text('Bluetooth'),
@@ -34,6 +32,7 @@ class _SettingsTabState extends State<SettingsTab> {
             value: switch1,
             onChanged: (value) => setState(() => switch1 = value),
           ),
+          tileColor: Colors.white,
         ),
         ListTile(
           title: Text('Location services'),
@@ -41,6 +40,7 @@ class _SettingsTabState extends State<SettingsTab> {
             value: switch2,
             onChanged: (value) => setState(() => switch2 = value),
           ),
+          tileColor: Colors.white,
         ),
         ListTile(
           title: Text('Notifications'),
@@ -48,28 +48,9 @@ class _SettingsTabState extends State<SettingsTab> {
             value: switch3,
             onChanged: (value) => setState(() => switch3 = value),
           ),
+          tileColor: Colors.white,
         ),
       ],
-    );
-  }
-
-    // ===========================================================================
-  // Non-shared code below because this tab uses different scaffolds.
-  // ===========================================================================
-
-  Widget _buildAndroid(BuildContext context) {
-    return Scaffold(
-    //  appBar: AppBar(
-    //    title: Text(SettingsTab.title),
-    //  ),
-      body: _buildList(),
-    );
-  }
-
-  @override
-  Widget build(context) {
-    return PlatformWidget(
-      androidBuilder: _buildAndroid,
     );
   }
 }

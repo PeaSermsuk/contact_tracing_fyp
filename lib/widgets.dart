@@ -15,7 +15,12 @@ class MyStatefulWidget extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _currentIndex = 0;
-  final List<Widget> _children = [];
+  final List<Widget> _children = [
+    null,
+    null,
+    null,
+    SettingsTab(),
+  ];
   String _title;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -56,8 +61,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         case 3: {
           _title = 'SETTINGS';
 //          Navigator.pop(context);
-          Navigator.push<void>(context,
-            MaterialPageRoute(builder: (context) => SettingsTab()));
+//          Navigator.push<void>(context,
+//            MaterialPageRoute(builder: (context) => SettingsTab()));
           }
         break;
       }
@@ -92,7 +97,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
         ],
       ),
- //     body: _children[_currentIndex],
+      body: _children[_currentIndex],
       //body: Center(
       // child: _widgetOptions.elementAt(_selectedIndex),
       //),
