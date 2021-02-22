@@ -15,63 +15,86 @@ class _CheckInTabState extends State<CheckInTab> {
     return Column(children: [
       Container(
         padding: EdgeInsets.all(5.0),
-        margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 10.0),
+        margin:
+            EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 10.0),
         child: Text(
           'Currently checked in at:',
           style: TextStyle(
-              height: 1,
-              fontSize: 20,
-              color: Colors.black,
-              ),
+            height: 1,
+            fontSize: 20,
+            color: Colors.black,
+          ),
         ),
         alignment: Alignment.topLeft,
       ),
       Container(
-        padding: EdgeInsets.all(30.0),
-        margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
-        color: Colors.black,
-        child: Text(
-          'CAGB 200',
-          style: TextStyle(
-              height: 1,
-              fontSize: 25,
-              color: Colors.white,
-              fontWeight: FontWeight.bold),
+        padding: EdgeInsets.only(left: 15.0, right: 30.0, bottom: 20.0, top: 20.0),
+        margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
+        color: Colors.white,
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                'CAGB 200',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    height: 1,
+                    fontSize: 25,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Icon(
+              Icons.exit_to_app,
+              color: Colors.black,
+              size: 60,
+            ),
+          ],
         ),
-        alignment: Alignment.bottomCenter,
+       // alignment: Alignment.bottomCenter,
       ),
       Expanded(
-        child: (
-          Container(
-            padding: EdgeInsets.all(30.0),
-            margin: EdgeInsets.all(30.0),
-            //color: Colors.black,
-            child: Text(
-              'NO CHECK-INS',
-              style: TextStyle(
-                  height: 1,
-                  fontSize: 25,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold),
-            ),
-            alignment: Alignment.center,
-          )
-        ),
+        child: (Container(
+          padding: EdgeInsets.all(30.0),
+          margin: EdgeInsets.all(30.0),
+          //color: Colors.black,
+          child: Text(
+            'NO CHECK-INS',
+            style: TextStyle(
+                height: 1,
+                fontSize: 25,
+                color: Colors.grey,
+                fontWeight: FontWeight.bold),
+          ),
+          alignment: Alignment.center,
+        )),
       ),
       Container(
-        padding: EdgeInsets.all(30.0),
+        padding: EdgeInsets.only(left: 15.0, right: 30.0, bottom: 20.0, top: 20.0),
         margin: EdgeInsets.all(20.0),
         color: Colors.black,
-        child: Text(
-          'SCAN QR CODE',
-          style: TextStyle(
-              height: 1,
-              fontSize: 25,
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                'SCAN QR CODE',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    height: 1,
+                    fontSize: 25,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Icon(
+              Icons.qr_code_scanner_rounded,
               color: Colors.white,
-              fontWeight: FontWeight.bold),
+              size: 60,
+            ),
+          ],
         ),
-        alignment: Alignment.bottomCenter,
-      )
+       // alignment: Alignment.bottomCenter,
+      ),
     ]);
   }
 
