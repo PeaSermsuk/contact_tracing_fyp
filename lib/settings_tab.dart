@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'widgets.dart';
 
 class SettingsTab extends StatefulWidget {
-  static const title = 'Settings';
+  static const title = 'SETTINGS';
   static const setIcon = Icon(Icons.settings);
 
   @override
@@ -11,7 +11,7 @@ class SettingsTab extends StatefulWidget {
 }
 
 class _SettingsTabState extends State<SettingsTab> {
-  var switch1 = false;
+  var switch1 = true;
   var switch2 = true;
   var switch3 = true;
 
@@ -22,7 +22,7 @@ class _SettingsTabState extends State<SettingsTab> {
         ListTile(
           title: Text('College CID'),
           // The Material switch has a platform adaptive constructor.
-          trailing: Text('XXXXXXXX'),
+          trailing: Text('00000000'),
           tileColor: Colors.white,
         ),
         ListTile(
