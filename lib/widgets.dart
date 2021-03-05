@@ -6,6 +6,7 @@ import 'checkin_tab.dart';
 import 'search_tab.dart';
 import 'settings_tab.dart';
 import 'timetable_tab.dart';
+import 'health_page.dart';
 
 /// This is the stateful widget that the main application instantiates.
 class MyStatefulWidget extends StatefulWidget {
@@ -91,7 +92,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               color: const Color(0xFFFF5555),
               size: 30,
               ),
-            onPressed: null,
+            onPressed: (
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HealthPage()),
+              )
+            ),
           ),
         ],
       ),

@@ -2,123 +2,43 @@ import 'package:flutter/material.dart';
 
 import 'widgets.dart';
 
-class CheckInTab extends StatefulWidget {
+class HealthPage extends StatefulWidget {
   static const title = 'CHECK IN';
   static const setIcon = Icon(Icons.qr_code_scanner_rounded);
 
   @override
-  _CheckInTabState createState() => _CheckInTabState();
+  _HealthPageState createState() => _HealthPageState();
 }
 
-class _CheckInTabState extends State<CheckInTab> {
+class _HealthPageState extends State<HealthPage> {
   Widget build(BuildContext context) {
-    return Column(children: [
-      Container(
-        padding: EdgeInsets.all(5.0),
-        margin:
-            EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 10.0),
-        child: Text(
-          'Currently checked in at:',
+    return Scaffold(
+      backgroundColor: const Color(0xFFEEEEEE),
+      appBar: AppBar(
+        leading: IconButton (
+          icon:
+          Icon(Icons.arrow_back_ios),
+          color: Colors.black,
+          onPressed: () {
+            Navigator.pop(context);
+          }
+        ),
+        //leading: Icon(
+        //  Icons.arrow_back_ios,
+        //  color: Colors.black,
+        //  ),
+        title: Text(
+          'HEALTH',
           style: TextStyle(
-            height: 1,
-            fontSize: 20,
             color: Colors.black,
+            ),
           ),
-        ),
-        alignment: Alignment.topLeft,
+        centerTitle: true,
+        backgroundColor: Colors.white,
       ),
-      Container(
-        padding: EdgeInsets.only(left: 15.0, right: 30.0, bottom: 20.0, top: 20.0),
-        margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                'CAGB 200',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    height: 1,
-                    fontSize: 25,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            Icon(
-              Icons.exit_to_app,
-              color: Colors.black,
-              size: 60,
-            ),
-          ],
-        ),
-       // alignment: Alignment.bottomCenter,
-      ),
-      Expanded(
-        child: (Container(
-          padding: EdgeInsets.all(30.0),
-          margin: EdgeInsets.all(30.0),
-          //color: Colors.black,
-          child: Text(
-            'NO CHECK-INS',
-            style: TextStyle(
-                height: 1,
-                fontSize: 25,
-                color: Colors.grey,
-                fontWeight: FontWeight.bold),
-          ),
-          alignment: Alignment.center,
-        )),
-      ),
-      Container(
-        padding: EdgeInsets.only(left: 15.0, right: 30.0, bottom: 20.0, top: 20.0),
-        margin: EdgeInsets.all(20.0),
-        color: Colors.black,
-        child: Row(
-          children: [
-            Expanded(
-              child: Text(
-                'SCAN QR CODE',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    height: 1,
-                    fontSize: 25,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            Icon(
-              Icons.qr_code_scanner_rounded,
-              color: Colors.white,
-              size: 60,
-            ),
-          ],
-        ),
-       // alignment: Alignment.bottomCenter,
-      ),
-    ]);
+      body: ListView(
+        
+      )
+    );
   }
-
-/*  Widget scanButton = Container(
-    padding: const EdgeInsets.all(32),
-    child: Row(
-      children: [
-        Expanded(
-          /*1*/
-          child: Text(
-            'SCAN QR CODE',
-            style: TextStyle(
-                height: 1,
-                fontSize: 30,
-                color: Colors.white,
-                fontWeight: FontWeight.bold),
-          ),
-        ),
-        /*2*/
-        Icon(
-          Icons.qr_code_scanner_rounded,
-          color: Colors.red[500],
-        ),
-      ],
-    ),
-  );*/
 }
