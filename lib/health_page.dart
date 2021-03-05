@@ -30,24 +30,7 @@ class _CheckInTabState extends State<CheckInTab> {
       Container(
         padding: EdgeInsets.only(left: 15.0, right: 30.0, bottom: 20.0, top: 20.0),
         margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        //color: Colors.white,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10)
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 5,
-                offset: Offset(0, 0),
-              ),
-            ],
-          ),
+        color: Colors.white,
         child: Row(
           children: [
             Expanded(
@@ -89,24 +72,7 @@ class _CheckInTabState extends State<CheckInTab> {
       Container(
         padding: EdgeInsets.only(left: 15.0, right: 30.0, bottom: 20.0, top: 20.0),
         margin: EdgeInsets.all(20.0),
-        //color: Colors.black,
-        decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10)
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 5,
-                offset: Offset(0, 0),
-              ),
-            ],
-          ),
+        color: Colors.black,
         child: Row(
           children: [
             Expanded(

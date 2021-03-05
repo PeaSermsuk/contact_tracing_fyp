@@ -3,8 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'checkin_tab.dart';
+import 'search_tab.dart';
 import 'settings_tab.dart';
-
+import 'timetable_tab.dart';
 
 /// This is the stateful widget that the main application instantiates.
 class MyStatefulWidget extends StatefulWidget {
@@ -19,8 +20,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     CheckInTab(),
-    null,
-    null,
+    SearchTab(),
+    TimetableTab(),
     SettingsTab(),
   ];
   String _title;
