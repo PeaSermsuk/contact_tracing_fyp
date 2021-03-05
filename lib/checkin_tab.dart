@@ -21,7 +21,7 @@ class _CheckInTabState extends State<CheckInTab> {
           'Currently checked in at:',
           style: TextStyle(
             height: 1,
-            fontSize: 20,
+            fontSize: 16,
             color: Colors.black,
           ),
         ),

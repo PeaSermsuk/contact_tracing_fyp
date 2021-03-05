@@ -20,13 +20,13 @@ class _SettingsTabState extends State<SettingsTab> {
       children: [
         Padding(padding: EdgeInsets.only(top: 25)),
         ListTile(
-          title: Text('College CID'),
+          title: Text('College CID', style: TextStyle(fontSize: 18)),
           // The Material switch has a platform adaptive constructor.
-          trailing: Text('00000000'),
+          trailing: Text('00000000', style: TextStyle(fontSize: 18)),
           tileColor: Colors.white,
         ),
         ListTile(
-          title: Text('Bluetooth'),
+          title: Text('Bluetooth', style: TextStyle(fontSize: 18)),
           // The Material switch has a platform adaptive constructor.
           trailing: Switch.adaptive(
             value: switch1,
@@ -35,7 +35,7 @@ class _SettingsTabState extends State<SettingsTab> {
           tileColor: Colors.white,
         ),
         ListTile(
-          title: Text('Location services'),
+          title: Text('Location Services', style: TextStyle(fontSize: 18)),
           trailing: Switch.adaptive(
             value: switch2,
             onChanged: (value) => setState(() => switch2 = value),
@@ -43,7 +43,7 @@ class _SettingsTabState extends State<SettingsTab> {
           tileColor: Colors.white,
         ),
         ListTile(
-          title: Text('Notifications'),
+          title: Text('Notifications', style: TextStyle(fontSize: 18)),
           trailing: Switch.adaptive(
             value: switch3,
             onChanged: (value) => setState(() => switch3 = value),
