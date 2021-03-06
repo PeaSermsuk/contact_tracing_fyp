@@ -232,7 +232,7 @@ class _HealthPageState extends State<HealthPage> {
               Text(
                 'Are you sure you want to report a positive COVID-19 test?',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   height: 1.5
                 ),
               ),
@@ -244,7 +244,7 @@ class _HealthPageState extends State<HealthPage> {
             child: Text(
               'No',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
               ),
             ),
             onPressed: () {
@@ -255,7 +255,7 @@ class _HealthPageState extends State<HealthPage> {
             child: Text(
               'Yes',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 color: Colors.red,
               ),
             ),

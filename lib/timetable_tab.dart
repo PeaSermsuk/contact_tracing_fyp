@@ -98,104 +98,134 @@ class _TimetableTabState extends State<TimetableTab> {
           //separatorBuilder: (context, index) => Divider(height: 1.0),
           itemCount: times.length,
           itemBuilder: (context, index) {
-            return Container(
-              color: Colors.white,
-              child: Column(
-                children: [
-                  Container(
-                    height: 19,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              times[index],
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 10,
-                              ),
+            if (index < (times.length - 1)) {
+              return Container(
+                color: Colors.white,
+                height: 40,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 4.0),
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: Text(
+                            times[index],
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.grey,
+                              //fontWeight: FontWeight.bold
                             ),
                           ),
                         ),
-                        Expanded(
-                          flex: wideFlex,
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 10,
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: Colors.grey,
-                                      width: 1.0,
+                      ),
+                    ),
+                    Expanded(
+                      flex: wideFlex,
+                      child: GestureDetector(
+                        onTap: null,
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 10,
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Colors.grey,
+                                    width: 0.5,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 8.0),
+                                child: Center(
+                                  child: Text(
+                                    'CAGB 200',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                      //fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                 ),
                               ),
-                              Spacer(),
-                            ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                // alignment: Alignment.bottomCenter,
+              );
+            } else {
+              return Container(
+                color: Colors.white,
+                height: 50,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 4.0),
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: Text(
+                            times[index],
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.grey,
+                              //fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: null,
-                    child: Container(
-                      height: 21,
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Spacer(),
-                          ),
-                          Expanded(
-                            flex: wideFlex,
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                'CAGB 200',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
+                    Expanded(
+                      flex: wideFlex,
+                      child: GestureDetector(
+                        onTap: null,
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 10,
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: Colors.grey,
+                                    width: 0.5,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 8.0),
+                                child: Center(
+                                  child: Text(
+                                    'CAGB 200',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                      //fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 10,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-/*                  Expanded(
-                    flex: 2,
-                    child: Text(
-                      times[index],
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        height: 1,
-                        fontSize: 20,
-                        color: Colors.black,
-                        //fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: Text(
-                      'CAGB 200',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        height: 1,
-                        fontSize: 20,
-                        color: Colors.black,
-                        //fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),*/
-                ],
-              ),
-              // alignment: Alignment.bottomCenter,
-            );
+                  ],
+                ),
+                // alignment: Alignment.bottomCenter,
+              );
+            }
           },
         ),
       ),

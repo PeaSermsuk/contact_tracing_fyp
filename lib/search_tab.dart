@@ -74,10 +74,18 @@ class _SearchTabState extends State<SearchTab> {
         //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
         //color: Colors.white,
         decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border(
-                top: BorderSide(color: Colors.grey),
-                bottom: BorderSide(color: Colors.grey))),
+          color: Colors.white,
+          border: Border(
+            top: BorderSide(
+              color: Colors.grey,
+              width: 0.5,
+            ),
+            bottom: BorderSide(
+              color: Colors.grey,
+              width: 0.5,
+            ),
+          ),
+        ),
         child: Row(
           children: [
             Expanded(
