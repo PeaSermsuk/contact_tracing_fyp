@@ -70,7 +70,7 @@ class _CheckInTabState extends State<CheckInTab> {
         ),
        // alignment: Alignment.bottomCenter,
       ),
-      Expanded(
+      /*Expanded(
         child: (Container(
           padding: EdgeInsets.all(30.0),
           margin: EdgeInsets.all(30.0),
@@ -85,10 +85,12 @@ class _CheckInTabState extends State<CheckInTab> {
           ),
           alignment: Alignment.center,
         )),
-      ),
+      ),*/
+      Spacer(),
       Container(
         padding: EdgeInsets.only(left: 15.0, right: 30.0, bottom: 20.0, top: 20.0),
         margin: EdgeInsets.all(20.0),
+        alignment: Alignment.bottomCenter,
         //color: Colors.black,
         decoration: BoxDecoration(
             color: Colors.black,
