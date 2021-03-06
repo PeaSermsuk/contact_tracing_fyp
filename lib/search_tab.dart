@@ -11,7 +11,7 @@ class SearchTab extends StatefulWidget {
 }
 
 class _SearchTabState extends State<SearchTab> {
-  final List<String> entries = <String>[
+  List rooms = [
     'CAGB 200',
     'CAGB 202A',
     'CAGB 202B',
@@ -26,7 +26,7 @@ class _SearchTabState extends State<SearchTab> {
     'CAGB 664',
     'CAGB 751',
     'CAGB 752',
-    'CAGB 761'
+    'CAGB 761',
   ];
 
   Widget build(BuildContext context) {
@@ -74,9 +74,10 @@ class _SearchTabState extends State<SearchTab> {
         //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
         //color: Colors.white,
         decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(top: BorderSide(color: Colors.grey), bottom: BorderSide(color: Colors.grey))
-        ),
+            color: Colors.white,
+            border: Border(
+                top: BorderSide(color: Colors.grey),
+                bottom: BorderSide(color: Colors.grey))),
         child: Row(
           children: [
             Expanded(
@@ -122,8 +123,63 @@ class _SearchTabState extends State<SearchTab> {
         ),
         // alignment: Alignment.bottomCenter,
       ),
-
-
+      Expanded(
+        child: ListView.separated(
+          separatorBuilder: (context, index) => Divider(height: 1.0),
+          itemCount: rooms.length,
+          itemBuilder: (context, index) {
+            return Container(
+              padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
+              //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
+              color: Colors.white,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      rooms[index],
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        height: 1,
+                        fontSize: 20,
+                        color: Colors.black,
+                        //fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Text(
+                      '000',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        height: 1,
+                        fontSize: 20,
+                        color: Colors.black,
+                        //fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Text(
+                      '000',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        height: 1,
+                        fontSize: 20,
+                        color: Colors.black,
+                        //fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              // alignment: Alignment.bottomCenter,
+            );
+          },
+        ),
+      )
 
 /*      Container(
         child:

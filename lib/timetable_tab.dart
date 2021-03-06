@@ -11,6 +11,27 @@ class TimetableTab extends StatefulWidget {
 }
 
 class _TimetableTabState extends State<TimetableTab> {
+  List times = [
+    '06:00',
+    '07:00',
+    '08:00',
+    '09:00',
+    '10:00',
+    '11:00',
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+    '18:00',
+    '19:00',
+    '20:00',
+    '21:00',
+    '22:00',
+    '23:00',
+  ];
+
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
@@ -102,546 +123,50 @@ class _TimetableTabState extends State<TimetableTab> {
         ),
         // alignment: Alignment.bottomCenter,
       ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '09:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
+      Expanded(
+        child: ListView.separated(
+          separatorBuilder: (context, index) => Divider(height: 1.0),
+          itemCount: times.length,
+          itemBuilder: (context, index) {
+            return Container(
+              padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
+              //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
+              color: Colors.white,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      times[index],
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        height: 1,
+                        fontSize: 20,
+                        color: Colors.black,
+                        //fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Text(
+                      'CAGB 200',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        height: 1,
+                        fontSize: 20,
+                        color: Colors.black,
+                        //fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                'CAGB 200',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
+              // alignment: Alignment.bottomCenter,
+            );
+          },
         ),
-        // alignment: Alignment.bottomCenter,
-      ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '10:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                '',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-      ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '11:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                'CAGB 761',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-      ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '12:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                '',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-      ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '13:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                '',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-      ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '14:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                '',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-      ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '15:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                '',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-      ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '16:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                'CAGB 309',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-      ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '17:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                'CAGB 309',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-      ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '18:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                '',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-      ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '19:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                '',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-      ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '20:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                '',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-      ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '21:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                '',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-      ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '22:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                '',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-      ),
-      Container(
-        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Text(
-                '23:00',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Text(
-                '',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.black,
-                  //fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-      ),
+      )
     ]);
   }
 }
