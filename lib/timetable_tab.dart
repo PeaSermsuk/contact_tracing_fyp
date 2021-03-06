@@ -32,6 +32,8 @@ class _TimetableTabState extends State<TimetableTab> {
     '23:00',
   ];
 
+  int wideFlex = 5;
+
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
@@ -40,7 +42,6 @@ class _TimetableTabState extends State<TimetableTab> {
         //decoration: BoxDecoration(
         //  border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey)),
         //),
-        color: Colors.white,
         child: Row(
           children: [
             GestureDetector(
@@ -82,8 +83,123 @@ class _TimetableTabState extends State<TimetableTab> {
           ],
         ),
         // alignment: Alignment.bottomCenter,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border(
+            bottom: BorderSide(
+              color: Colors.grey,
+              width: 0.5,
+            ),
+          ),
+        ),
       ),
-      Container(
+      Expanded(
+        child: ListView.builder(
+          //separatorBuilder: (context, index) => Divider(height: 1.0),
+          itemCount: times.length,
+          itemBuilder: (context, index) {
+            return Container(
+              color: Colors.white,
+              child: Column(
+                children: [
+                  Container(
+                    height: 19,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              times[index],
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 10,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: wideFlex,
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: Colors.grey,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Spacer(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: null,
+                    child: Container(
+                      height: 21,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Spacer(),
+                          ),
+                          Expanded(
+                            flex: wideFlex,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'CAGB 200',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+/*                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      times[index],
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        height: 1,
+                        fontSize: 20,
+                        color: Colors.black,
+                        //fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Text(
+                      'CAGB 200',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        height: 1,
+                        fontSize: 20,
+                        color: Colors.black,
+                        //fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),*/
+                ],
+              ),
+              // alignment: Alignment.bottomCenter,
+            );
+          },
+        ),
+      ),
+      /*Container(
         padding: EdgeInsets.only(bottom: 5.0, top: 5.0),
         //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
         decoration: BoxDecoration(
@@ -166,7 +282,7 @@ class _TimetableTabState extends State<TimetableTab> {
             );
           },
         ),
-      )
+      )*/
     ]);
   }
 }
