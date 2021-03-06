@@ -128,6 +128,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ],
         currentIndex: _currentIndex,
         selectedItemColor: Colors.black,
+        selectedFontSize: 12.0,
+        unselectedFontSize: 12.0,
         //unselectedItemColor: const Color(0xFFEEEEEE),
         onTap: _onItemTapped,
       ),

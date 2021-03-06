@@ -11,7 +11,6 @@ class TimetableTab extends StatefulWidget {
 }
 
 class _TimetableTabState extends State<TimetableTab> {
-
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
@@ -23,13 +22,16 @@ class _TimetableTabState extends State<TimetableTab> {
         color: Colors.white,
         child: Row(
           children: [
-            Container(
-              padding: EdgeInsets.only(
-                  left: 10.0, right: 10.0, bottom: 10.0, top: 10.0),
-              child: Icon(
-                Icons.arrow_left,
-                color: Colors.grey,
-                size: 30,
+            GestureDetector(
+              onTap: null,
+              child: Container(
+                padding: EdgeInsets.only(
+                    left: 10.0, right: 10.0, bottom: 10.0, top: 10.0),
+                child: Icon(
+                  Icons.arrow_left,
+                  color: Colors.grey,
+                  size: 30,
+                ),
               ),
             ),
             Expanded(
@@ -44,13 +46,16 @@ class _TimetableTabState extends State<TimetableTab> {
                 ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(
-                  left: 10.0, right: 10.0, bottom: 10.0, top: 10.0),
-              child: Icon(
-                Icons.arrow_right,
-                color: Colors.grey,
-                size: 30,
+            GestureDetector(
+              onTap: null,
+              child: Container(
+                padding: EdgeInsets.only(
+                    left: 10.0, right: 10.0, bottom: 10.0, top: 10.0),
+                child: Icon(
+                  Icons.arrow_right,
+                  color: Colors.grey,
+                  size: 30,
+                ),
               ),
             ),
           ],
@@ -60,7 +65,11 @@ class _TimetableTabState extends State<TimetableTab> {
       Container(
         padding: EdgeInsets.only(bottom: 5.0, top: 5.0),
         //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        color: Colors.white,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+                top: BorderSide(color: Colors.grey),
+                bottom: BorderSide(color: Colors.grey))),
         child: Row(
           children: [
             Expanded(
@@ -93,9 +102,6 @@ class _TimetableTabState extends State<TimetableTab> {
         ),
         // alignment: Alignment.bottomCenter,
       ),
-
-
-
       Container(
         padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
         //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
@@ -383,7 +389,8 @@ class _TimetableTabState extends State<TimetableTab> {
           ],
         ),
         // alignment: Alignment.bottomCenter,
-      ),Container(
+      ),
+      Container(
         padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
         //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
         color: Colors.white,
