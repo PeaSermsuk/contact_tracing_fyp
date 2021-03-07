@@ -16,17 +16,115 @@ class _SettingsTabState extends State<SettingsTab> {
   var switch3 = true;
 
   Widget build(BuildContext context) {
+
+    double boxHeight = 48;
+
     return ListView(
       children: [
         Padding(padding: EdgeInsets.only(top: 25)),
-        ListTile(
-          title: Text('College CID', style: TextStyle(fontSize: 18)),
+        Container(
+          height: boxHeight,
+          padding: EdgeInsets.only(left: 15.0, right: 15.0),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              top: BorderSide(
+                color: Colors.grey,
+                width: 0.5,
+              ),
+              bottom: BorderSide(
+                color: Colors.grey,
+                width: 0.5,
+              ),
+            ),
+          ),
+          child: Row(
+            children: [
+              Text('College CID', style: TextStyle(fontSize: 16)),
+              Spacer(),
+              Text('00000000', style: TextStyle(fontSize: 16))
+            ],
+          ),
+          //title: Text('College CID', style: TextStyle(fontSize: 16)),
           // The Material switch has a platform adaptive constructor.
-          trailing: Text('00000000', style: TextStyle(fontSize: 18)),
-          tileColor: Colors.white,
+          //trailing: Text('00000000', style: TextStyle(fontSize: 16)),
+          //tileColor: Colors.white,
         ),
-        ListTile(
-          title: Text('Bluetooth', style: TextStyle(fontSize: 18)),
+        Container(
+          height: boxHeight,
+          padding: EdgeInsets.only(left: 15.0, right: 15.0),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              bottom: BorderSide(
+                color: Colors.grey,
+                width: 0.5,
+              ),
+            ),
+          ),
+          child: Row(
+            children: [
+              Text('Bluetooth', style: TextStyle(fontSize: 16)),
+              Spacer(),
+              Switch.adaptive(
+                value: switch1,
+                onChanged: (value) => setState(() => switch1 = value),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          height: boxHeight,
+          padding: EdgeInsets.only(left: 15.0, right: 15.0),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              bottom: BorderSide(
+                color: Colors.grey,
+                width: 0.5,
+              ),
+            ),
+          ),
+          child: Row(
+            children: [
+              Text('Location Services', style: TextStyle(fontSize: 16)),
+              Spacer(),
+              Switch.adaptive(
+                value: switch2,
+                onChanged: (value) => setState(() => switch1 = value),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          height: boxHeight,
+          padding: EdgeInsets.only(left: 15.0, right: 15.0),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              bottom: BorderSide(
+                color: Colors.grey,
+                width: 0.5,
+              ),
+            ),
+          ),
+          child: Row(
+            children: [
+              Text('Notifications', style: TextStyle(fontSize: 16)),
+              Spacer(),
+              Switch.adaptive(
+                value: switch3,
+                onChanged: (value) => setState(() => switch1 = value),
+              ),
+            ],
+          ),
+        ),
+        /*ListTile(
+          title: Text('Bluetooth', style: TextStyle(fontSize: 16)),
           // The Material switch has a platform adaptive constructor.
           trailing: Switch.adaptive(
             value: switch1,
@@ -35,7 +133,7 @@ class _SettingsTabState extends State<SettingsTab> {
           tileColor: Colors.white,
         ),
         ListTile(
-          title: Text('Location Services', style: TextStyle(fontSize: 18)),
+          title: Text('Location Services', style: TextStyle(fontSize: 16)),
           trailing: Switch.adaptive(
             value: switch2,
             onChanged: (value) => setState(() => switch2 = value),
@@ -43,13 +141,13 @@ class _SettingsTabState extends State<SettingsTab> {
           tileColor: Colors.white,
         ),
         ListTile(
-          title: Text('Notifications', style: TextStyle(fontSize: 18)),
+          title: Text('Notifications', style: TextStyle(fontSize: 16)),
           trailing: Switch.adaptive(
             value: switch3,
             onChanged: (value) => setState(() => switch3 = value),
           ),
           tileColor: Colors.white,
-        ),
+        ),*/
       ],
     );
   }
