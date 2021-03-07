@@ -29,6 +29,9 @@ class _SearchTabState extends State<SearchTab> {
     'CAGB 761',
   ];
 
+  double barFontSize = 16;
+  double searchFontSize = 16;
+
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
@@ -38,20 +41,16 @@ class _SearchTabState extends State<SearchTab> {
         //  border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey)),
         //),
         //color: Colors.white,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          //border: Border(bottom: BorderSide(color: Colors.grey))
-        ),
+        height: 45,
+        padding: EdgeInsets.only(left: 10.0, right: 10.0),
+        alignment: Alignment.center,
+        color: Colors.white,
         child: Row(
           children: [
-            Container(
-              padding: EdgeInsets.only(
-                  left: 10.0, right: 10.0, bottom: 10.0, top: 10.0),
-              child: Icon(
-                Icons.search,
-                color: Colors.grey,
-                size: 30,
-              ),
+            Icon(
+              Icons.search,
+              color: Colors.grey,
+              size: 30,
             ),
             Expanded(
               child: Text(
@@ -95,7 +94,7 @@ class _SearchTabState extends State<SearchTab> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   height: 1,
-                  fontSize: 15,
+                  fontSize: barFontSize,
                   color: Colors.grey,
                   //fontWeight: FontWeight.bold),
                 ),
@@ -108,7 +107,7 @@ class _SearchTabState extends State<SearchTab> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   height: 1,
-                  fontSize: 15,
+                  fontSize: barFontSize,
                   color: Colors.grey,
                   //fontWeight: FontWeight.bold),
                 ),
@@ -121,7 +120,7 @@ class _SearchTabState extends State<SearchTab> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   height: 1,
-                  fontSize: 15,
+                  fontSize: barFontSize,
                   color: Colors.grey,
                   //fontWeight: FontWeight.bold),
                 ),
@@ -137,7 +136,9 @@ class _SearchTabState extends State<SearchTab> {
           itemCount: rooms.length,
           itemBuilder: (context, index) {
             return Container(
-              padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
+              height: 45,
+              alignment: Alignment.center,
+              //padding: EdgeInsets.only(bottom: 14.5, top: 14.5),
               //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
               color: Colors.white,
               child: Row(
@@ -149,7 +150,7 @@ class _SearchTabState extends State<SearchTab> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         height: 1,
-                        fontSize: 20,
+                        fontSize: searchFontSize,
                         color: Colors.black,
                         //fontWeight: FontWeight.bold),
                       ),
@@ -162,7 +163,7 @@ class _SearchTabState extends State<SearchTab> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         height: 1,
-                        fontSize: 20,
+                        fontSize: searchFontSize,
                         color: Colors.black,
                         //fontWeight: FontWeight.bold),
                       ),
@@ -175,7 +176,7 @@ class _SearchTabState extends State<SearchTab> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         height: 1,
-                        fontSize: 20,
+                        fontSize: searchFontSize,
                         color: Colors.black,
                         //fontWeight: FontWeight.bold),
                       ),

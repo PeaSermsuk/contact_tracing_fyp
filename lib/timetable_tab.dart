@@ -33,6 +33,8 @@ class _TimetableTabState extends State<TimetableTab> {
   ];
 
   int wideFlex = 5;
+  double boxHeight = 45;
+  double roomFontSize = 16;
 
   Widget build(BuildContext context) {
     return Column(children: [
@@ -101,7 +103,7 @@ class _TimetableTabState extends State<TimetableTab> {
             if (index < (times.length - 1)) {
               return Container(
                 color: Colors.white,
-                height: 40,
+                height: boxHeight,
                 child: Row(
                   children: [
                     Expanded(
@@ -144,7 +146,7 @@ class _TimetableTabState extends State<TimetableTab> {
                                   child: Text(
                                     'CAGB 200',
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: roomFontSize,
                                       color: Colors.black,
                                       //fontWeight: FontWeight.bold),
                                     ),
@@ -163,7 +165,7 @@ class _TimetableTabState extends State<TimetableTab> {
             } else {
               return Container(
                 color: Colors.white,
-                height: 50,
+                height: boxHeight + 10,
                 child: Row(
                   children: [
                     Expanded(
@@ -201,12 +203,12 @@ class _TimetableTabState extends State<TimetableTab> {
                             ),
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(top: 8.0),
+                                padding: EdgeInsets.only(top: 8.0, bottom: 10),
                                 child: Center(
                                   child: Text(
                                     'CAGB 200',
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: roomFontSize,
                                       color: Colors.black,
                                       //fontWeight: FontWeight.bold),
                                     ),
@@ -214,9 +216,9 @@ class _TimetableTabState extends State<TimetableTab> {
                                 ),
                               ),
                             ),
-                            Container(
-                              height: 10,
-                            ),
+                            //Container(
+                            //  height: 10,
+                            //),
                           ],
                         ),
                       ),
