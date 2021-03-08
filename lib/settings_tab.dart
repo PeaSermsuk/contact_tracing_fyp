@@ -94,7 +94,7 @@ class _SettingsTabState extends State<SettingsTab> {
               Spacer(),
               Switch.adaptive(
                 value: switch2,
-                onChanged: (value) => setState(() => switch1 = value),
+                onChanged: (value) => setState(() => switch2 = value),
               ),
             ],
           ),
@@ -118,7 +118,7 @@ class _SettingsTabState extends State<SettingsTab> {
               Spacer(),
               Switch.adaptive(
                 value: switch3,
-                onChanged: (value) => setState(() => switch1 = value),
+                onChanged: (value) => setState(() => switch3 = value),
               ),
             ],
           ),

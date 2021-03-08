@@ -41,30 +41,46 @@ class _SearchTabState extends State<SearchTab> {
         //  border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey)),
         //),
         //color: Colors.white,
-        height: 45,
-        padding: EdgeInsets.only(left: 10.0, right: 10.0),
+        //height: 45,
+        padding: EdgeInsets.all(10.0),
         alignment: Alignment.center,
         color: Colors.white,
-        child: Row(
-          children: [
-            Icon(
-              Icons.search,
-              color: Colors.grey,
-              size: 30,
-            ),
-            Expanded(
-              child: Text(
-                'Search...',
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
-                  color: Colors.grey,
-                  //fontWeight: FontWeight.bold),
+        child: Container(
+          padding: EdgeInsets.only(left: 5.0, right: 5.0),
+          height: 36,
+          decoration: BoxDecoration(
+            color: const Color(0xFFEEEEEE),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8.0),
+                topRight: Radius.circular(8.0),
+                bottomLeft: Radius.circular(8.0),
+                bottomRight: Radius.circular(8.0)),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.search,
+                color: Colors.grey.shade600,
+                size: 22,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 5.0),
+                  child: Text(
+                    'Search',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      height: 1,
+                      fontSize: 16,
+                      color: Colors.grey,
+                      //fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         // alignment: Alignment.bottomCenter,
       ),
