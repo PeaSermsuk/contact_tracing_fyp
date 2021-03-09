@@ -43,7 +43,7 @@ class _SettingsTabState extends State<SettingsTab> {
             children: [
               Text('College CID', style: TextStyle(fontSize: 16)),
               Spacer(),
-              Text('00000000', style: TextStyle(fontSize: 16))
+              Text('01336587', style: TextStyle(fontSize: 16))
             ],
           ),
           //title: Text('College CID', style: TextStyle(fontSize: 16)),

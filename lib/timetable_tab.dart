@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 import 'widgets.dart';
@@ -11,7 +13,7 @@ class TimetableTab extends StatefulWidget {
 }
 
 class _TimetableTabState extends State<TimetableTab> {
-  List times = [
+  List _times = [
     '06:00',
     '07:00',
     '08:00',
@@ -32,35 +34,73 @@ class _TimetableTabState extends State<TimetableTab> {
     '23:00',
   ];
 
+  List _days = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ];
+
   int wideFlex = 5;
   double boxHeight = 45;
   double roomFontSize = 16;
+  int dayIndex = 0;
 
+  @override
   Widget build(BuildContext context) {
+    int size = _days.length;
+
+    void nextValue() {
+      if (dayIndex < size - 1) {
+        setState(() {
+          dayIndex++;
+        });
+      } else {
+        setState(() {
+          dayIndex = 0;
+        });
+      }
+      //print(dayIndex);
+    }
+
+    void previousValue() {
+      if (dayIndex > 0) {
+        setState(() {
+          dayIndex--;
+        });
+      } else {
+        setState(() {
+          dayIndex = size - 1;
+        });
+      }
+      //print(dayIndex);
+    }
+
     return Column(children: [
       Container(
-        //padding: EdgeInsets.only(left: 15.0, right: 30.0, bottom: 20.0, top: 20.0),
+        height: boxHeight,
+        padding: EdgeInsets.only(left: 10.0, right: 10.0),
         //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
         //decoration: BoxDecoration(
         //  border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey)),
         //),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             GestureDetector(
-              onTap: null,
-              child: Container(
-                padding: EdgeInsets.only(
-                    left: 10.0, right: 10.0, bottom: 10.0, top: 10.0),
-                child: Icon(
-                  Icons.arrow_left,
-                  color: Colors.grey,
-                  size: 30,
-                ),
+              onTap: previousValue,
+              child: Icon(
+                Icons.arrow_left,
+                color: Colors.grey,
+                size: 30,
               ),
             ),
             Expanded(
               child: Text(
-                'Monday',
+                _days[dayIndex],
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   height: 1,
@@ -71,15 +111,11 @@ class _TimetableTabState extends State<TimetableTab> {
               ),
             ),
             GestureDetector(
-              onTap: null,
-              child: Container(
-                padding: EdgeInsets.only(
-                    left: 10.0, right: 10.0, bottom: 10.0, top: 10.0),
-                child: Icon(
-                  Icons.arrow_right,
-                  color: Colors.grey,
-                  size: 30,
-                ),
+              onTap: nextValue,
+              child: Icon(
+                Icons.arrow_right,
+                color: Colors.grey,
+                size: 30,
               ),
             ),
           ],
@@ -98,9 +134,9 @@ class _TimetableTabState extends State<TimetableTab> {
       Expanded(
         child: ListView.builder(
           //separatorBuilder: (context, index) => Divider(height: 1.0),
-          itemCount: times.length,
+          itemCount: _times.length,
           itemBuilder: (context, index) {
-            if (index < (times.length - 1)) {
+            if (index < (_times.length - 1)) {
               return Container(
                 color: Colors.white,
                 height: boxHeight,
@@ -112,7 +148,7 @@ class _TimetableTabState extends State<TimetableTab> {
                         child: Align(
                           alignment: Alignment.topCenter,
                           child: Text(
-                            times[index],
+                            _times[index],
                             style: TextStyle(
                               fontSize: 10,
                               color: Colors.grey,
@@ -174,11 +210,11 @@ class _TimetableTabState extends State<TimetableTab> {
                         child: Align(
                           alignment: Alignment.topCenter,
                           child: Text(
-                            times[index],
+                            _times[index],
                             style: TextStyle(
                               fontSize: 10,
                               color: Colors.grey,
-                              //fontWeight: FontWeight.bold),
+                              //fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),

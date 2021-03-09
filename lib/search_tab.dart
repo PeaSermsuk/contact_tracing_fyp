@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
 
 import 'widgets.dart';
 
@@ -31,6 +33,12 @@ class _SearchTabState extends State<SearchTab> {
 
   double barFontSize = 16;
   double searchFontSize = 16;
+
+  Future getRooms() async {
+    var firestore = FirebaseFirestore.instance;
+    QuerySnapshot qs = await firestore.collection("rooms").get();
+    return qs.docs;
+  }
 
   Widget build(BuildContext context) {
     return Column(children: [
@@ -205,21 +213,6 @@ class _SearchTabState extends State<SearchTab> {
           },
         ),
       )
-
-/*      Container(
-        child:
-        ListView.separated(
-        padding: const EdgeInsets.all(8),
-        itemCount: entries.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            height: 50,
-            color: Colors.amber,
-            child: Center(child: Text('Entry ${entries[index]}')),
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
-      )),*/
     ]);
   }
 }
