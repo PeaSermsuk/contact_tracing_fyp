@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'widgets.dart';
 
@@ -124,7 +125,7 @@ class _SettingsTabState extends State<SettingsTab> {
         ),
         Padding(padding: EdgeInsets.only(top: 25)),
         GestureDetector(
-          onTap: null,
+          onTap: _logoutDialog,
           child: Container(
             height: boxHeight,
             padding: EdgeInsets.only(left: 15.0, right: 15.0),
@@ -172,6 +173,53 @@ class _SettingsTabState extends State<SettingsTab> {
           tileColor: Colors.white,
         ),*/
       ],
+    );
+  }
+
+    Future<void> _logoutDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          //title: Text('AlertDialog Title'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                  'Are you sure you want to log out?',
+                  style: TextStyle(fontSize: 16, height: 1.5),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                'No',
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text(
+                'Yes',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.red,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -51,9 +51,10 @@ class _HealthPageState extends State<HealthPage> {
             //margin: EdgeInsets.only(bottom: 10.0),
             padding: EdgeInsets.all(10.0),
             decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border(bottom: BorderSide(color: Colors.grey),top: BorderSide(color: Colors.grey))
-            ),
+                color: Colors.white,
+                border: Border(
+                    bottom: BorderSide(color: Colors.grey),
+                    top: BorderSide(color: Colors.grey))),
             child: Row(
               children: [
                 Container(
@@ -63,27 +64,27 @@ class _HealthPageState extends State<HealthPage> {
                   color: Colors.red,
                 )),
                 Expanded(
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0),
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'COVID-19 Positive',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
+                    child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 10.0),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'COVID-19 Positive',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0, top: 5.0),
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Self-isolate for 10 days.\nRemain in quarantine should symptoms still persist.',
-                          style: TextStyle(fontSize: 16, height: 1.3),
-                          ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 10.0, top: 5.0),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Self-isolate for 10 days.\nRemain in quarantine should symptoms still persist.',
+                        style: TextStyle(fontSize: 16, height: 1.3),
                       ),
-                    ],
-                  )
-                ),
+                    ),
+                  ],
+                )),
               ],
             ),
           ),
@@ -92,9 +93,8 @@ class _HealthPageState extends State<HealthPage> {
             //margin: EdgeInsets.only(bottom: 10.0),
             padding: EdgeInsets.all(10.0),
             decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border(bottom: BorderSide(color: Colors.grey))
-            ),
+                color: Colors.white,
+                border: Border(bottom: BorderSide(color: Colors.grey))),
             child: Row(
               children: [
                 Container(
@@ -104,27 +104,27 @@ class _HealthPageState extends State<HealthPage> {
                   color: Colors.orange,
                 )),
                 Expanded(
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0),
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'High-Risk Contacts',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
+                    child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 10.0),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'High-Risk Contacts',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0, top: 5.0),
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Self-isolate for 14 days.\nGet tested for COVID-19 if developed symptoms.',
-                          style: TextStyle(fontSize: 16, height: 1.3),
-                          ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 10.0, top: 5.0),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Self-isolate for 14 days.\nGet tested for COVID-19 if developed symptoms.',
+                        style: TextStyle(fontSize: 16, height: 1.3),
                       ),
-                    ],
-                  )
-                ),
+                    ),
+                  ],
+                )),
               ],
             ),
           ),
@@ -133,9 +133,8 @@ class _HealthPageState extends State<HealthPage> {
             //margin: EdgeInsets.only(bottom: 10.0),
             padding: EdgeInsets.all(10.0),
             decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border(bottom: BorderSide(color: Colors.grey))
-            ),
+                color: Colors.white,
+                border: Border(bottom: BorderSide(color: Colors.grey))),
             child: Row(
               children: [
                 Container(
@@ -145,72 +144,66 @@ class _HealthPageState extends State<HealthPage> {
                   color: Colors.yellow,
                 )),
                 Expanded(
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0),
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Low-Risk Contacts',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
+                    child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 10.0),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Low-Risk Contacts',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0, top: 5.0),
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'No self-isolation required.\nMonitor symptoms for 14 days.\nGet tested if necessary.',
-                          style: TextStyle(fontSize: 16, height: 1.3),
-                          ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 10.0, top: 5.0),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'No self-isolation required.\nMonitor symptoms for 14 days.\nGet tested if necessary.',
+                        style: TextStyle(fontSize: 16, height: 1.3),
                       ),
-                    ],
-                  )
-                ),
+                    ),
+                  ],
+                )),
               ],
             ),
           ),
           Container(
-            margin: EdgeInsets.all(10.0),
-            alignment: Alignment.centerLeft,
-            child: Text(
-              '* for more information visit gov.uk'
-            )
-          ),
+              margin: EdgeInsets.all(10.0),
+              alignment: Alignment.centerLeft,
+              child: Text('* for more information visit gov.uk')),
           GestureDetector(
-            onTap: _showMyDialog,
-            child: Container(
-              margin: EdgeInsets.only(top: 10.0, bottom: 10, left: 20, right: 20),
-              padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-              alignment: Alignment.center,
-              child: Text(
-                'REPORT POSITIVE\nCOVID-19 TEST',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  height: 1.5,
-                )
-              ),
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10)
+              onTap: _showMyDialog,
+              child: Container(
+                margin:
+                    EdgeInsets.only(top: 10.0, bottom: 10, left: 20, right: 20),
+                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                alignment: Alignment.center,
+                child: Text('REPORT POSITIVE\nCOVID-19 TEST',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      height: 1.5,
+                    )),
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 5,
+                      offset: Offset(0, 0),
+                    ),
+                  ],
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 5,
-                    offset: Offset(0, 0),
-                  ),
-                ],
-              ),
-            )
-          )
+              ))
         ],
       ),
       //body: Container(
@@ -220,53 +213,49 @@ class _HealthPageState extends State<HealthPage> {
   }
 
   Future<void> _showMyDialog() async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return CupertinoAlertDialog(
-        //title: Text('AlertDialog Title'),
-        content: SingleChildScrollView(
-          child: ListBody(
-            children: <Widget>[
-              Text(
-                'Are you sure you want to report a positive COVID-19 test?',
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          //title: Text('AlertDialog Title'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                  'Are you sure you want to report a positive COVID-19 test?',
+                  style: TextStyle(fontSize: 16, height: 1.5),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                'No',
                 style: TextStyle(
                   fontSize: 16,
-                  height: 1.5
                 ),
               ),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            child: Text(
-              'No',
-              style: TextStyle(
-                fontSize: 16,
-              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          TextButton(
-            child: Text(
-              'Yes',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.red,
+            TextButton(
+              child: Text(
+                'Yes',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.red,
+                ),
               ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
-
+          ],
+        );
+      },
+    );
+  }
 }

@@ -75,14 +75,14 @@ class _SearchTabState extends State<SearchTab> {
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.only(left: 5.0),
-                  child: Text(
-                    'Search',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      height: 1,
-                      fontSize: 16,
-                      color: Colors.grey,
-                      //fontWeight: FontWeight.bold),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Search',
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ),
