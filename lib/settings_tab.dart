@@ -16,7 +16,6 @@ class _SettingsTabState extends State<SettingsTab> {
   var switch3 = true;
 
   Widget build(BuildContext context) {
-
     double boxHeight = 48;
 
     return ListView(
@@ -121,6 +120,30 @@ class _SettingsTabState extends State<SettingsTab> {
                 onChanged: (value) => setState(() => switch3 = value),
               ),
             ],
+          ),
+        ),
+        Padding(padding: EdgeInsets.only(top: 25)),
+        GestureDetector(
+          onTap: null,
+          child: Container(
+            height: boxHeight,
+            padding: EdgeInsets.only(left: 15.0, right: 15.0),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.grey,
+                  width: 0.5,
+                ),
+                top: BorderSide(
+                  color: Colors.grey,
+                  width: 0.5,
+                ),
+              ),
+            ),
+            child: Text('Log Out',
+                style: TextStyle(fontSize: 16, color: Colors.red)),
           ),
         ),
         /*ListTile(
