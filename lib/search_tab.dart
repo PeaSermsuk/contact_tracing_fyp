@@ -12,8 +12,11 @@ class SearchTab extends StatefulWidget {
   _SearchTabState createState() => _SearchTabState();
 }
 
+
+
 class _SearchTabState extends State<SearchTab> {
-  List rooms = [
+
+  /*List rooms = [
     'CAGB 200',
     'CAGB 202A',
     'CAGB 202B',
@@ -29,16 +32,51 @@ class _SearchTabState extends State<SearchTab> {
     'CAGB 751',
     'CAGB 752',
     'CAGB 761',
+  ];*/
+
+    List<Info> _roomInfo = [
+    Info(name: 'CAGB 200', capacity: 200, available: 200),
+    Info(name: 'CAGB 202A', capacity: 200, available: 200),
+    Info(name: 'CAGB 202B', capacity: 200, available: 200),
+    Info(name: 'CAGB 202C', capacity: 200, available: 200),
+    Info(name: 'CAGB 300', capacity: 200, available: 200),
+    Info(name: 'CAGB 309', capacity: 200, available: 200),
+    Info(name: 'CAGB 310', capacity: 200, available: 200),
+    Info(name: 'CAGB 640', capacity: 200, available: 200),
+    Info(name: 'CAGB 641', capacity: 200, available: 200),
+    Info(name: 'CAGB 642', capacity: 200, available: 200),
+    Info(name: 'CAGB 649', capacity: 200, available: 200),
+    Info(name: 'CAGB 664', capacity: 200, available: 200),
+    Info(name: 'CAGB 751', capacity: 200, available: 200),
+    Info(name: 'CAGB 752', capacity: 200, available: 200),
+    Info(name: 'CAGB 761', capacity: 200, available: 200),
+  ];
+  List<Info> _roomInfoSearch = [
+    Info(name: 'CAGB 200', capacity: 200, available: 200),
+    Info(name: 'CAGB 202A', capacity: 200, available: 200),
+    Info(name: 'CAGB 202B', capacity: 200, available: 200),
+    Info(name: 'CAGB 202C', capacity: 200, available: 200),
+    Info(name: 'CAGB 300', capacity: 200, available: 200),
+    Info(name: 'CAGB 309', capacity: 200, available: 200),
+    Info(name: 'CAGB 310', capacity: 200, available: 200),
+    Info(name: 'CAGB 640', capacity: 200, available: 200),
+    Info(name: 'CAGB 641', capacity: 200, available: 200),
+    Info(name: 'CAGB 642', capacity: 200, available: 200),
+    Info(name: 'CAGB 649', capacity: 200, available: 200),
+    Info(name: 'CAGB 664', capacity: 200, available: 200),
+    Info(name: 'CAGB 751', capacity: 200, available: 200),
+    Info(name: 'CAGB 752', capacity: 200, available: 200),
+    Info(name: 'CAGB 761', capacity: 200, available: 200),
   ];
 
   double barFontSize = 16;
   double searchFontSize = 16;
 
-  Future getRooms() async {
+  /*Future getRooms() async {
     var firestore = FirebaseFirestore.instance;
     QuerySnapshot qs = await firestore.collection("rooms").get();
     return qs.docs;
-  }
+  }*/
 
   Widget build(BuildContext context) {
     return Column(children: [
@@ -84,6 +122,15 @@ class _SearchTabState extends State<SearchTab> {
                         fontSize: 16,
                       ),
                     ),
+                    onChanged: (text) {
+                      text = text.toLowerCase();
+                      setState(() {
+                        _roomInfoSearch = _roomInfo.where((room) {
+                          var roomName = room.name.toLowerCase();
+                          return roomName.contains(text);
+                        }).toList();
+                      });
+                    },
                   ),
                 ),
               ),
@@ -157,7 +204,7 @@ class _SearchTabState extends State<SearchTab> {
       Expanded(
         child: ListView.separated(
           separatorBuilder: (context, index) => Divider(height: 1.0),
-          itemCount: rooms.length,
+          itemCount: _roomInfoSearch.length,
           itemBuilder: (context, index) {
             return Container(
               height: 45,
@@ -170,7 +217,7 @@ class _SearchTabState extends State<SearchTab> {
                   Expanded(
                     flex: 2,
                     child: Text(
-                      rooms[index],
+                      _roomInfoSearch[index].name,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         height: 1,
@@ -183,7 +230,7 @@ class _SearchTabState extends State<SearchTab> {
                   Expanded(
                     flex: 1,
                     child: Text(
-                      '000',
+                      _roomInfoSearch[index].capacity.toString(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         height: 1,
@@ -196,7 +243,7 @@ class _SearchTabState extends State<SearchTab> {
                   Expanded(
                     flex: 1,
                     child: Text(
-                      '000',
+                      _roomInfoSearch[index].available.toString(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         height: 1,
@@ -215,4 +262,31 @@ class _SearchTabState extends State<SearchTab> {
       )
     ]);
   }
+}
+
+/*class RoomInfo {
+  List<Info> _roomInfo = [
+    Info(name: 'CAGB 200', capacity: 200, available: 200),
+    Info(name: 'CAGB 202A', capacity: 200, available: 200),
+    Info(name: 'CAGB 202B', capacity: 200, available: 200),
+    Info(name: 'CAGB 202C', capacity: 200, available: 200),
+    Info(name: 'CAGB 300', capacity: 200, available: 200),
+    Info(name: 'CAGB 309', capacity: 200, available: 200),
+    Info(name: 'CAGB 310', capacity: 200, available: 200),
+    Info(name: 'CAGB 640', capacity: 200, available: 200),
+    Info(name: 'CAGB 641', capacity: 200, available: 200),
+    Info(name: 'CAGB 642', capacity: 200, available: 200),
+    Info(name: 'CAGB 649', capacity: 200, available: 200),
+    Info(name: 'CAGB 664', capacity: 200, available: 200),
+    Info(name: 'CAGB 751', capacity: 200, available: 200),
+    Info(name: 'CAGB 752', capacity: 200, available: 200),
+    Info(name: 'CAGB 761', capacity: 200, available: 200),
+  ];
+}*/
+
+class Info {
+  String name;
+  int capacity;
+  int available;
+  Info({this.name,this.capacity,this.available});
 }

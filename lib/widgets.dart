@@ -136,3 +136,37 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
 }
+
+class SomethingWentWrong extends StatefulWidget {
+  @override
+  _SomethingWentWrongState createState() => _SomethingWentWrongState();
+}
+
+class _SomethingWentWrongState extends State<SomethingWentWrong> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        'Something went wrong.',
+        textDirection: TextDirection.ltr,
+      ),
+    );
+  }
+}
+
+class Loading extends StatefulWidget {
+  @override
+  _LoadingState createState() => _LoadingState();
+}
+
+class _LoadingState extends State<Loading> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        'Loading...',
+        textDirection: TextDirection.ltr,
+      ),
+    );
+  }
+}
