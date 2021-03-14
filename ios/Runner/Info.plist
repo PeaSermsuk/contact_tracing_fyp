@@ -46,5 +46,7 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow camera access for QR scanning.</string>
 </dict>
 </plist>

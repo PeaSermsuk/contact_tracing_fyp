@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:barcode_scan/barcode_scan.dart';
+import 'package:flutter/services.dart';
 
 import 'widgets.dart';
 
@@ -11,6 +13,40 @@ class CheckInTab extends StatefulWidget {
 }
 
 class _CheckInTabState extends State<CheckInTab> {
+  String result = "";
+
+  Future _scanQR() async {
+    try {
+      String qrResult = await BarcodeScanner.scan();
+      setState(() {
+        result = qrResult;
+        print(result);
+      });
+    } on PlatformException catch (ex) {
+      if (ex.code == BarcodeScanner.CameraAccessDenied) {
+        setState(() {
+          result = "Camera permission was denied";
+          print(result);
+        });
+      } else {
+        setState(() {
+          result = "Unknown Error $ex";
+          print(result);
+        });
+      }
+    } on FormatException { // If back button pressed
+      setState(() {
+        result = "You pressed the back button before scanning";
+        print(result);
+      });
+    } catch (ex) {
+      setState(() {
+        result = "Unknown Error $ex";
+        print(result);
+      });
+    }
+  }
+
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
@@ -92,7 +128,7 @@ class _CheckInTabState extends State<CheckInTab> {
       ),*/
       Spacer(),
       GestureDetector(
-        onTap: null,
+        onTap: _scanQR,
         child: Container(
           padding:
               EdgeInsets.only(left: 15.0, right: 30.0, bottom: 20.0, top: 20.0),
@@ -164,4 +200,11 @@ class _CheckInTabState extends State<CheckInTab> {
       ],
     ),
   );*/
+}
+
+class BarcodeScanner {
+  static const CameraAccessDenied = 'PERMISSION_NOT_GRANTED';
+  static const MethodChannel _channel =
+      const MethodChannel('com.appletreesoftware.barcode_scan');
+  static Future<String> scan() async => await _channel.invokeMethod('scan');
 }
