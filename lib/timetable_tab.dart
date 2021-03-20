@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 
+import 'roomselect_page.dart';
 import 'widgets.dart';
 
 class TimetableTab extends StatefulWidget {
@@ -161,7 +162,12 @@ class _TimetableTabState extends State<TimetableTab> {
                     Expanded(
                       flex: wideFlex,
                       child: GestureDetector(
-                        onTap: null,
+                        onTap: (
+                          () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RoomSelectPage()),
+                            )),
                         child: Column(
                           children: [
                             Container(

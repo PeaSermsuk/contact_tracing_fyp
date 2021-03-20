@@ -36,7 +36,7 @@ class _SearchTabState extends State<SearchTab> {
 
     List<Info> _roomInfo = [
     Info(name: 'CAGB 200', capacity: 200, available: 200),
-    Info(name: 'CAGB 202A', capacity: 200, available: 200),
+    Info(name: 'CAGB 202A', capacity: 250, available: 200),
     Info(name: 'CAGB 202B', capacity: 200, available: 200),
     Info(name: 'CAGB 202C', capacity: 200, available: 200),
     Info(name: 'CAGB 300', capacity: 200, available: 200),
@@ -53,7 +53,7 @@ class _SearchTabState extends State<SearchTab> {
   ];
   List<Info> _roomInfoSearch = [
     Info(name: 'CAGB 200', capacity: 200, available: 200),
-    Info(name: 'CAGB 202A', capacity: 200, available: 200),
+    Info(name: 'CAGB 202A', capacity: 250, available: 200),
     Info(name: 'CAGB 202B', capacity: 200, available: 200),
     Info(name: 'CAGB 202C', capacity: 200, available: 200),
     Info(name: 'CAGB 300', capacity: 200, available: 200),
