@@ -13,6 +13,9 @@ class TimetableTab extends StatefulWidget {
   _TimetableTabState createState() => _TimetableTabState();
 }
 
+int dayIndex = 0;
+int chosenTimeIndex = 0;
+
 class _TimetableTabState extends State<TimetableTab> {
   List _times = [
     '06:00',
@@ -48,7 +51,6 @@ class _TimetableTabState extends State<TimetableTab> {
   int wideFlex = 5;
   double boxHeight = 45;
   double roomFontSize = 16;
-  int dayIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -161,43 +163,50 @@ class _TimetableTabState extends State<TimetableTab> {
                     ),
                     Expanded(
                       flex: wideFlex,
-                      child: GestureDetector(
-                        onTap: (
-                          () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => RoomSelectPage()),
-                            )),
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 10,
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Colors.grey,
-                                    width: 0.5,
-                                  ),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 10,
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors.grey,
+                                  width: 0.5,
                                 ),
                               ),
                             ),
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.only(top: 8.0),
-                                child: Center(
-                                  child: Text(
-                                    'CAGB 200',
-                                    style: TextStyle(
-                                      fontSize: roomFontSize,
-                                      color: Colors.black,
-                                      //fontWeight: FontWeight.bold),
+                          ),
+                          Expanded(
+                            child: GestureDetector(
+                              behavior: HitTestBehavior.translucent,
+                              onTap: () {
+                                chosenTimeIndex = index;
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            RoomSelectPage())).then((value) {
+                                  setState(() {});
+                                });
+                              },
+                              child: Container(
+                                child: Padding(
+                                  padding: EdgeInsets.only(top: 8.0),
+                                  child: Center(
+                                    child: Text(
+                                      mondayTimetable[index] ?? '',
+                                      style: TextStyle(
+                                        fontSize: roomFontSize,
+                                        color: Colors.black,
+                                        //fontWeight: FontWeight.bold),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -229,7 +238,17 @@ class _TimetableTabState extends State<TimetableTab> {
                     Expanded(
                       flex: wideFlex,
                       child: GestureDetector(
-                        onTap: null,
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          chosenTimeIndex = index;
+                          Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => RoomSelectPage()))
+                              .then((value) {
+                            setState(() {});
+                          });
+                        },
                         child: Column(
                           children: [
                             Container(
@@ -248,7 +267,7 @@ class _TimetableTabState extends State<TimetableTab> {
                                 padding: EdgeInsets.only(top: 8.0, bottom: 10),
                                 child: Center(
                                   child: Text(
-                                    'CAGB 200',
+                                    mondayTimetable[index] ?? '',
                                     style: TextStyle(
                                       fontSize: roomFontSize,
                                       color: Colors.black,
@@ -360,3 +379,11 @@ class _TimetableTabState extends State<TimetableTab> {
     ]);
   }
 }
+
+List<String> mondayTimetable = List<String>(18);
+List<String> tuesdayTimetable = List<String>(18);
+List<String> wednesdayTimetable = List<String>(18);
+List<String> thursdayTimetable = List<String>(18);
+List<String> fridayTimetable = List<String>(18);
+List<String> saturdayTimetable = List<String>(18);
+List<String> sundayTimetable = List<String>(18);

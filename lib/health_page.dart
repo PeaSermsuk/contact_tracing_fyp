@@ -17,11 +17,12 @@ class _HealthPageState extends State<HealthPage> {
       backgroundColor: const Color(0xFFEEEEEE),
       appBar: AppBar(
         leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            color: Colors.black,
-            onPressed: () {
-              Navigator.pop(context);
-            }),
+          icon: Icon(Icons.arrow_back_ios),
+          color: Colors.black,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         //leading: Icon(
         //  Icons.arrow_back_ios,
         //  color: Colors.black,

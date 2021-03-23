@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'widgets.dart';
 import 'search_tab.dart';
+import 'timetable_tab.dart';
 
 class RoomSelectPage extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class RoomSelectPage extends StatefulWidget {
 
 class _RoomSelectPageState extends State<RoomSelectPage> {
 
-    List<Info> _roomInfo = [
+    /*List<Info> _roomInfo = [
     Info(name: 'CAGB 200', capacity: 200, available: 200),
     Info(name: 'CAGB 202A', capacity: 200, available: 200),
     Info(name: 'CAGB 202B', capacity: 200, available: 200),
@@ -27,7 +28,7 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
     Info(name: 'CAGB 751', capacity: 200, available: 200),
     Info(name: 'CAGB 752', capacity: 200, available: 200),
     Info(name: 'CAGB 761', capacity: 200, available: 200),
-  ];
+  ];*/
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,10 +59,33 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
       ),
       body: ListView.separated(
         separatorBuilder: (context, index) => Divider(height: 1.5),
-        itemCount: _roomInfo.length,
+        itemCount: roomInfo.length,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: null,
+            onTap: () {
+              if (dayIndex == 0) {
+                mondayTimetable[chosenTimeIndex] = roomInfo[index].name;
+              }
+              if (dayIndex == 1) {
+                tuesdayTimetable[chosenTimeIndex] = roomInfo[index].name;
+              }
+              if (dayIndex == 2) {
+                wednesdayTimetable[chosenTimeIndex] = roomInfo[index].name;
+              }
+              if (dayIndex == 3) {
+                thursdayTimetable[chosenTimeIndex] = roomInfo[index].name;
+              }
+              if (dayIndex == 4) {
+                fridayTimetable[chosenTimeIndex] = roomInfo[index].name;
+              }
+              if (dayIndex == 5) {
+                saturdayTimetable[chosenTimeIndex] = roomInfo[index].name;
+              }
+              if (dayIndex == 6) {
+                sundayTimetable[chosenTimeIndex] = roomInfo[index].name;
+              }
+              Navigator.pop(context);
+            },
             child: Container(
               height: 45,
               padding: EdgeInsets.only(left: 15.0, right: 15.0),
@@ -70,7 +94,7 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
                 color: Colors.white,
               ),
               child: Text(
-                _roomInfo[index].name,
+                roomInfo[index].name,
                 style: TextStyle(
                   fontSize: 16, 
                   color: Colors.black,
