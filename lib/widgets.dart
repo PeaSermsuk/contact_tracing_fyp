@@ -47,23 +47,35 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     ),
   ];
 
- @override
-  initState(){
+  @override
+  initState() {
     _title = 'CHECK IN';
   }
 
   void _onItemTapped(int index) {
     setState(() {
       _currentIndex = index;
-      switch(index) {
-        case 0: { _title = 'CHECK IN'; }
-        break;
-        case 1: { _title = 'SEARCH'; }
-        break;
-        case 2: { _title = 'TIMETABLE'; }
-        break;
-        case 3: { _title = 'SETTINGS'; }
-        break;
+      switch (index) {
+        case 0:
+          {
+            _title = 'CHECK IN';
+          }
+          break;
+        case 1:
+          {
+            _title = 'SEARCH';
+          }
+          break;
+        case 2:
+          {
+            _title = 'TIMETABLE';
+          }
+          break;
+        case 3:
+          {
+            _title = 'SETTINGS';
+          }
+          break;
       }
     });
   }
@@ -81,8 +93,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           _title,
           style: TextStyle(
             color: Colors.black,
-            ),
           ),
+        ),
         centerTitle: true,
         backgroundColor: Colors.white,
         actions: <Widget>[
@@ -91,13 +103,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               Icons.add_circle,
               color: const Color(0xFFFF5555),
               size: 30,
-              ),
-            onPressed: (
-              () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HealthPage()),
-              )
             ),
+            onPressed: (() => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HealthPage()),
+                )),
           ),
         ],
       ),
@@ -106,8 +116,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       // child: _widgetOptions.elementAt(_selectedIndex),
       //),
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed, 
-        backgroundColor: Colors.white, 
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.qr_code_scanner_rounded),
@@ -147,8 +157,15 @@ class _SomethingWentWrongState extends State<SomethingWentWrong> {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        'Something went wrong.',
+        'Something went wrong./n Please try again.',
         textDirection: TextDirection.ltr,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 16,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.normal,
+          decoration: TextDecoration.none,
+        ),
       ),
     );
   }
@@ -166,6 +183,13 @@ class _LoadingState extends State<Loading> {
       child: Text(
         'Loading...',
         textDirection: TextDirection.ltr,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 16,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.normal,
+          decoration: TextDecoration.none,
+        ),
       ),
     );
   }

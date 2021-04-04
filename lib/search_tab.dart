@@ -29,9 +29,10 @@ class _SearchTabState extends State<SearchTab> {
   void initList() async {
     var rmdb = RoomsDB();
     roomInfo = await rmdb.getAllData();
-    for (var rm in roomInfo) {
+    /*for (var rm in roomInfo) {
       roomInfoSearch.add(rm);
-    }
+    }*/
+    roomInfoSearch = roomInfo;
     setState(() {});
   }
 
