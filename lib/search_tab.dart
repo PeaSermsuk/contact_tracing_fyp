@@ -20,6 +20,7 @@ class _SearchTabState extends State<SearchTab> {
   double searchFontSize = 16;
   List<Rooms> roomInfo = [];
   List<Rooms> roomInfoSearch = [];
+  int loading = 1;
   @override
   void initState() {
     super.initState();
@@ -33,6 +34,7 @@ class _SearchTabState extends State<SearchTab> {
       roomInfoSearch.add(rm);
     }*/
     roomInfoSearch = roomInfo;
+    loading = 0;
     setState(() {});
   }
 
@@ -146,57 +148,67 @@ class _SearchTabState extends State<SearchTab> {
         ),
       ),
       Expanded(
-        child: ListView.separated(
-          separatorBuilder: (context, index) => Divider(height: 1.0),
-          itemCount: roomInfoSearch.length,
-          itemBuilder: (context, index) {
-            return Container(
-              height: 45,
-              alignment: Alignment.center,
-              color: Colors.white,
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Text(
-                      roomInfoSearch[index].name,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        height: 1,
-                        fontSize: searchFontSize,
-                        color: Colors.black,
-                      ),
-                    ),
+        child: (loading == 1)
+            ? Center(
+                child: Text(
+                  'Loading...',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: searchFontSize,
                   ),
-                  Expanded(
-                    flex: 1,
-                    child: Text(
-                      roomInfoSearch[index].capacity.toString(),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        height: 1,
-                        fontSize: searchFontSize,
-                        color: Colors.black,
-                      ),
+                ),
+              )
+            : ListView.separated(
+                separatorBuilder: (context, index) => Divider(height: 1.0),
+                itemCount: roomInfoSearch.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 45,
+                    alignment: Alignment.center,
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            roomInfoSearch[index].name,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              height: 1,
+                              fontSize: searchFontSize,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            roomInfoSearch[index].capacity.toString(),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              height: 1,
+                              fontSize: searchFontSize,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            roomInfoSearch[index].available.toString(),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              height: 1,
+                              fontSize: searchFontSize,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Text(
-                      roomInfoSearch[index].available.toString(),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        height: 1,
-                        fontSize: searchFontSize,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ],
+                  );
+                },
               ),
-            );
-          },
-        ),
       )
     ]);
   }
