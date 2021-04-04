@@ -8,11 +8,14 @@ class RoomsDB {
     // List<Rooms> loadAllData() async {
     List<Rooms> rmList = [];
     var rmref = FirebaseFirestore.instance.collection('rooms');
-    //Future<QuerySnapshot>
 
     await rmref
-    .orderBy('roomName', descending: false)
-    .get().then((snapshot) {
+        .orderBy(
+          "name",
+          descending: false,
+        )
+        .get()
+        .then((snapshot) {
       snapshot.docs.asMap().forEach((key, value) {
         rmList.add(Rooms(
             name: snapshot.docs[key]["name"],
@@ -22,8 +25,6 @@ class RoomsDB {
     }).catchError((error) {
       print("Failed to get room: $error");
     });
-    print("rmList = $rmList");  // to show data received
     return rmList;
   }
-
 }

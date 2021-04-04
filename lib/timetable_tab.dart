@@ -179,7 +179,8 @@ class _TimetableTabState extends State<TimetableTab> {
                           Expanded(
                             child: GestureDetector(
                               behavior: HitTestBehavior.translucent,
-                              onTap: () {
+                              onTap: null,
+                              /*() {
                                 chosenTimeIndex = index;
                                 Navigator.push(
                                     context,
@@ -188,7 +189,7 @@ class _TimetableTabState extends State<TimetableTab> {
                                             RoomSelectPage())).then((value) {
                                   setState(() {});
                                 });
-                              },
+                              },*/
                               child: Container(
                                 child: Padding(
                                   padding: EdgeInsets.only(top: 8.0),
@@ -239,7 +240,8 @@ class _TimetableTabState extends State<TimetableTab> {
                       flex: wideFlex,
                       child: GestureDetector(
                         behavior: HitTestBehavior.translucent,
-                        onTap: () {
+                        onTap: null,
+                        /*() {
                           chosenTimeIndex = index;
                           Navigator.push(
                                   context,
@@ -248,7 +250,7 @@ class _TimetableTabState extends State<TimetableTab> {
                               .then((value) {
                             setState(() {});
                           });
-                        },
+                        },*/
                         child: Column(
                           children: [
                             Container(

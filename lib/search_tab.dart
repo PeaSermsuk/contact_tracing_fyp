@@ -1,11 +1,11 @@
 import 'package:contact_tracing_fyp/database/rooms_db.dart';
 import 'package:contact_tracing_fyp/models/rooms.dart';
-import 'package:contact_tracing_fyp/providers/rooms_provider.dart';
+//import 'package:contact_tracing_fyp/providers/rooms_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'dart:async';
+//import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'dart:async';
 
-import 'widgets.dart';
+//import 'widgets.dart';
 
 class SearchTab extends StatefulWidget {
   static const title = 'SEARCH';
@@ -16,35 +16,28 @@ class SearchTab extends StatefulWidget {
 }
 
 class _SearchTabState extends State<SearchTab> {
-
   double barFontSize = 16;
   double searchFontSize = 16;
-  //List<Rooms> roomInfo = [];
-  //var roomInfo = RoomsDB().getAllData();
-  //List<Rooms> roomInfoSearch = roomInfo;
-  //List<Rooms> roomInfo  = await RoomsDB().getAllData();
+  List<Rooms> roomInfo = [];
+  List<Rooms> roomInfoSearch = [];
+  @override
+  void initState() {
+    super.initState();
+    this.initList();
+  }
 
-  //List<Rooms> roomInfo = RoomsDB().getAllData();
-
-  //Future<List<Rooms>> fetchList = RoomsDB().getAllData();
-  //List<Rooms> roomInfo = await fetchList;
-
-  /*Future getRooms() async {
-    var firestore = FirebaseFirestore.instance;
-    QuerySnapshot qs = await firestore.collection("rooms").get();
-    return qs.docs;
-  }*/
+  void initList() async {
+    var rmdb = RoomsDB();
+    roomInfo = await rmdb.getAllData();
+    for (var rm in roomInfo) {
+      roomInfoSearch.add(rm);
+    }
+    setState(() {});
+  }
 
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
-        //padding: EdgeInsets.only(left: 15.0, right: 30.0, bottom: 20.0, top: 20.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        //decoration: BoxDecoration(
-        //  border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey)),
-        //),
-        //color: Colors.white,
-        //height: 45,
         padding: EdgeInsets.all(10.0),
         alignment: Alignment.center,
         color: Colors.white,
@@ -94,12 +87,9 @@ class _SearchTabState extends State<SearchTab> {
             ],
           ),
         ),
-        // alignment: Alignment.bottomCenter,
       ),
       Container(
         padding: EdgeInsets.only(bottom: 5.0, top: 5.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        //color: Colors.white,
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border(
@@ -124,7 +114,6 @@ class _SearchTabState extends State<SearchTab> {
                   height: 1,
                   fontSize: barFontSize,
                   color: Colors.grey,
-                  //fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -137,7 +126,6 @@ class _SearchTabState extends State<SearchTab> {
                   height: 1,
                   fontSize: barFontSize,
                   color: Colors.grey,
-                  //fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -150,13 +138,11 @@ class _SearchTabState extends State<SearchTab> {
                   height: 1,
                   fontSize: barFontSize,
                   color: Colors.grey,
-                  //fontWeight: FontWeight.bold),
                 ),
               ),
             ),
           ],
         ),
-        // alignment: Alignment.bottomCenter,
       ),
       Expanded(
         child: ListView.separated(
@@ -166,8 +152,6 @@ class _SearchTabState extends State<SearchTab> {
             return Container(
               height: 45,
               alignment: Alignment.center,
-              //padding: EdgeInsets.only(bottom: 14.5, top: 14.5),
-              //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
               color: Colors.white,
               child: Row(
                 children: [
@@ -180,7 +164,6 @@ class _SearchTabState extends State<SearchTab> {
                         height: 1,
                         fontSize: searchFontSize,
                         color: Colors.black,
-                        //fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -193,7 +176,6 @@ class _SearchTabState extends State<SearchTab> {
                         height: 1,
                         fontSize: searchFontSize,
                         color: Colors.black,
-                        //fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -206,79 +188,15 @@ class _SearchTabState extends State<SearchTab> {
                         height: 1,
                         fontSize: searchFontSize,
                         color: Colors.black,
-                        //fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
                 ],
               ),
-              // alignment: Alignment.bottomCenter,
             );
           },
         ),
       )
     ]);
   }
-}
-
-/*class RoomInfo {
-  List<Info> _roomInfo = [
-    Info(name: 'CAGB 200', capacity: 200, available: 200),
-    Info(name: 'CAGB 202A', capacity: 200, available: 200),
-    Info(name: 'CAGB 202B', capacity: 200, available: 200),
-    Info(name: 'CAGB 202C', capacity: 200, available: 200),
-    Info(name: 'CAGB 300', capacity: 200, available: 200),
-    Info(name: 'CAGB 309', capacity: 200, available: 200),
-    Info(name: 'CAGB 310', capacity: 200, available: 200),
-    Info(name: 'CAGB 640', capacity: 200, available: 200),
-    Info(name: 'CAGB 641', capacity: 200, available: 200),
-    Info(name: 'CAGB 642', capacity: 200, available: 200),
-    Info(name: 'CAGB 649', capacity: 200, available: 200),
-    Info(name: 'CAGB 664', capacity: 200, available: 200),
-    Info(name: 'CAGB 751', capacity: 200, available: 200),
-    Info(name: 'CAGB 752', capacity: 200, available: 200),
-    Info(name: 'CAGB 761', capacity: 200, available: 200),
-  ];
-}*/
-
-List<Info> roomInfo = [
-  Info(name: 'CAGB 200', capacity: 200, available: 200),
-  Info(name: 'CAGB 202A', capacity: 250, available: 200),
-  Info(name: 'CAGB 202B', capacity: 200, available: 200),
-  Info(name: 'CAGB 202C', capacity: 200, available: 200),
-  Info(name: 'CAGB 300', capacity: 200, available: 200),
-  Info(name: 'CAGB 309', capacity: 200, available: 200),
-  Info(name: 'CAGB 310', capacity: 200, available: 200),
-  Info(name: 'CAGB 640', capacity: 200, available: 200),
-  Info(name: 'CAGB 641', capacity: 200, available: 200),
-  Info(name: 'CAGB 642', capacity: 200, available: 200),
-  Info(name: 'CAGB 649', capacity: 200, available: 200),
-  Info(name: 'CAGB 664', capacity: 200, available: 200),
-  Info(name: 'CAGB 751', capacity: 200, available: 200),
-  Info(name: 'CAGB 752', capacity: 200, available: 200),
-  Info(name: 'CAGB 761', capacity: 200, available: 200),
-];
-List<Info> roomInfoSearch = [
-  Info(name: 'CAGB 200', capacity: 200, available: 200),
-  Info(name: 'CAGB 202A', capacity: 250, available: 200),
-  Info(name: 'CAGB 202B', capacity: 200, available: 200),
-  Info(name: 'CAGB 202C', capacity: 200, available: 200),
-  Info(name: 'CAGB 300', capacity: 200, available: 200),
-  Info(name: 'CAGB 309', capacity: 200, available: 200),
-  Info(name: 'CAGB 310', capacity: 200, available: 200),
-  Info(name: 'CAGB 640', capacity: 200, available: 200),
-  Info(name: 'CAGB 641', capacity: 200, available: 200),
-  Info(name: 'CAGB 642', capacity: 200, available: 200),
-  Info(name: 'CAGB 649', capacity: 200, available: 200),
-  Info(name: 'CAGB 664', capacity: 200, available: 200),
-  Info(name: 'CAGB 751', capacity: 200, available: 200),
-  Info(name: 'CAGB 752', capacity: 200, available: 200),
-  Info(name: 'CAGB 761', capacity: 200, available: 200),
-];
-
-class Info {
-  String name;
-  int capacity;
-  int available;
-  Info({this.name, this.capacity, this.available});
 }
