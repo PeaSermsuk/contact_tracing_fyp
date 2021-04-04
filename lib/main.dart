@@ -7,8 +7,26 @@ import 'settings_tab.dart';
 
 
 void main() {
+  var a = Room();
+  var b = Room();
+  a.roomNo = 10;
+  a.roomName = 'Alpha';
+  a.printRoom();
+  b.roomNo = 11;
+  b.roomName = 'Beta';
+  b.printRoom();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
+}
+
+class Room {
+  int roomNo;
+  String roomName;
+
+  void printRoom() {
+    print('Room number is $roomNo.');
+    print('Room name is $roomName.');
+  }
 }
 
 //void main() => runApp(MyApp());

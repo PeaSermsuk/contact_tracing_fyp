@@ -1,3 +1,6 @@
+import 'package:contact_tracing_fyp/database/rooms_db.dart';
+import 'package:contact_tracing_fyp/models/rooms.dart';
+import 'package:contact_tracing_fyp/providers/rooms_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
@@ -13,26 +16,18 @@ class SearchTab extends StatefulWidget {
 }
 
 class _SearchTabState extends State<SearchTab> {
-  /*List rooms = [
-    'CAGB 200',
-    'CAGB 202A',
-    'CAGB 202B',
-    'CAGB 202C',
-    'CAGB 300',
-    'CAGB 309',
-    'CAGB 310',
-    'CAGB 640',
-    'CAGB 641',
-    'CAGB 642',
-    'CAGB 649',
-    'CAGB 664',
-    'CAGB 751',
-    'CAGB 752',
-    'CAGB 761',
-  ];*/
 
   double barFontSize = 16;
   double searchFontSize = 16;
+  //List<Rooms> roomInfo = [];
+  //var roomInfo = RoomsDB().getAllData();
+  //List<Rooms> roomInfoSearch = roomInfo;
+  //List<Rooms> roomInfo  = await RoomsDB().getAllData();
+
+  //List<Rooms> roomInfo = RoomsDB().getAllData();
+
+  //Future<List<Rooms>> fetchList = RoomsDB().getAllData();
+  //List<Rooms> roomInfo = await fetchList;
 
   /*Future getRooms() async {
     var firestore = FirebaseFirestore.instance;
