@@ -24,10 +24,10 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    /*return MaterialApp(
+    return MaterialApp(
       home: MyStatefulWidget(),
-    );*/
-    return MultiProvider(
+    );
+    /*return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) {
           return RoomProvider();
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         home: MyStatefulWidget(),
       ),
-    );
+    );*/
   }
 }
 

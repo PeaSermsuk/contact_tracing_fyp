@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter/cupertino.dart';
 
+import 'database/rooms_db.dart';
 import 'models/rooms.dart';
-import 'widgets.dart';
-import 'search_tab.dart';
+//import 'widgets.dart';
+//import 'search_tab.dart';
 import 'timetable_tab.dart';
 
 class RoomSelectPage extends StatefulWidget {
@@ -12,11 +13,30 @@ class RoomSelectPage extends StatefulWidget {
 }
 
 class _RoomSelectPageState extends State<RoomSelectPage> {
+  List<Rooms> roomList = [];
+  int loading = 1;
 
-  List<Rooms> roomInfo = [];
-  List<Rooms> roomInfoSearch = [];
+  @override
+  void initState() {
+    super.initState();
+    this.initList();
+  }
+
+  void initList() async {
+    var rmdb = RoomsDB();
+    roomList = await rmdb.getAllData();
+    loading = 0;
+    setState(() {});
+  }
+
+  /*void initList() async {
+    var rmdb = RoomsDB();
+    roomList = await rmdb.getAllData();
+    // setState(() {});
+  }*/
 
   Widget build(BuildContext context) {
+    //initList();
     return Scaffold(
       backgroundColor: const Color(0xFFEEEEEE),
       appBar: AppBar(
@@ -24,8 +44,8 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
           icon: Icon(Icons.arrow_back_ios),
           color: Colors.black,
           onPressed: () {
-              Navigator.pop(context);
-            },
+            Navigator.pop(context);
+          },
           //onPressed: () {
           //  Navigator.pop(context);
           //},
@@ -45,30 +65,30 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
       ),
       body: ListView.separated(
         separatorBuilder: (context, index) => Divider(height: 1.5),
-        itemCount: roomInfo.length,
+        itemCount: roomList.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
               if (dayIndex == 0) {
-                mondayTimetable[chosenTimeIndex] = roomInfo[index].name;
+                mondayTimetable[chosenTimeIndex] = roomList[index].name;
               }
               if (dayIndex == 1) {
-                tuesdayTimetable[chosenTimeIndex] = roomInfo[index].name;
+                tuesdayTimetable[chosenTimeIndex] = roomList[index].name;
               }
               if (dayIndex == 2) {
-                wednesdayTimetable[chosenTimeIndex] = roomInfo[index].name;
+                wednesdayTimetable[chosenTimeIndex] = roomList[index].name;
               }
               if (dayIndex == 3) {
-                thursdayTimetable[chosenTimeIndex] = roomInfo[index].name;
+                thursdayTimetable[chosenTimeIndex] = roomList[index].name;
               }
               if (dayIndex == 4) {
-                fridayTimetable[chosenTimeIndex] = roomInfo[index].name;
+                fridayTimetable[chosenTimeIndex] = roomList[index].name;
               }
               if (dayIndex == 5) {
-                saturdayTimetable[chosenTimeIndex] = roomInfo[index].name;
+                saturdayTimetable[chosenTimeIndex] = roomList[index].name;
               }
               if (dayIndex == 6) {
-                sundayTimetable[chosenTimeIndex] = roomInfo[index].name;
+                sundayTimetable[chosenTimeIndex] = roomList[index].name;
               }
               Navigator.pop(context);
             },
@@ -80,12 +100,12 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
                 color: Colors.white,
               ),
               child: Text(
-                roomInfo[index].name,
+                roomList[index].name,
                 style: TextStyle(
-                  fontSize: 16, 
+                  fontSize: 16,
                   color: Colors.black,
-                  ),
                 ),
+              ),
             ),
           );
         },

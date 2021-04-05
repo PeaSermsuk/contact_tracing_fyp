@@ -56,7 +56,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   initState() {
     super.initState();
-    Provider.of<RoomProvider>(context, listen: false).initData();
+    //Provider.of<RoomProvider>(context, listen: false).initData();
     _title = 'CHECK IN';
   }
 

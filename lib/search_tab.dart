@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'dart:async';
 
-import 'widgets.dart';
+//import 'widgets.dart';
 
 class SearchTab extends StatefulWidget {
   static const title = 'SEARCH';
@@ -26,23 +26,16 @@ class _SearchTabState extends State<SearchTab> {
   @override
   void initState() {
     super.initState();
-    /*Consumer(
-      builder: (context, RoomProvider rmprovider, Widget child)
-    )*/
-    var rmpd = RoomProvider();
-    //this.initList();
-    roomInfo = rmpd.getList();
-    roomInfoSearch = roomInfo;
-    loading = 0;
+    this.initList();
   }
 
-  /*void initList() async {
+  void initList() async {
     var rmdb = RoomsDB();
     roomInfo = await rmdb.getAllData();
     roomInfoSearch = roomInfo;
     loading = 0;
     setState(() {});
-  }*/
+  }
 
   Widget build(BuildContext context) {
     return Column(children: [
