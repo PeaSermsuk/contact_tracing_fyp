@@ -1,7 +1,8 @@
 import 'package:contact_tracing_fyp/database/rooms_db.dart';
 import 'package:contact_tracing_fyp/models/rooms.dart';
+import 'package:flutter/material.dart';
 
-class RoomProvider {
+class RoomProvider with ChangeNotifier {
   List<Rooms> rmList = [];
 
   List<Rooms> getList() {
@@ -12,5 +13,12 @@ class RoomProvider {
   void loadAllData() async {
     var rmdb = RoomsDB();
     rmList = await rmdb.getAllData();
+    notifyListeners();
+  }
+
+  void initData() async {
+    var rmdb = RoomsDB();
+    rmList = await rmdb.getAllData();
+    notifyListeners();
   }
 }

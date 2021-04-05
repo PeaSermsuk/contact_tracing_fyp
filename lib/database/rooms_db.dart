@@ -25,6 +25,7 @@ class RoomsDB {
     }).catchError((error) {
       print("Failed to get room: $error");
     });
+    print(rmList);
     return rmList;
   }
 }

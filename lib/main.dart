@@ -1,6 +1,8 @@
+import 'package:contact_tracing_fyp/providers/rooms_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
 import 'database/rooms_db.dart';
 import 'widgets.dart';
@@ -16,14 +18,24 @@ import 'settings_tab.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  runApp(App());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: App(),
+    /*return MaterialApp(
+      home: MyStatefulWidget(),
+    );*/
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) {
+          return RoomProvider();
+        })
+      ],
+      child: MaterialApp(
+        home: MyStatefulWidget(),
+      ),
     );
   }
 }
@@ -47,8 +59,7 @@ class App extends StatelessWidget {
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
           print('Loaded');
-          //initList();
-          return MyStatefulWidget();
+          return MyApp();
         }
 
         // Otherwise, show something whilst waiting for initialization to complete

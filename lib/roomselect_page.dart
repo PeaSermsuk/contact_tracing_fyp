@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter/cupertino.dart';
 
+import 'models/rooms.dart';
 import 'widgets.dart';
 import 'search_tab.dart';
 import 'timetable_tab.dart';
@@ -11,6 +12,9 @@ class RoomSelectPage extends StatefulWidget {
 }
 
 class _RoomSelectPageState extends State<RoomSelectPage> {
+
+  List<Rooms> roomInfo = [];
+  List<Rooms> roomInfoSearch = [];
 
   Widget build(BuildContext context) {
     return Scaffold(

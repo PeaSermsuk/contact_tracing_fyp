@@ -1,6 +1,8 @@
+import 'package:contact_tracing_fyp/providers/rooms_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'checkin_tab.dart';
 import 'models/rooms.dart';
@@ -9,8 +11,8 @@ import 'settings_tab.dart';
 import 'timetable_tab.dart';
 import 'health_page.dart';
 
-List<Rooms> roomInfo = [];
-List<Rooms> roomInfoSearch = [];
+//List<Rooms> roomInfo = [];
+//List<Rooms> roomInfoSearch = [];
 
 /// This is the stateful widget that the main application instantiates.
 class MyStatefulWidget extends StatefulWidget {
@@ -53,6 +55,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   initState() {
+    super.initState();
+    Provider.of<RoomProvider>(context, listen: false).initData();
     _title = 'CHECK IN';
   }
 

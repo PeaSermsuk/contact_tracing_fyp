@@ -1,7 +1,9 @@
 import 'package:contact_tracing_fyp/database/rooms_db.dart';
 import 'package:contact_tracing_fyp/models/rooms.dart';
+import 'package:contact_tracing_fyp/providers/rooms_provider.dart';
 //import 'package:contact_tracing_fyp/providers/rooms_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'dart:async';
 
@@ -18,22 +20,29 @@ class SearchTab extends StatefulWidget {
 class _SearchTabState extends State<SearchTab> {
   double barFontSize = 16;
   double searchFontSize = 16;
-  //List<Rooms> roomInfo = [];
-  //List<Rooms> roomInfoSearch = [];
+  List<Rooms> roomInfo = [];
+  List<Rooms> roomInfoSearch = [];
   int loading = 1;
   @override
   void initState() {
     super.initState();
-    this.initList();
+    /*Consumer(
+      builder: (context, RoomProvider rmprovider, Widget child)
+    )*/
+    var rmpd = RoomProvider();
+    //this.initList();
+    roomInfo = rmpd.getList();
+    roomInfoSearch = roomInfo;
+    loading = 0;
   }
 
-  void initList() async {
+  /*void initList() async {
     var rmdb = RoomsDB();
     roomInfo = await rmdb.getAllData();
     roomInfoSearch = roomInfo;
     loading = 0;
     setState(() {});
-  }
+  }*/
 
   Widget build(BuildContext context) {
     return Column(children: [
