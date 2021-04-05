@@ -1,4 +1,4 @@
-/*import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 //import 'package:flutter/cupertino.dart';
 
 import 'widgets.dart';
@@ -11,24 +11,6 @@ class RoomSelectPage extends StatefulWidget {
 }
 
 class _RoomSelectPageState extends State<RoomSelectPage> {
-
-    /*List<Info> _roomInfo = [
-    Info(name: 'CAGB 200', capacity: 200, available: 200),
-    Info(name: 'CAGB 202A', capacity: 200, available: 200),
-    Info(name: 'CAGB 202B', capacity: 200, available: 200),
-    Info(name: 'CAGB 202C', capacity: 200, available: 200),
-    Info(name: 'CAGB 300', capacity: 200, available: 200),
-    Info(name: 'CAGB 309', capacity: 200, available: 200),
-    Info(name: 'CAGB 310', capacity: 200, available: 200),
-    Info(name: 'CAGB 640', capacity: 200, available: 200),
-    Info(name: 'CAGB 641', capacity: 200, available: 200),
-    Info(name: 'CAGB 642', capacity: 200, available: 200),
-    Info(name: 'CAGB 649', capacity: 200, available: 200),
-    Info(name: 'CAGB 664', capacity: 200, available: 200),
-    Info(name: 'CAGB 751', capacity: 200, available: 200),
-    Info(name: 'CAGB 752', capacity: 200, available: 200),
-    Info(name: 'CAGB 761', capacity: 200, available: 200),
-  ];*/
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,4 +92,3 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
     );
   }
 }
-*/

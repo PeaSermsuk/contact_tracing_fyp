@@ -3,10 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'checkin_tab.dart';
+import 'models/rooms.dart';
 import 'search_tab.dart';
 import 'settings_tab.dart';
 import 'timetable_tab.dart';
 import 'health_page.dart';
+
+List<Rooms> roomInfo = [];
+List<Rooms> roomInfoSearch = [];
 
 /// This is the stateful widget that the main application instantiates.
 class MyStatefulWidget extends StatefulWidget {

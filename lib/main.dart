@@ -2,48 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'database/rooms_db.dart';
 import 'widgets.dart';
 import 'settings_tab.dart';
 
+/*void initList() async {
+  var rmdb = RoomsDB();
+  roomInfo = await rmdb.getAllData();
+  roomInfoSearch = roomInfo;
+//  loading = 0;
+//  setState(() {});
+}*/
 
 void main() {
-  var a = Room();
-  var b = Room();
-  a.roomNo = 10;
-  a.roomName = 'Alpha';
-  a.printRoom();
-  b.roomNo = 11;
-  b.roomName = 'Beta';
-  b.printRoom();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
-
-class Room {
-  int roomNo;
-  String roomName;
-
-  void printRoom() {
-    print('Room number is $roomNo.');
-    print('Room name is $roomName.');
-  }
-}
-
-//void main() => runApp(MyApp());
-
-// This was NOT used previously, just here for reference
-/*// This is the main application widget.
-class MyApp extends StatelessWidget {
-  static const String _title = 'Flutter Code Sample';
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: _title,
-      home: MyStatefulWidget(),
-    );
-  }
-}*/
 
 class MyApp extends StatelessWidget {
   @override
@@ -73,6 +47,7 @@ class App extends StatelessWidget {
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
           print('Loaded');
+          //initList();
           return MyStatefulWidget();
         }
 
@@ -83,19 +58,3 @@ class App extends StatelessWidget {
     );
   }
 }
-
-// BELOW was used PREVIOUSLY
-/*class MyApp extends StatelessWidget {
-  @override
-  Widget build(context) {
-    return MaterialApp(
-      title: 'Contact Tracing App',
-      home: MyStatefulWidget(),
-      /*theme: ThemeData(
-        primaryColor: Colors.white,
-        canvasColor: const Color(0xEEEEEE),
-      ),*/
-    );
-  }
-}*/
-

@@ -18,6 +18,12 @@ int chosenTimeIndex = 0;
 
 class _TimetableTabState extends State<TimetableTab> {
   List _times = [
+    '00:00',
+    '01:00',
+    '02:00',
+    '03:00',
+    '04:00',
+    '05:00',
     '06:00',
     '07:00',
     '08:00',
@@ -179,8 +185,7 @@ class _TimetableTabState extends State<TimetableTab> {
                           Expanded(
                             child: GestureDetector(
                               behavior: HitTestBehavior.translucent,
-                              onTap: null,
-                              /*() {
+                              onTap: () {
                                 chosenTimeIndex = index;
                                 Navigator.push(
                                     context,
@@ -189,7 +194,7 @@ class _TimetableTabState extends State<TimetableTab> {
                                             RoomSelectPage())).then((value) {
                                   setState(() {});
                                 });
-                              },*/
+                              },
                               child: Container(
                                 child: Padding(
                                   padding: EdgeInsets.only(top: 8.0),
@@ -240,8 +245,7 @@ class _TimetableTabState extends State<TimetableTab> {
                       flex: wideFlex,
                       child: GestureDetector(
                         behavior: HitTestBehavior.translucent,
-                        onTap: null,
-                        /*() {
+                        onTap: () {
                           chosenTimeIndex = index;
                           Navigator.push(
                                   context,
@@ -250,7 +254,7 @@ class _TimetableTabState extends State<TimetableTab> {
                               .then((value) {
                             setState(() {});
                           });
-                        },*/
+                        },
                         child: Column(
                           children: [
                             Container(
@@ -382,10 +386,10 @@ class _TimetableTabState extends State<TimetableTab> {
   }
 }
 
-List<String> mondayTimetable = List<String>(18);
-List<String> tuesdayTimetable = List<String>(18);
-List<String> wednesdayTimetable = List<String>(18);
-List<String> thursdayTimetable = List<String>(18);
-List<String> fridayTimetable = List<String>(18);
-List<String> saturdayTimetable = List<String>(18);
-List<String> sundayTimetable = List<String>(18);
+List<String> mondayTimetable = List<String>(24);
+List<String> tuesdayTimetable = List<String>(24);
+List<String> wednesdayTimetable = List<String>(24);
+List<String> thursdayTimetable = List<String>(24);
+List<String> fridayTimetable = List<String>(24);
+List<String> saturdayTimetable = List<String>(24);
+List<String> sundayTimetable = List<String>(24);

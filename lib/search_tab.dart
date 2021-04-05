@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'dart:async';
 
-//import 'widgets.dart';
+import 'widgets.dart';
 
 class SearchTab extends StatefulWidget {
   static const title = 'SEARCH';
@@ -18,8 +18,8 @@ class SearchTab extends StatefulWidget {
 class _SearchTabState extends State<SearchTab> {
   double barFontSize = 16;
   double searchFontSize = 16;
-  List<Rooms> roomInfo = [];
-  List<Rooms> roomInfoSearch = [];
+  //List<Rooms> roomInfo = [];
+  //List<Rooms> roomInfoSearch = [];
   int loading = 1;
   @override
   void initState() {
@@ -30,9 +30,6 @@ class _SearchTabState extends State<SearchTab> {
   void initList() async {
     var rmdb = RoomsDB();
     roomInfo = await rmdb.getAllData();
-    /*for (var rm in roomInfo) {
-      roomInfoSearch.add(rm);
-    }*/
     roomInfoSearch = roomInfo;
     loading = 0;
     setState(() {});
