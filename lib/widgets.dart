@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'checkin_tab.dart';
 import 'models/rooms.dart';
@@ -198,6 +199,20 @@ class _LoadingState extends State<Loading> {
           fontWeight: FontWeight.normal,
           decoration: TextDecoration.none,
         ),
+      ),
+    );
+  }
+}
+
+class IntroScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('IntroScreen'),
+      ),
+      body: new Center(
+        child: new Text('This is the IntroScreen'),
       ),
     );
   }
