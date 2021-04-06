@@ -1,4 +1,4 @@
-import 'package:contact_tracing_fyp/providers/rooms_provider.dart';
+import 'package:contact_tracing_fyp/providers/roomuse_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -24,19 +24,20 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    /*
     return MaterialApp(
       home: MyStatefulWidget(),
-    );
-    /*return MultiProvider(
+    ); */
+    return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) {
-          return RoomProvider();
+          return RoomUseProvider();
         })
       ],
       child: MaterialApp(
         home: MyStatefulWidget(),
       ),
-    );*/
+    );
   }
 }
 
