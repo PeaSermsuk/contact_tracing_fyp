@@ -41,9 +41,9 @@ class _SettingsTabState extends State<SettingsTab> {
           ),
           child: Row(
             children: [
-              Text('College CID', style: TextStyle(fontSize: 16)),
+              Text('Device ID', style: TextStyle(fontSize: 16)),
               Spacer(),
-              Text('01336587', style: TextStyle(fontSize: 16))
+              Text('XXXXXXXXXX', style: TextStyle(fontSize: 16)),
             ],
           ),
           //title: Text('College CID', style: TextStyle(fontSize: 16)),
@@ -68,14 +68,11 @@ class _SettingsTabState extends State<SettingsTab> {
             children: [
               Text('Bluetooth', style: TextStyle(fontSize: 16)),
               Spacer(),
-              Switch.adaptive(
-                value: switch1,
-                onChanged: (value) => setState(() => switch1 = value),
-              ),
+              Text('XXXXXXXXXX', style: TextStyle(fontSize: 16)),
             ],
           ),
         ),
-        Container(
+        /*Container(
           height: boxHeight,
           padding: EdgeInsets.only(left: 15.0, right: 15.0),
           alignment: Alignment.center,
@@ -146,7 +143,7 @@ class _SettingsTabState extends State<SettingsTab> {
             child: Text('Log Out',
                 style: TextStyle(fontSize: 16, color: Colors.red)),
           ),
-        ),
+        ),*/
         /*ListTile(
           title: Text('Bluetooth', style: TextStyle(fontSize: 16)),
           // The Material switch has a platform adaptive constructor.

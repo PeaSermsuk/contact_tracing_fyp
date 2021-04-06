@@ -63,7 +63,17 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: ListView.separated(
+      body: (loading == 1)
+            ? Center(
+                child: Text(
+                  'Loading...',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
+                  ),
+                ),
+              )
+            : ListView.separated(
         separatorBuilder: (context, index) => Divider(height: 1.5),
         itemCount: roomList.length,
         itemBuilder: (context, index) {
