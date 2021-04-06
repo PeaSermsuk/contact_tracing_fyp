@@ -1,6 +1,9 @@
 import 'dart:ffi';
 
+import 'package:contact_tracing_fyp/models/roomuse.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:contact_tracing_fyp/providers/roomuse_provider.dart';
 
 import 'roomselect_page.dart';
 import 'widgets.dart';
@@ -72,7 +75,7 @@ class _TimetableTabState extends State<TimetableTab> {
           dayIndex = 0;
         });
       }
-      //print(dayIndex);
+      print(dayIndex);
     }
 
     void previousValue() {
@@ -88,217 +91,227 @@ class _TimetableTabState extends State<TimetableTab> {
       //print(dayIndex);
     }
 
-    return Column(children: [
-      Container(
-        height: boxHeight,
-        padding: EdgeInsets.only(left: 10.0, right: 10.0),
-        //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
-        //decoration: BoxDecoration(
-        //  border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey)),
-        //),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: previousValue,
-              child: Icon(
-                Icons.arrow_left,
-                color: Colors.grey,
-                size: 30,
-              ),
+// will insert consumer here
+    return Consumer<RoomUseProvider>(
+      builder: (context, rupro, child) {
+        return Column(children: [
+          Container(
+            height: boxHeight,
+            padding: EdgeInsets.only(left: 10.0, right: 10.0),
+            //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
+            //decoration: BoxDecoration(
+            //  border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey)),
+            //),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: previousValue,
+                  child: Icon(
+                    Icons.arrow_left,
+                    color: Colors.grey,
+                    size: 30,
+                  ),
+                ),
+                Expanded(
+                  child: Text(
+                    _days[dayIndex],
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      height: 1,
+                      fontSize: 20,
+                      color: Colors.grey,
+                      //fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: nextValue,
+                  child: Icon(
+                    Icons.arrow_right,
+                    color: Colors.grey,
+                    size: 30,
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: Text(
-                _days[dayIndex],
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  height: 1,
-                  fontSize: 20,
+            // alignment: Alignment.bottomCenter,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border(
+                bottom: BorderSide(
                   color: Colors.grey,
-                  //fontWeight: FontWeight.bold),
+                  width: 0.5,
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: nextValue,
-              child: Icon(
-                Icons.arrow_right,
-                color: Colors.grey,
-                size: 30,
-              ),
-            ),
-          ],
-        ),
-        // alignment: Alignment.bottomCenter,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(
-            bottom: BorderSide(
-              color: Colors.grey,
-              width: 0.5,
-            ),
           ),
-        ),
-      ),
-      Expanded(
-        child: ListView.builder(
-          //separatorBuilder: (context, index) => Divider(height: 1.0),
-          itemCount: _times.length,
-          itemBuilder: (context, index) {
-            if (index < (_times.length - 1)) {
-              return Container(
-                color: Colors.white,
-                height: boxHeight,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 4.0),
-                        child: Align(
-                          alignment: Alignment.topCenter,
-                          child: Text(
-                            _times[index],
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: Colors.grey,
-                              //fontWeight: FontWeight.bold
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: wideFlex,
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 10,
-                            decoration: BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
+          Expanded(
+            child: ListView.builder(
+              //separatorBuilder: (context, index) => Divider(height: 1.0),
+              itemCount: _times.length,
+              itemBuilder: (context, index) {
+                RoomUse data = rupro.ruList[index];
+                if (index < (_times.length - 1)) {
+                  return Container(
+                    color: Colors.white,
+                    height: boxHeight,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 4.0),
+                            child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Text(
+                                _times[index],
+                                style: TextStyle(
+                                  fontSize: 10,
                                   color: Colors.grey,
-                                  width: 0.5,
+                                  //fontWeight: FontWeight.bold
                                 ),
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: GestureDetector(
-                              behavior: HitTestBehavior.translucent,
-                              onTap: () {
-                                chosenTimeIndex = index;
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            RoomSelectPage())).then((value) {
-                                  setState(() {});
-                                });
-                              },
-                              child: Container(
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 8.0),
-                                  child: Center(
-                                    child: Text(
-                                      mondayTimetable[index] ?? '',
-                                      style: TextStyle(
-                                        fontSize: roomFontSize,
-                                        color: Colors.black,
-                                        //fontWeight: FontWeight.bold),
+                        ),
+                        Expanded(
+                          flex: wideFlex,
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 10,
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: Colors.grey,
+                                      width: 0.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: GestureDetector(
+                                  behavior: HitTestBehavior.translucent,
+                                  onTap: () {
+                                    chosenTimeIndex = index;
+                                    print(index.toString());
+                                    Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    RoomSelectPage()))
+                                        .then((value) {
+                                      setState(() {});
+                                    });
+                                  },
+                                  child: Container(
+                                    child: Padding(
+                                      padding: EdgeInsets.only(top: 8.0),
+                                      child: Center(
+                                        child: Text(
+                                          //    mondayTimetable[index] ?? '',
+                                          data.roomName ?? '',
+                                          style: TextStyle(
+                                            fontSize: roomFontSize,
+                                            color: Colors.black,
+                                            //fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                // alignment: Alignment.bottomCenter,
-              );
-            } else {
-              return Container(
-                color: Colors.white,
-                height: boxHeight + 10,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 4.0),
-                        child: Align(
-                          alignment: Alignment.topCenter,
-                          child: Text(
-                            _times[index],
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: Colors.grey,
-                              //fontWeight: FontWeight.bold,
-                            ),
+                            ],
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                    Expanded(
-                      flex: wideFlex,
-                      child: GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onTap: () {
-                          chosenTimeIndex = index;
-                          Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => RoomSelectPage()))
-                              .then((value) {
-                            setState(() {});
-                          });
-                        },
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 10,
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: Colors.grey,
-                                    width: 0.5,
-                                  ),
+                    // alignment: Alignment.bottomCenter,
+                  );
+                } else {
+                  return Container(
+                    color: Colors.white,
+                    height: boxHeight + 10,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 4.0),
+                            child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Text(
+                                _times[index],
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: Colors.grey,
+                                  //fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.only(top: 8.0, bottom: 10),
-                                child: Center(
-                                  child: Text(
-                                    mondayTimetable[index] ?? '',
-                                    style: TextStyle(
-                                      fontSize: roomFontSize,
-                                      color: Colors.black,
-                                      //fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Expanded(
+                          flex: wideFlex,
+                          child: GestureDetector(
+                            behavior: HitTestBehavior.translucent,
+                            onTap: () {
+                              chosenTimeIndex = index;
+                              print(index.toString());
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          RoomSelectPage())).then((value) {
+                                setState(() {});
+                              });
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 10,
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: Colors.grey,
+                                        width: 0.5,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
+                                Expanded(
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 8.0, bottom: 10),
+                                    child: Center(
+                                      child: Text(
+                                        //mondayTimetable[index] ?? '',
+                                        data.roomName ?? '',
+                                        style: TextStyle(
+                                          fontSize: roomFontSize,
+                                          color: Colors.black,
+                                          //fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                //Container(
+                                //  height: 10,
+                                //),
+                              ],
                             ),
-                            //Container(
-                            //  height: 10,
-                            //),
-                          ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
-                // alignment: Alignment.bottomCenter,
-              );
-            }
-          },
-        ),
-      ),
-      /*Container(
+                    // alignment: Alignment.bottomCenter,
+                  );
+                }
+              },
+            ),
+          ),
+          /*Container(
         padding: EdgeInsets.only(bottom: 5.0, top: 5.0),
         //margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0, top: 0.0),
         decoration: BoxDecoration(
@@ -382,7 +395,9 @@ class _TimetableTabState extends State<TimetableTab> {
           },
         ),
       )*/
-    ]);
+        ]);
+      },
+    );
   }
 }
 

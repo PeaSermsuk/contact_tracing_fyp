@@ -2,7 +2,7 @@ import 'package:contact_tracing_fyp/database/rooms_db.dart';
 import 'package:contact_tracing_fyp/models/rooms.dart';
 import 'package:flutter/material.dart';
 
-class RoomProvider /*with ChangeNotifier*/ {
+class RoomProvider with ChangeNotifier {
   List<Rooms> rmList = [];
 
   List<Rooms> getList() {

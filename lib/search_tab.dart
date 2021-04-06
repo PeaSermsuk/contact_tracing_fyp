@@ -1,13 +1,8 @@
 import 'package:contact_tracing_fyp/database/rooms_db.dart';
 import 'package:contact_tracing_fyp/models/rooms.dart';
-import 'package:contact_tracing_fyp/providers/rooms_provider.dart';
 //import 'package:contact_tracing_fyp/providers/rooms_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'dart:async';
-
-//import 'widgets.dart';
+//import 'package:provider/provider.dart';
 
 class SearchTab extends StatefulWidget {
   static const title = 'SEARCH';
