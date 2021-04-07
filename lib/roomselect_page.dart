@@ -20,6 +20,7 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
   void initState() {
     super.initState();
     this.initList();
+    print("room select-dayIndex=$dayIndex");
   }
 
   void initList() async {
@@ -64,62 +65,63 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
         backgroundColor: Colors.white,
       ),
       body: (loading == 1)
-            ? Center(
-                child: Text(
-                  'Loading...',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                  ),
-                ),
-              )
-            : ListView.separated(
-        separatorBuilder: (context, index) => Divider(height: 1.5),
-        itemCount: roomList.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              if (dayIndex == 0) {
-                mondayTimetable[chosenTimeIndex] = roomList[index].name;
-              }
-              if (dayIndex == 1) {
-                tuesdayTimetable[chosenTimeIndex] = roomList[index].name;
-              }
-              if (dayIndex == 2) {
-                wednesdayTimetable[chosenTimeIndex] = roomList[index].name;
-              }
-              if (dayIndex == 3) {
-                thursdayTimetable[chosenTimeIndex] = roomList[index].name;
-              }
-              if (dayIndex == 4) {
-                fridayTimetable[chosenTimeIndex] = roomList[index].name;
-              }
-              if (dayIndex == 5) {
-                saturdayTimetable[chosenTimeIndex] = roomList[index].name;
-              }
-              if (dayIndex == 6) {
-                sundayTimetable[chosenTimeIndex] = roomList[index].name;
-              }
-              Navigator.pop(context);
-            },
-            child: Container(
-              height: 45,
-              padding: EdgeInsets.only(left: 15.0, right: 15.0),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
+          ? Center(
               child: Text(
-                roomList[index].name,
+                'Loading...',
                 style: TextStyle(
+                  color: Colors.grey,
                   fontSize: 16,
-                  color: Colors.black,
                 ),
               ),
+            )
+          : ListView.separated(
+              separatorBuilder: (context, index) => Divider(height: 1.5),
+              itemCount: roomList.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    if (dayIndex == 0) {
+                      mondayTimetable[chosenTimeIndex] = roomList[index].name;
+                    }
+                    if (dayIndex == 1) {
+                      tuesdayTimetable[chosenTimeIndex] = roomList[index].name;
+                    }
+                    if (dayIndex == 2) {
+                      wednesdayTimetable[chosenTimeIndex] =
+                          roomList[index].name;
+                    }
+                    if (dayIndex == 3) {
+                      thursdayTimetable[chosenTimeIndex] = roomList[index].name;
+                    }
+                    if (dayIndex == 4) {
+                      fridayTimetable[chosenTimeIndex] = roomList[index].name;
+                    }
+                    if (dayIndex == 5) {
+                      saturdayTimetable[chosenTimeIndex] = roomList[index].name;
+                    }
+                    if (dayIndex == 6) {
+                      sundayTimetable[chosenTimeIndex] = roomList[index].name;
+                    }
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    height: 45,
+                    padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: Text(
+                      roomList[index].name,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
-          );
-        },
-      ),
       //body: Container(
       //  child: Text('Hi')
       //),

@@ -1,12 +1,13 @@
 import 'dart:ffi';
 
 import 'package:contact_tracing_fyp/models/roomuse.dart';
+import 'package:device_id/device_id.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:contact_tracing_fyp/providers/roomuse_provider.dart';
 
 import 'roomselect_page.dart';
-import 'widgets.dart';
+//import 'widgets.dart';
 
 class TimetableTab extends StatefulWidget {
   static const title = 'SEARCH';
@@ -75,7 +76,7 @@ class _TimetableTabState extends State<TimetableTab> {
           dayIndex = 0;
         });
       }
-      print(dayIndex);
+      //  print(dayIndex);
     }
 
     void previousValue() {
@@ -93,7 +94,13 @@ class _TimetableTabState extends State<TimetableTab> {
 
 // will insert consumer here
     return Consumer<RoomUseProvider>(
+      //    builder: (context, rupro(RoomUse(DeviceId:'x',day:0)), child) {
       builder: (context, rupro, child) {
+        Provider.value(value: rupro.devid = 'rrr', child: child);
+        Provider.value(value: rupro.day = dayIndex, child: child);
+        rupro.prtData();
+        print("dayIndex = $dayIndex");
+
         return Column(children: [
           Container(
             height: boxHeight,
@@ -194,7 +201,7 @@ class _TimetableTabState extends State<TimetableTab> {
                                   behavior: HitTestBehavior.translucent,
                                   onTap: () {
                                     chosenTimeIndex = index;
-                                    print(index.toString());
+                                    print("Select Time = $index");
                                     Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -257,7 +264,7 @@ class _TimetableTabState extends State<TimetableTab> {
                             behavior: HitTestBehavior.translucent,
                             onTap: () {
                               chosenTimeIndex = index;
-                              print(index.toString());
+                              print("Select Time 23 = $index");
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(

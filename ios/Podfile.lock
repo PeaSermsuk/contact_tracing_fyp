@@ -226,6 +226,8 @@ PODS:
     - Firebase/Firestore (= 7.3.0)
     - firebase_core
     - Flutter
+  - device_id (0.0.1):
+    - Flutter
   - Firebase/CoreOnly (7.3.0):
     - FirebaseCore (= 7.3.0)
   - Firebase/Firestore (7.3.0):
@@ -301,6 +303,7 @@ PODS:
 DEPENDENCIES:
   - barcode_scan (from `.symlinks/plugins/barcode_scan/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
+  - device_id (from `.symlinks/plugins/device_id/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
@@ -328,6 +331,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/barcode_scan/ios"
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
+  device_id:
+    :path: ".symlinks/plugins/device_id/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
@@ -340,6 +345,7 @@ SPEC CHECKSUMS:
   barcode_scan: a5c27959edfafaa0c771905bad0b29d6d39e4479
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   cloud_firestore: efd6d2bafe5147690cff2ccfbde13752a56fa281
+  device_id: 4a0bf078741a3eec6ba0e6cc72e786395d5991b0
   Firebase: 26223c695fe322633274198cb19dca8cb7e54416
   firebase_core: f47224dd6a9b928b4cf0128b0d004ec9e47d4bf2
   FirebaseCore: 4d3c72622ce0e2106aaa07bb4b2935ba2c370972
