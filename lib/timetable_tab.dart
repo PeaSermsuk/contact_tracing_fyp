@@ -96,7 +96,8 @@ class _TimetableTabState extends State<TimetableTab> {
     return Consumer<RoomUseProvider>(
       //    builder: (context, rupro(RoomUse(DeviceId:'x',day:0)), child) {
       builder: (context, rupro, child) {
-        Provider.value(value: rupro.devid = 'rrr', child: child);
+        Provider.value(
+            value: rupro.devid = 'mhqjtN3wq33pMLYnKQhs', child: child);
         Provider.value(value: rupro.day = dayIndex, child: child);
         rupro.prtData();
         print("dayIndex = $dayIndex");
@@ -158,7 +159,6 @@ class _TimetableTabState extends State<TimetableTab> {
               //separatorBuilder: (context, index) => Divider(height: 1.0),
               itemCount: _times.length,
               itemBuilder: (context, index) {
-                RoomUse data = rupro.ruList[index];
                 if (index < (_times.length - 1)) {
                   return Container(
                     color: Colors.white,
@@ -216,8 +216,7 @@ class _TimetableTabState extends State<TimetableTab> {
                                       padding: EdgeInsets.only(top: 8.0),
                                       child: Center(
                                         child: Text(
-                                          //    mondayTimetable[index] ?? '',
-                                          data.roomName ?? '',
+                                          rupro.ruList[index],
                                           style: TextStyle(
                                             fontSize: roomFontSize,
                                             color: Colors.black,
@@ -292,8 +291,7 @@ class _TimetableTabState extends State<TimetableTab> {
                                         EdgeInsets.only(top: 8.0, bottom: 10),
                                     child: Center(
                                       child: Text(
-                                        //mondayTimetable[index] ?? '',
-                                        data.roomName ?? '',
+                                        rupro.ruList[index],
                                         style: TextStyle(
                                           fontSize: roomFontSize,
                                           color: Colors.black,

@@ -5,24 +5,73 @@ import 'package:flutter/material.dart';
 class RoomUseProvider with ChangeNotifier {
   String devid;
   int day;
-  List<RoomUse> ruList = [];
+  List<String> ruList = [];
 
   // RoomUseProvider({this.devid, this.day});
   RoomUseProvider() {
     this.devid;
     this.day;
-    initList();
+    // initial rulist to list of 24 null strings
+    this.ruList = [
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      ''
+    ];
   }
 
-  List<RoomUse> getList() {
+  List<String> getList() {
     return ruList;
   }
 
   void initList() {
-    this.ruList = [];
-    for (var i = 0; i <= 23; i++) {
-      this.ruList.add(RoomUse(day: this.day, hour: i, roomName: ''));
-    }
+    // initial rulist to list of 24 null strings
+    this.ruList = [
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      ''
+    ];
   }
 
   void prtData() {
@@ -68,15 +117,39 @@ class RoomUseProvider with ChangeNotifier {
       RoomUse(day: 0, hour: 23, roomName: ''),
     ]; */
     List<RoomUse> loadList = [];
-    var ttdb = TimeTableDB(day: this.day);
+    var ttdb = TimeTableDB(devID: this.devid, day: this.day);
     loadList = await ttdb.loadAllData();
-    initList();
-    // ruList = nuList;
+    ruList = [
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      ''
+    ];
     for (var ru in loadList) {
       print(ru.day);
       print(ru.hour);
       print(ru.roomName);
-      ruList[ru.hour] = ru;
+      ruList[ru.hour] = ru.roomName;
     }
     notifyListeners();
   }

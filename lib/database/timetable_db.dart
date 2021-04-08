@@ -10,12 +10,25 @@ class TimeTableDB {
   //Future<List<RoomUse>> loadAllData(String dev, int day) async {
   Future<List<RoomUse>> loadAllData() async {
     List<RoomUse> ruList = [];
+    //String deviceid = 'mhqjtN3wq33pMLYnKQhs';
+    String deviceid = this.devID.toString();
+    int ttable_day = this.day;
+    print("this.devID = $deviceid");
+    print("this.day = $ttable_day");
 // from here must be modified
     var ttref = FirebaseFirestore.instance
         .collection("timetable")
-        .doc("mhqjtN3wq33pMLYnKQhs")
+        //     .doc("mhqjtN3wq33pMLYnKQhs")
+        .doc(deviceid)
         .collection("roomuse");
-    var ruref = ttref.where('day', isEqualTo: this.day);
+/*to get only any doc -> have to specify doc-id
+    var ttref = FirebaseFirestore.instance
+        .collection("timetable")
+        .doc()
+        .collection("roomuse"); */
+    var ruref = ttref
+        //       .where('deviceid', isEqualTo: deviceid)
+        .where('day', isEqualTo: ttable_day);
 // to here
     await ruref.get().then((snapshot) {
       snapshot.docs.asMap().forEach((key, value) {
