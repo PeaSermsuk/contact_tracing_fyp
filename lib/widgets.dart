@@ -11,6 +11,7 @@ import 'search_tab.dart';
 import 'settings_tab.dart';
 import 'timetable_tab.dart';
 import 'health_page.dart';
+import 'services/user_device.dart';
 
 //List<Rooms> roomInfo = [];
 //List<Rooms> roomInfoSearch = [];
@@ -26,12 +27,8 @@ class MyStatefulWidget extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _currentIndex = 0;
-  final List<Widget> _children = [
-    CheckInTab(),
-    SearchTab(),
-    TimetableTab(),
-    SettingsTab(),
-  ];
+  String deviceid;
+  List<Widget> _children;
   String _title;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -58,6 +55,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   initState() {
     super.initState();
     //Provider.of<RoomProvider>(context, listen: false).initData();
+    deviceid = UserDevice().getDeviceID();
+    _children = [
+      CheckInTab(),
+      SearchTab(),
+      TimetableTab(),
+      SettingsTab(),
+    ];
     _title = 'CHECK IN';
   }
 

@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:contact_tracing_fyp/models/roomuse.dart';
+import 'package:contact_tracing_fyp/services/user_device.dart';
 import 'package:device_id/device_id.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,9 +17,6 @@ class TimetableTab extends StatefulWidget {
   @override
   _TimetableTabState createState() => _TimetableTabState();
 }
-
-int dayIndex = 0;
-int chosenTimeIndex = 0;
 
 class _TimetableTabState extends State<TimetableTab> {
   List _times = [
@@ -58,9 +56,13 @@ class _TimetableTabState extends State<TimetableTab> {
     'Sunday',
   ];
 
+  int dayIndex = 0;
+  int chosenTimeIndex = 0;
   int wideFlex = 5;
   double boxHeight = 45;
   double roomFontSize = 16;
+  var urdev = UserDevice();
+  String deviceid; //= UserDevice().getDeviceID();
 
   @override
   Widget build(BuildContext context) {
@@ -94,14 +96,12 @@ class _TimetableTabState extends State<TimetableTab> {
 
 // will insert consumer here
     return Consumer<RoomUseProvider>(
-      //    builder: (context, rupro(RoomUse(DeviceId:'x',day:0)), child) {
       builder: (context, rupro, child) {
-        Provider.value(
-            value: rupro.devid = 'mhqjtN3wq33pMLYnKQhs', child: child);
+        Provider.value(value: rupro.devid = deviceid, child: child);
         Provider.value(value: rupro.day = dayIndex, child: child);
-        rupro.prtData();
-        print("dayIndex = $dayIndex");
-
+        deviceid = urdev.getDeviceID();
+        print(deviceid);
+        rupro.loadAllData();
         return Column(children: [
           Container(
             height: boxHeight,
@@ -206,7 +206,10 @@ class _TimetableTabState extends State<TimetableTab> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    RoomSelectPage()))
+                                                    RoomSelectPage(
+                                                        devid: deviceid,
+                                                        day: dayIndex,
+                                                        hour: index)))
                                         .then((value) {
                                       setState(() {});
                                     });
@@ -267,8 +270,10 @@ class _TimetableTabState extends State<TimetableTab> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          RoomSelectPage())).then((value) {
+                                      builder: (context) => RoomSelectPage(
+                                          devid: deviceid,
+                                          day: dayIndex,
+                                          hour: index))).then((value) {
                                 setState(() {});
                               });
                             },

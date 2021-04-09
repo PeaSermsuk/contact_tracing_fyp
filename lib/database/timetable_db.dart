@@ -1,4 +1,3 @@
-//import 'package:contact_tracing_fyp/models/rooms.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:contact_tracing_fyp/models/roomuse.dart';
 
@@ -8,7 +7,7 @@ class TimeTableDB {
   TimeTableDB({this.devID, this.day});
 
   //Future<List<RoomUse>> loadAllData(String dev, int day) async {
-  Future<List<RoomUse>> loadAllData() async {
+  Future<List<RoomUse>> getAllData() async {
     List<RoomUse> ruList = [];
     //String deviceid = 'mhqjtN3wq33pMLYnKQhs';
     String deviceid = this.devID.toString();
@@ -16,19 +15,11 @@ class TimeTableDB {
     print("this.devID = $deviceid");
     print("this.day = $ttable_day");
 // from here must be modified
-    var ttref = FirebaseFirestore.instance
-        .collection("timetable")
-        //     .doc("mhqjtN3wq33pMLYnKQhs")
-        .doc(deviceid)
-        .collection("roomuse");
-/*to get only any doc -> have to specify doc-id
-    var ttref = FirebaseFirestore.instance
-        .collection("timetable")
-        .doc()
-        .collection("roomuse"); */
+    var ttref = FirebaseFirestore.instance.collection("timetable");
     var ruref = ttref
-        //       .where('deviceid', isEqualTo: deviceid)
-        .where('day', isEqualTo: ttable_day);
+        //.where('deviceid', isEqualTo: deviceid);
+        .where('deviceid', isEqualTo: this.devID)
+        .where('day', isEqualTo: this.day);
 // to here
     await ruref.get().then((snapshot) {
       snapshot.docs.asMap().forEach((key, value) {
@@ -42,14 +33,18 @@ class TimeTableDB {
     });
     return ruList;
   }
+
+  Future<void> setData(String devid, int dy, int hr, String rmName) async {
+    String dockey = devid + dy.toString() + hr.toString();
+    var ttref = FirebaseFirestore.instance.collection("timetable").doc(dockey);
+    return ttref
+        .set({
+          "deviceid": devid,
+          "day": dy,
+          "hour": hr,
+          "roomName": rmName,
+        })
+        .then((value) => print("Timetable Input Added"))
+        .catchError((error) => print("Failed to add input: $error"));
+  }
 }
-
-/*
-db.collection("restaurants").doc("123").collection("reviews").get()
-.then(querySnapshot => {
-    querySnapshot.forEach(doc => {
-        console.log(doc.id, " => ", doc.data());
-    });
-});
-
-*/

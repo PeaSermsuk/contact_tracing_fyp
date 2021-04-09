@@ -23,6 +23,11 @@ class UserDevice {
     print("in user MEID: $meid");
   }
 
+  Future<String> deviceInfo() async {
+    deviceid = await DeviceId.getID;
+    return deviceid;
+  }
+
   String getDeviceID() => deviceid;
   String getImei() => imei;
   String getMeid() => meid;

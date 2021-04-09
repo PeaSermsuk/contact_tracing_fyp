@@ -1,3 +1,4 @@
+import 'package:contact_tracing_fyp/providers/roomuse_provider.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter/cupertino.dart';
 
@@ -5,9 +6,15 @@ import 'database/rooms_db.dart';
 import 'models/rooms.dart';
 //import 'widgets.dart';
 //import 'search_tab.dart';
-import 'timetable_tab.dart';
+//import 'timetable_tab.dart';
 
 class RoomSelectPage extends StatefulWidget {
+  final String devid;
+  final int day;
+  final int hour;
+  RoomSelectPage(
+      {Key key, @required this.devid, @required this.day, @required this.hour})
+      : super(key: key);
   @override
   _RoomSelectPageState createState() => _RoomSelectPageState();
 }
@@ -20,7 +27,7 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
   void initState() {
     super.initState();
     this.initList();
-    print("room select-dayIndex=$dayIndex");
+    //print("room select-dayIndex=$dayIndex");
   }
 
   void initList() async {
@@ -80,7 +87,10 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    if (dayIndex == 0) {
+                    var rupro = RoomUseProvider();
+                    rupro.insertData(widget.devid, widget.day, widget.hour,
+                        roomList[index].name);
+                    /*if (dayIndex == 0) {
                       mondayTimetable[chosenTimeIndex] = roomList[index].name;
                     }
                     if (dayIndex == 1) {
@@ -101,7 +111,7 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
                     }
                     if (dayIndex == 6) {
                       sundayTimetable[chosenTimeIndex] = roomList[index].name;
-                    }
+                    }*/
                     Navigator.pop(context);
                   },
                   child: Container(

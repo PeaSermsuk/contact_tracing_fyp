@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'database/rooms_db.dart';
 import 'widgets.dart';
 import 'settings_tab.dart';
+import 'services/user_device.dart';
 
 /*void initList() async {
   var rmdb = RoomsDB();
@@ -93,6 +94,7 @@ class SplashState extends State<Splash> with AfterLayoutMixin<Splash> {
 class App extends StatelessWidget {
   // Create the initialization Future outside of `build`:
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  //String dev_id;
 
   @override
   Widget build(BuildContext context) {
@@ -102,20 +104,43 @@ class App extends StatelessWidget {
       builder: (context, snapshot) {
         // Check for errors
         if (snapshot.hasError) {
-          print('Error');
+          print('FlutterFire Init Error');
           return SomethingWentWrong();
         }
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          print('Loaded');
+          print('FlutterFire Loaded');
           return MyApp();
+          //return GetDeviceID();
         }
 
         // Otherwise, show something whilst waiting for initialization to complete
-        print('Loading');
+        print('FlutterFire Loading');
         return Loading();
       },
     );
   }
 }
+/*
+class GetDeviceID extends StatelessWidget {
+  // Create the initialization Future outside of `build`:
+  final String getDeviceID = UserDevice.deviceInfo();
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: getDeviceID,
+      builder: (BuildContext context, AsyncSnapshot snap) {
+        // do nothing...
+        if (snap.hasData) {
+          return MyApp();
+        } else {
+          //return new CircularProgressIndicator();
+          return Loading();
+        }
+      },
+    );
+  }
+}
+*/
