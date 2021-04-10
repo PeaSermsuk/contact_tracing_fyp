@@ -135,7 +135,9 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
                       roomList[index].name,
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.black,
+                        color: (index != 0)
+                        ? Colors.black
+                        : Colors.red,
                       ),
                     ),
                   ),
