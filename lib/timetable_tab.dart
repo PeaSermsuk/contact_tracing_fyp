@@ -209,7 +209,8 @@ class _TimetableTabState extends State<TimetableTab> {
                                                     RoomSelectPage(
                                                         devid: deviceid,
                                                         day: dayIndex,
-                                                        hour: index)))
+                                                        hour: index,
+                                                        currentRoom: rupro.ruList[index],)))
                                         .then((value) {
                                       setState(() {});
                                     });
@@ -273,7 +274,8 @@ class _TimetableTabState extends State<TimetableTab> {
                                       builder: (context) => RoomSelectPage(
                                           devid: deviceid,
                                           day: dayIndex,
-                                          hour: index))).then((value) {
+                                          hour: index,
+                                          currentRoom: rupro.ruList[index],))).then((value) {
                                 setState(() {});
                               });
                             },
