@@ -68,6 +68,7 @@ class _CheckInTabState extends State<CheckInTab> {
         checkinpro.loadAllData(user_devid);
         List<CheckIn> ciList = checkinpro.checkinList;
     return Column(children: [
+      if (ciList.length != 0) ... [
       Container(
         padding: EdgeInsets.all(5.0),
         margin:
@@ -150,7 +151,8 @@ class _CheckInTabState extends State<CheckInTab> {
           },
         ),
       ),
-      /*Expanded(
+      ] else ... [
+      Expanded(
         child: (Container(
           padding: EdgeInsets.all(30.0),
           margin: EdgeInsets.all(30.0),
@@ -165,7 +167,8 @@ class _CheckInTabState extends State<CheckInTab> {
           ),
           alignment: Alignment.center,
         )),
-      ),*/
+      ),
+      ],
       //Spacer(),
       GestureDetector(
         onTap: _scanQR,
