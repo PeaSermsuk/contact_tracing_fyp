@@ -23,7 +23,7 @@ class RoomSelectPage extends StatefulWidget {
 class _RoomSelectPageState extends State<RoomSelectPage> {
   List<Rooms> roomList = [];
   int loading = 1;
-  final noRoom = Rooms(name: "No Room", capacity: null, available: null);
+  final noRoom = Rooms(name: "CLEAR", capacity: null, available: null);
 
   @override
   void initState() {

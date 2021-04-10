@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 //import 'database/rooms_db.dart';
 import 'widgets.dart';
+import 'providers/checkin_provider.dart';
 //import 'settings_tab.dart';
 import 'services/user_device.dart';
 
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) {
           return RoomUseProvider();
+        }),
+        ChangeNotifierProvider(create: (context) {
+          return CheckInProvider();
         })
       ],
       child: MaterialApp(
