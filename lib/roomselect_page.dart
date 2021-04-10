@@ -90,10 +90,16 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    print('Previously Selected $widget.currentRoom');
+                    //String oldSelect = widget.currentRoom;
+                    //print('Previously Selected $oldSelect');
                     var rupro = RoomUseProvider();
-                    rupro.insertData(widget.devid, widget.day, widget.hour,
-                        roomList[index].name);
+                    if (index != 0) {
+                      rupro.insertData(widget.devid, widget.day, widget.hour, roomList[index].name);
+                    } else {
+                      if (widget.currentRoom != null) {
+                        rupro.deleteData(widget.devid, widget.day, widget.hour);
+                      }
+                    }
                     /*if (dayIndex == 0) {
                       mondayTimetable[chosenTimeIndex] = roomList[index].name;
                     }

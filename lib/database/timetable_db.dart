@@ -39,6 +39,15 @@ class TimeTableDB {
         .then((value) => print("Timetable Input Added"))
         .catchError((error) => print("Failed to add input: $error"));
   }
+
+    Future<void> delData(String devid, int dy, int hr) async {
+    String dockey = devid + dy.toString() + hr.toString();
+    var ttref = FirebaseFirestore.instance.collection("timetable").doc(dockey);
+    return ttref
+        .delete()
+        .then((value) => print("Timetable Deleted"))
+        .catchError((error) => print("Failed to delete: $error"));
+  }
 }
 
 /* start old version of getAllData

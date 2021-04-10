@@ -83,6 +83,12 @@ class RoomUseProvider with ChangeNotifier {
     ttdb.setData(devid, dy, hr, rmName);
     notifyListeners();
   }
+
+  void deleteData(String devid, int dy, int hr) {
+    var ttdb = TimeTableDB();
+    ttdb.delData(devid, dy, hr);
+    notifyListeners();
+  }
 }
 
 /*
