@@ -12,8 +12,9 @@ class RoomSelectPage extends StatefulWidget {
   final String devid;
   final int day;
   final int hour;
+  final String currentRoom;
   RoomSelectPage(
-      {Key key, @required this.devid, @required this.day, @required this.hour})
+      {Key key, @required this.devid, @required this.day, @required this.hour, @required this.currentRoom})
       : super(key: key);
   @override
   _RoomSelectPageState createState() => _RoomSelectPageState();
@@ -22,6 +23,7 @@ class RoomSelectPage extends StatefulWidget {
 class _RoomSelectPageState extends State<RoomSelectPage> {
   List<Rooms> roomList = [];
   int loading = 1;
+  final noRoom = Rooms(name: "No Room", capacity: null, available: null);
 
   @override
   void initState() {
@@ -33,6 +35,7 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
   void initList() async {
     var rmdb = RoomsDB();
     roomList = await rmdb.getAllData();
+    roomList.insert(0, noRoom);
     loading = 0;
     setState(() {});
   }
@@ -87,6 +90,7 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
+                    print('Previously Selected $widget.currentRoom');
                     var rupro = RoomUseProvider();
                     rupro.insertData(widget.devid, widget.day, widget.hour,
                         roomList[index].name);

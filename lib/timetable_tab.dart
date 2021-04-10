@@ -212,7 +212,8 @@ end old version */
                                                     RoomSelectPage(
                                                         devid: user_devid,
                                                         day: dayIndex,
-                                                        hour: index)))
+                                                        hour: index,
+                                                        currentRoom: rupro.ruList[index],)))
                                         .then((value) {
                                       setState(() {});
                                     });
@@ -275,7 +276,8 @@ end old version */
                                       builder: (context) => RoomSelectPage(
                                           devid: user_devid,
                                           day: dayIndex,
-                                          hour: index))).then((value) {
+                                          hour: index,
+                                          currentRoom: rupro.ruList[index],))).then((value) {
                                 setState(() {});
                               });
                             },
