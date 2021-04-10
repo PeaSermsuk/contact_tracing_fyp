@@ -1,26 +1,28 @@
 import 'package:contact_tracing_fyp/providers/roomuse_provider.dart';
 import 'package:after_layout/after_layout.dart';
+import 'package:device_id/device_id.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'database/rooms_db.dart';
+//import 'database/rooms_db.dart';
 import 'widgets.dart';
-import 'settings_tab.dart';
+//import 'settings_tab.dart';
 import 'services/user_device.dart';
 
-/*void initList() async {
-  var rmdb = RoomsDB();
-  roomInfo = await rmdb.getAllData();
-  roomInfoSearch = roomInfo;
-//  loading = 0;
-//  setState(() {});
-}*/
+//String user_devid;
+Future<void> initDeviceID() async {
+  await DeviceId.getID.then((value) {
+    user_devid = value;
+    print("value:$value");
+  });
+}
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  initDeviceID();
   runApp(App());
 }
 
@@ -94,8 +96,6 @@ class SplashState extends State<Splash> with AfterLayoutMixin<Splash> {
 class App extends StatelessWidget {
   // Create the initialization Future outside of `build`:
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-  //String dev_id;
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -107,14 +107,14 @@ class App extends StatelessWidget {
           print('FlutterFire Init Error');
           return SomethingWentWrong();
         }
-
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          print('FlutterFire Loaded');
-          return MyApp();
-          //return GetDeviceID();
+          if (user_devid != null) {
+            print('FlutterFire Loaded');
+            print("After $user_devid");
+            return MyApp();
+          }
         }
-
         // Otherwise, show something whilst waiting for initialization to complete
         print('FlutterFire Loading');
         return Loading();

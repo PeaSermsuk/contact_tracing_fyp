@@ -40,7 +40,53 @@ class RoomUseProvider with ChangeNotifier {
     ];
   }
 
-  void loadAllData() async {
+  void loadAllData(String devid, int dy) async {
+    List<RoomUse> loadList = [];
+    var ttdb = TimeTableDB();
+    loadList = await ttdb.getAllData(devid, dy);
+    ruList = [
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      ''
+    ];
+    if (loadList != null) {
+      for (var ru in loadList) {
+        ruList[ru.hour] = ru.roomName;
+      }
+      notifyListeners();
+    }
+  }
+
+  void insertData(String devid, int dy, int hr, String rmName) {
+    var ttdb = TimeTableDB();
+    ttdb.setData(devid, dy, hr, rmName);
+    notifyListeners();
+  }
+}
+
+/*
+void loadAllData() async {
     List<RoomUse> loadList = [];
     var ttdb = TimeTableDB(devID: this.devid, day: this.day);
     print(this.devid);
@@ -77,10 +123,4 @@ class RoomUseProvider with ChangeNotifier {
     }
     notifyListeners();
   }
-
-  void insertData(String devid, int dy, int hr, String rmName) {
-    var ttdb = TimeTableDB();
-    ttdb.setData(devid, dy, hr, rmName);
-    notifyListeners();
-  }
-}
+  */

@@ -1,14 +1,18 @@
 import 'dart:ffi';
 
-import 'package:contact_tracing_fyp/models/roomuse.dart';
+//import 'package:contact_tracing_fyp/models/roomuse.dart';
 import 'package:contact_tracing_fyp/services/user_device.dart';
-import 'package:device_id/device_id.dart';
+//import 'package:device_id/device_id.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:contact_tracing_fyp/providers/roomuse_provider.dart';
+//import 'package:flutter/services.dart';
 
 import 'roomselect_page.dart';
 //import 'widgets.dart';
+
+// Must be modified
+//String devid = 'A';
 
 class TimetableTab extends StatefulWidget {
   static const title = 'SEARCH';
@@ -61,8 +65,6 @@ class _TimetableTabState extends State<TimetableTab> {
   int wideFlex = 5;
   double boxHeight = 45;
   double roomFontSize = 16;
-  var urdev = UserDevice();
-  String deviceid; //= UserDevice().getDeviceID();
 
   @override
   Widget build(BuildContext context) {
@@ -97,11 +99,13 @@ class _TimetableTabState extends State<TimetableTab> {
 // will insert consumer here
     return Consumer<RoomUseProvider>(
       builder: (context, rupro, child) {
-        Provider.value(value: rupro.devid = deviceid, child: child);
+/* start old version
+        Provider.value(value: rupro.devid = devid, child: child);
         Provider.value(value: rupro.day = dayIndex, child: child);
-        deviceid = urdev.getDeviceID();
-        print(deviceid);
         rupro.loadAllData();
+end old version */
+        //       print("in tt_tab devid = $user_devid");
+        rupro.loadAllData(user_devid, dayIndex);
         return Column(children: [
           Container(
             height: boxHeight,
@@ -201,13 +205,12 @@ class _TimetableTabState extends State<TimetableTab> {
                                   behavior: HitTestBehavior.translucent,
                                   onTap: () {
                                     chosenTimeIndex = index;
-                                    print("Select Time = $index");
                                     Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     RoomSelectPage(
-                                                        devid: deviceid,
+                                                        devid: user_devid,
                                                         day: dayIndex,
                                                         hour: index)))
                                         .then((value) {
@@ -266,12 +269,11 @@ class _TimetableTabState extends State<TimetableTab> {
                             behavior: HitTestBehavior.translucent,
                             onTap: () {
                               chosenTimeIndex = index;
-                              print("Select Time 23 = $index");
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => RoomSelectPage(
-                                          devid: deviceid,
+                                          devid: user_devid,
                                           day: dayIndex,
                                           hour: index))).then((value) {
                                 setState(() {});

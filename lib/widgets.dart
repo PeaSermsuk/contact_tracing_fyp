@@ -27,7 +27,6 @@ class MyStatefulWidget extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _currentIndex = 0;
-  String deviceid;
   List<Widget> _children;
   String _title;
   static const TextStyle optionStyle =
@@ -55,7 +54,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   initState() {
     super.initState();
     //Provider.of<RoomProvider>(context, listen: false).initData();
-    deviceid = UserDevice().getDeviceID();
     _children = [
       CheckInTab(),
       SearchTab(),
