@@ -262,6 +262,7 @@ class _HealthPageState extends State<HealthPage> {
                 var cppro = CovidPositiveProvider();
                 cppro.insertData(user_devid, reportedTime);
                 Navigator.of(context).pop();
+                alertToDismiss();
               },
             ),
           ],
@@ -269,4 +270,26 @@ class _HealthPageState extends State<HealthPage> {
       },
     );
   }
+
+  void alertToDismiss() {
+    showDialog(
+        context: context,
+        builder: (context) {
+        return CupertinoAlertDialog(
+          //title: Text('AlertDialog Title'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                  'Thank you for reporting your positive COVID-19 test.\n\nPlease self-isolate for 14 days.',
+                  style: TextStyle(fontSize: 16, height: 1.5),
+                ),
+              ],
+            ),
+          ),
+        );
+        },
+    );
+  }
+
 }
