@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:contact_tracing_fyp/database/checkin_db.dart';
 import 'package:contact_tracing_fyp/models/rooms.dart';
 import 'package:contact_tracing_fyp/database/rooms_db.dart';
-//import 'package:contact_tracing_fyp/providers/rooms_provider.dart';
 import 'package:contact_tracing_fyp/providers/checkin_provider.dart';
 import 'package:flutter/material.dart';
-//import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:contact_tracing_fyp/services/user_device.dart';
+import 'package:barcode_scan/barcode_scan.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'models/checkin.dart';
 //import 'widgets.dart';
@@ -33,10 +33,14 @@ class _CheckInTabState extends State<CheckInTab> {
   Future _scanQR() async {
     try {
       String qrResult = await BarcodeScanner.scan();
+      result = qrResult;
+      rmInfo = await roomsDB.getData(result);
       setState(() {
-        result = qrResult;
+        //result = qrResult;
         print(result);
-        checkinDB.addData(user_devid, qrResult, Timestamp.now());
+        checkinDB.addData(user_devid, result, Timestamp.now());
+        roomsDB.updateData(result, rmInfo.capacity,
+            rmInfo.available - 1);
       });
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.CameraAccessDenied) {
@@ -57,17 +61,18 @@ class _CheckInTabState extends State<CheckInTab> {
         print(result);
       });
     } catch (ex) {
-      String roomNum = 'CAGB 200';
-      rmInfo = await roomsDB.getData(roomNum);
+      //String roomNum = 'CAGB 200';
+      //rmInfo = await roomsDB.getData(roomNum);
       //await rmpro.getRoom(roomNum);
       //print('print rmpro.rm');
       //print(rmpro.rm);
       //print(rmpro.rm.capacity);
       setState(() {
         result = "Unknown Error2 $ex";
-        checkinDB.addData(user_devid, roomNum, Timestamp.now());
+        print(result);
+        /*checkinDB.addData(user_devid, roomNum, Timestamp.now());
         roomsDB.updateData(roomNum, rmInfo.capacity,
-            rmInfo.available - 1);
+            rmInfo.available - 1);*/
       });
     }
   }
@@ -485,9 +490,9 @@ class _CheckInTabState extends State<CheckInTab> {
 }
 */
 
-class BarcodeScanner {
+/*class BarcodeScanner {
   static const CameraAccessDenied = 'PERMISSION_NOT_GRANTED';
   static const MethodChannel _channel =
       const MethodChannel('com.appletreesoftware.barcode_scan');
   static Future<String> scan() async => await _channel.invokeMethod('scan');
-}
+}*/

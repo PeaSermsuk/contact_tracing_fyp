@@ -215,7 +215,6 @@ PODS:
   - barcode_scan (0.0.1):
     - Flutter
     - MTBBarcodeScanner
-    - SwiftProtobuf
   - BoringSSL-GRPC (0.0.7):
     - BoringSSL-GRPC/Implementation (= 0.0.7)
     - BoringSSL-GRPC/Interface (= 0.0.7)
@@ -298,7 +297,6 @@ PODS:
   - PromisesObjC (1.2.12)
   - shared_preferences (0.0.1):
     - Flutter
-  - SwiftProtobuf (1.15.0)
 
 DEPENDENCIES:
   - barcode_scan (from `.symlinks/plugins/barcode_scan/ios`)
@@ -324,7 +322,6 @@ SPEC REPOS:
     - MTBBarcodeScanner
     - nanopb
     - PromisesObjC
-    - SwiftProtobuf
 
 EXTERNAL SOURCES:
   barcode_scan:
@@ -342,7 +339,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
-  barcode_scan: a5c27959edfafaa0c771905bad0b29d6d39e4479
+  barcode_scan: 33f586d02270046fc6559135038b34b5754eaa4f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   cloud_firestore: efd6d2bafe5147690cff2ccfbde13752a56fa281
   device_id: 4a0bf078741a3eec6ba0e6cc72e786395d5991b0
@@ -361,8 +358,7 @@ SPEC CHECKSUMS:
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
-  SwiftProtobuf: 3320217e9d8fb75f36b40282e78c482640fd75dd
 
-PODFILE CHECKSUM: 70d6a66270ba7bebc17a99d8ebeafee821077ee6
+PODFILE CHECKSUM: 1106eff072e2fc247f6f1fe03e20e361b4f304a2
 
 COCOAPODS: 1.10.1

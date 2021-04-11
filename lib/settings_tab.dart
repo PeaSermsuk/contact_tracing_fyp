@@ -1,3 +1,4 @@
+import 'package:contact_tracing_fyp/services/user_device.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -43,7 +44,7 @@ class _SettingsTabState extends State<SettingsTab> {
             children: [
               Text('Device ID', style: TextStyle(fontSize: 16)),
               Spacer(),
-              Text('XXXXXXXXXX', style: TextStyle(fontSize: 16)),
+              Text(user_devid, style: TextStyle(fontSize: 16)),
             ],
           ),
           //title: Text('College CID', style: TextStyle(fontSize: 16)),
