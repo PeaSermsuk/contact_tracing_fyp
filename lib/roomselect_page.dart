@@ -138,6 +138,7 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
                         color: (index != 0)
                         ? Colors.black
                         : Colors.red,
+                        // added for commit
                       ),
                     ),
                   ),
