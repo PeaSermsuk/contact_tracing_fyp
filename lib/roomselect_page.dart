@@ -137,7 +137,7 @@ class _RoomSelectPageState extends State<RoomSelectPage> {
                         fontSize: 16,
                         color: (index != 0)
                         ? Colors.black
-                        : Colors.red,
+                        : Colors.red
                         // added for commit
                       ),
                     ),

@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:contact_tracing_fyp/providers/covidpositive_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'services/user_device.dart';
 import 'widgets.dart';
 
 class HealthPage extends StatefulWidget {
@@ -12,6 +15,8 @@ class HealthPage extends StatefulWidget {
 }
 
 class _HealthPageState extends State<HealthPage> {
+  Timestamp reportedTime;
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEEEEEE),
@@ -251,6 +256,11 @@ class _HealthPageState extends State<HealthPage> {
                 ),
               ),
               onPressed: () {
+                print('Reported COVID Positive ID: $user_devid');
+                reportedTime = Timestamp.now();
+                print('Reported COVID Time: $reportedTime');
+                var cppro = CovidPositiveProvider();
+                cppro.insertData(user_devid, reportedTime);
                 Navigator.of(context).pop();
               },
             ),
