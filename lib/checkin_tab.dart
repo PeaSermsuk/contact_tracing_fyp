@@ -56,20 +56,28 @@ class _CheckInTabState extends State<CheckInTab> {
         print(result);
       });
     } catch (ex) {
+      String roomNum = 'CAGB 202C';
+      await rmpro.getRoom(roomNum);
+      print('print rmpro.rm');
+      print(rmpro.rm);
+      print(rmpro.rm.capacity);
       setState(() {
         result = "Unknown Error2 $ex";
-        print(result);
-        String roomNum = 'CAGB 202C';
+        //print(result);
+
         checkinDB.addData(user_devid, roomNum, Timestamp.now());
         //rmpro.getRoom('CAGB 202C');
-        print('below is roomInfo');
+        //print('print rmpro.rm');
+        //print(rmpro.rm);
+        //print(rmpro.rm.capacity);
+        /*print('below is roomInfo');
         print(roomInfo);
         final indexRoom =
             roomInfo.indexWhere((element) => element.name == roomNum);
         print(indexRoom);
         roomsDB.updateData(roomNum, roomInfo[indexRoom].capacity,
             roomInfo[indexRoom].available - 1);
-        print(roomInfo[indexRoom].available - 1);
+        print(roomInfo[indexRoom].available - 1);*/
         //rm = await roomsDB.getData('CAGB 202C');
       });
     }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class RoomProvider with ChangeNotifier {
   List<Rooms> rmList = [];
-  Rooms rm;
+  var rm = Rooms();
 
   List<Rooms> getList() {
     this.loadAllData();
@@ -23,12 +23,12 @@ class RoomProvider with ChangeNotifier {
     //notifyListeners();
   }
 
-  void getRoom(String roomName) async {
+  Future<void> getRoom(String roomName) async {
     var rmdb = RoomsDB();
     rm = await rmdb.getData(roomName);
-    print('rm under roompro');
-    print(rm.name);
-    print(rm.capacity);
-    print(rm.available);
+    //print('rm under roompro');
+    //print(rm.name);
+    //print(rm.capacity);
+    //print(rm.available);
   }
 }
