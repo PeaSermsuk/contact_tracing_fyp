@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:contact_tracing_fyp/database/checkin_db.dart';
 import 'package:contact_tracing_fyp/models/rooms.dart';
 import 'package:contact_tracing_fyp/database/rooms_db.dart';
-import 'package:contact_tracing_fyp/providers/rooms_provider.dart';
+//import 'package:contact_tracing_fyp/providers/rooms_provider.dart';
 import 'package:contact_tracing_fyp/providers/checkin_provider.dart';
 import 'package:flutter/material.dart';
 //import 'package:barcode_scan/barcode_scan.dart';
@@ -26,8 +26,9 @@ class _CheckInTabState extends State<CheckInTab> {
   DateTime timeIn;
   var checkinDB = CheckInDB();
   var roomsDB = RoomsDB();
-  var rmpro = RoomProvider();
-  List<Rooms> roomInfo = [];
+  Rooms rmInfo;
+  //var rmpro = RoomProvider();
+  //List<Rooms> roomInfo = [];
 
   Future _scanQR() async {
     try {
@@ -56,29 +57,17 @@ class _CheckInTabState extends State<CheckInTab> {
         print(result);
       });
     } catch (ex) {
-      String roomNum = 'CAGB 202C';
-      await rmpro.getRoom(roomNum);
-      print('print rmpro.rm');
-      print(rmpro.rm);
-      print(rmpro.rm.capacity);
+      String roomNum = 'CAGB 200';
+      rmInfo = await roomsDB.getData(roomNum);
+      //await rmpro.getRoom(roomNum);
+      //print('print rmpro.rm');
+      //print(rmpro.rm);
+      //print(rmpro.rm.capacity);
       setState(() {
         result = "Unknown Error2 $ex";
-        //print(result);
-
         checkinDB.addData(user_devid, roomNum, Timestamp.now());
-        //rmpro.getRoom('CAGB 202C');
-        //print('print rmpro.rm');
-        //print(rmpro.rm);
-        //print(rmpro.rm.capacity);
-        /*print('below is roomInfo');
-        print(roomInfo);
-        final indexRoom =
-            roomInfo.indexWhere((element) => element.name == roomNum);
-        print(indexRoom);
-        roomsDB.updateData(roomNum, roomInfo[indexRoom].capacity,
-            roomInfo[indexRoom].available - 1);
-        print(roomInfo[indexRoom].available - 1);*/
-        //rm = await roomsDB.getData('CAGB 202C');
+        roomsDB.updateData(roomNum, rmInfo.capacity,
+            rmInfo.available - 1);
       });
     }
   }
@@ -87,7 +76,7 @@ class _CheckInTabState extends State<CheckInTab> {
     return Consumer<CheckInProvider>(
       builder: (context, checkinpro, child) {
         checkinpro.loadAllData(user_devid);
-        roomInfo = rmpro.getList();
+        //roomInfo = rmpro.getList();
         List<CheckIn> ciList = checkinpro.checkinList;
         return Column(children: [
           if (ciList.length != 0) ...[
@@ -154,18 +143,15 @@ class _CheckInTabState extends State<CheckInTab> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
+                            onTap: () async {
+                              String roomNum = 'CAGB 200';
+                              rmInfo = await roomsDB.getData(roomNum);
                               checkinpro.updateData(user_devid,
                                   ciList[index].timeIn, Timestamp.now());
-                              print(index);
-                              print(ciList[index].deviceID);
-                              print(ciList[index].room);
-                              final indexRoom = roomInfo.indexWhere((element) =>
-                                  element.name == ciList[index].room);
                               roomsDB.updateData(
                                   ciList[index].room,
-                                  roomInfo[indexRoom].capacity,
-                                  roomInfo[indexRoom].available + 1);
+                                  rmInfo.capacity,
+                                  rmInfo.available + 1);
                             },
                             child: Icon(
                               Icons.exit_to_app,

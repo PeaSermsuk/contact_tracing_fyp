@@ -44,12 +44,12 @@ class RoomsDB {
       rm.available = rmDoc.data()["available"];
       rm.capacity = rmDoc.data()["capacity"];
       rm.name = rmDoc.data()["name"];
-      print('print rm.available');
-      print(rm.available);
-      print('print rm.capacity');
-      print(rm.capacity);
-      print('print rm.name');
-      print(rm.name);
+      //print('print rm.available');
+      //print(rm.available);
+      //print('print rm.capacity');
+      //print(rm.capacity);
+      //print('print rm.name');
+      //print(rm.name);
       //m.available: rmDoc.data();
         });
         /*.then((snapshot) {
