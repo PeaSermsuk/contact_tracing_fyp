@@ -42,7 +42,7 @@ class _SettingsTabState extends State<SettingsTab> {
           ),
           child: Row(
             children: [
-              Text('Device ID', style: TextStyle(fontSize: 16)),
+              Text('Personal ID', style: TextStyle(fontSize: 16)),
               Spacer(),
               Text(user_devid, style: TextStyle(fontSize: 16)),
             ],

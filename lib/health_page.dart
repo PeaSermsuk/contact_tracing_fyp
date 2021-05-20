@@ -67,7 +67,7 @@ class _HealthPageState extends State<HealthPage> {
                     child: Icon(
                   Icons.wc,
                   size: 100,
-                  color: Colors.red,
+                  color: Colors.black,
                 )),
                 Expanded(
                     child: Column(
@@ -107,7 +107,7 @@ class _HealthPageState extends State<HealthPage> {
                     child: Icon(
                   Icons.wc,
                   size: 100,
-                  color: Colors.orange,
+                  color: Colors.red,
                 )),
                 Expanded(
                     child: Column(
@@ -147,7 +147,7 @@ class _HealthPageState extends State<HealthPage> {
                     child: Icon(
                   Icons.wc,
                   size: 100,
-                  color: Colors.yellow,
+                  color: Colors.orange,
                 )),
                 Expanded(
                     child: Column(

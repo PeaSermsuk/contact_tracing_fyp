@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:contact_tracing_fyp/database/checkin_db.dart';
 import 'package:contact_tracing_fyp/models/rooms.dart';
+import 'package:contact_tracing_fyp/models/riskpersons.dart';
 import 'package:contact_tracing_fyp/database/rooms_db.dart';
+import 'package:contact_tracing_fyp/database/riskpersons_db.dart';
 import 'package:contact_tracing_fyp/providers/checkin_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,9 +28,41 @@ class _CheckInTabState extends State<CheckInTab> {
   DateTime timeIn;
   var checkinDB = CheckInDB();
   var roomsDB = RoomsDB();
+  var riskpersonsDB = RiskPersonsDB();
   Rooms rmInfo;
+  RiskPersons riskPerson;
+  int loading = 1;
+  var difference;
+  var remaining = 0;
+  final isolateLdays = 14;
+  final isolateHdays = 14;
+  final isolatePdays = 10;
   //var rmpro = RoomProvider();
   //List<Rooms> roomInfo = [];
+
+  @override
+  void initState() {
+    super.initState();
+    this.initList();
+  }
+
+  void initList() async {
+    riskPerson = await riskpersonsDB.getData(user_devid);
+    if (riskPerson.reportDate != null) {
+      Timestamp reportedTimestamp = riskPerson.reportDate;
+      DateTime reportedDateTime = DateTime.fromMicrosecondsSinceEpoch(
+          reportedTimestamp.microsecondsSinceEpoch);
+      DateTime timeNow = DateTime.now();
+      difference = timeNow.difference(reportedDateTime).inDays;
+      if (riskPerson.riskType == 'H') {
+        remaining = isolateHdays - difference;
+      } else if (riskPerson.riskType == 'P') {
+        remaining = isolatePdays - difference;
+      }
+    }
+    loading = 0;
+    setState(() {});
+  }
 
   Future _scanQR() async {
     try {
@@ -81,33 +115,70 @@ class _CheckInTabState extends State<CheckInTab> {
       builder: (context, checkinpro, child) {
         checkinpro.loadAllData(user_devid);
         //roomInfo = rmpro.getList();
+        //_getRiskPersons();
+        //print('Risk Level is $riskPerson.riskType');
         List<CheckIn> ciList = checkinpro.checkinList;
         return Column(children: [
           Container(
-          height: 48.0,
-          padding: EdgeInsets.only(left: 15.0, right: 15.0),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border(
-              top: BorderSide(
-                color: Colors.grey,
-                width: 0.5,
-              ),
-              bottom: BorderSide(
-                color: Colors.grey,
-                width: 0.5,
+            height: 48.0,
+            padding: EdgeInsets.only(left: 15.0, right: 15.0),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border(
+                top: BorderSide(
+                  color: Colors.grey,
+                  width: 0.5,
+                ),
+                bottom: BorderSide(
+                  color: Colors.grey,
+                  width: 0.5,
+                ),
               ),
             ),
+            child: Row(
+              children: [
+                Text('COVID-19 Status', style: TextStyle(fontSize: 16)),
+                Spacer(),
+                if (loading == 1) ...[
+                  Text('LOADING',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold)),
+                ] else ...[
+                  if (riskPerson.riskType == 'L' &&
+                      difference < isolateLdays) ...[
+                    Text('LOW RISK',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.orange,
+                            fontWeight: FontWeight.bold)),
+                  ] else if (riskPerson.riskType == 'H' &&
+                      difference < isolateHdays) ...[
+                    Text('HIGH RISK',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold)),
+                  ] else if (riskPerson.riskType == 'P' &&
+                      difference < isolatePdays) ...[
+                    Text('COVID-19 POSITIVE',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold)),
+                  ] else ...[
+                    Text('NO RISK',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold)),
+                  ]
+                ]
+              ],
+            ),
           ),
-          child: Row(
-            children: [
-              Text('COVID-19 Status', style: TextStyle(fontSize: 16)),
-              Spacer(),
-              Text('NO RISK', style: TextStyle(fontSize: 16, color: Colors.green, fontWeight: FontWeight.bold)),
-            ],
-          ),
-        ),
           if (ciList.length != 0) ...[
             Container(
               padding: EdgeInsets.all(5.0),
@@ -173,7 +244,7 @@ class _CheckInTabState extends State<CheckInTab> {
                           ),
                           GestureDetector(
                             onTap: () async {
-                              String roomNum = 'CAGB 200';
+                              String roomNum = ciList[index].room;
                               rmInfo = await roomsDB.getData(roomNum);
                               checkinpro.updateData(user_devid,
                                   ciList[index].timeIn, Timestamp.now());
@@ -197,70 +268,166 @@ class _CheckInTabState extends State<CheckInTab> {
           ] else ...[
             Expanded(
               child: (Container(
-                padding: EdgeInsets.all(30.0),
+                //padding: EdgeInsets.all(30.0),
                 margin: EdgeInsets.all(30.0),
                 //color: Colors.black,
-                child: Text(
-                  'NO CHECK-INS',
-                  style: TextStyle(
-                      height: 1,
-                      fontSize: 25,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold),
-                ),
+                child: (loading == 0)
+                    ? ((riskPerson.riskType == 'H' &&
+                                difference < isolateHdays) ||
+                            (riskPerson.riskType == 'P' &&
+                                difference < isolatePdays))
+                        ? (remaining == 1)
+                            ? Text(
+                                'CHECK IN DISABLED\n\nPLEASE SELF-ISOLATE FOR $remaining DAY',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    height: 1.25,
+                                    fontSize: 25,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            : Text(
+                                'CHECK IN DISABLED\n\nPLEASE SELF-ISOLATE FOR $remaining DAYS',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    height: 1.25,
+                                    fontSize: 25,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold),
+                              )
+                        : Text(
+                            'NO CHECK-INS',
+                            style: TextStyle(
+                                height: 1,
+                                fontSize: 25,
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold),
+                          )
+                    : Text(
+                        'LOADING',
+                        style: TextStyle(
+                            height: 1,
+                            fontSize: 25,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold),
+                      ),
                 alignment: Alignment.center,
               )),
             ),
           ],
           //Spacer(),
-          GestureDetector(
-            onTap: _scanQR,
-            child: Container(
-              height: 100,
-              padding: EdgeInsets.only(
-                  left: 15.0, right: 30.0, bottom: 20.0, top: 20.0),
-              margin: EdgeInsets.all(20.0),
-              alignment: Alignment.bottomCenter,
-              //color: Colors.black,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 5,
-                    offset: Offset(0, 0),
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      'SCAN QR CODE',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          height: 1,
-                          fontSize: 25,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+          if (loading == 1) ...[
+            GestureDetector(
+              onTap: () {
+                if (loading == 0) {
+                  _scanQR();
+                }
+              },
+              child: Container(
+                height: 100,
+                padding: EdgeInsets.only(
+                    left: 15.0, right: 30.0, bottom: 20.0, top: 20.0),
+                margin: EdgeInsets.all(20.0),
+                alignment: Alignment.bottomCenter,
+                //color: Colors.black,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 5,
+                      offset: Offset(0, 0),
                     ),
-                  ),
-                  Icon(
-                    Icons.qr_code_scanner_rounded,
-                    color: Colors.white,
-                    size: 60,
-                  ),
-                ],
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'SCAN QR CODE',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            height: 1,
+                            fontSize: 25,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Icon(
+                      Icons.qr_code_scanner_rounded,
+                      color: Colors.white,
+                      size: 60,
+                    ),
+                  ],
+                ),
               ),
+              // alignment: Alignment.bottomCenter,
             ),
-            // alignment: Alignment.bottomCenter,
-          ),
+          ] else ...[
+            if ((riskPerson.riskType == 'H' && difference < isolateHdays) ||
+                (riskPerson.riskType == 'P' && difference < isolatePdays))
+              ...[]
+            else ...[
+              GestureDetector(
+                onTap: () {
+                  if (loading == 0) {
+                    _scanQR();
+                  }
+                },
+                child: Container(
+                  height: 100,
+                  padding: EdgeInsets.only(
+                      left: 15.0, right: 30.0, bottom: 20.0, top: 20.0),
+                  margin: EdgeInsets.all(20.0),
+                  alignment: Alignment.bottomCenter,
+                  //color: Colors.black,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 5,
+                        offset: Offset(0, 0),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'SCAN QR CODE',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              height: 1,
+                              fontSize: 25,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Icon(
+                        Icons.qr_code_scanner_rounded,
+                        color: Colors.white,
+                        size: 60,
+                      ),
+                    ],
+                  ),
+                ),
+                // alignment: Alignment.bottomCenter,
+              ),
+            ]
+          ]
         ]);
       },
     );

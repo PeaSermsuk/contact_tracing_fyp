@@ -12,6 +12,8 @@ import 'settings_tab.dart';
 import 'timetable_tab.dart';
 import 'health_page.dart';
 import 'services/user_device.dart';
+import 'models/riskpersons.dart';
+import 'database/riskpersons_db.dart';
 
 //List<Rooms> roomInfo = [];
 //List<Rooms> roomInfoSearch = [];
@@ -222,11 +224,12 @@ class _LoadingState extends State<Loading> {
 
 class IntroScreen extends StatelessWidget {
   TextEditingController myController = new TextEditingController();
+  var riskpersonsDB = RiskPersonsDB();
 
   void addStringToSF(String cid) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setString('personalID', cid);
-}
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('personalID', cid);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -296,12 +299,15 @@ class IntroScreen extends StatelessWidget {
             ),
             child: GestureDetector(
               onTap: () {
-                addStringToSF(myController.text);
-                user_devid = myController.text;
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyStatefulWidget()),
-                );
+                if (myController.text != '') {
+                  addStringToSF(myController.text);
+                  user_devid = myController.text;
+                  riskpersonsDB.addData(myController.text);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyStatefulWidget()),
+                  );
+                }
               },
               child: Text(
                 'Next',
