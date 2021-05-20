@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:contact_tracing_fyp/services/user_device.dart';
 import 'package:barcode_scan/barcode_scan.dart';
-import 'package:permission_handler/permission_handler.dart';
+//import 'package:permission_handler/permission_handler.dart';
 
 import 'models/checkin.dart';
 //import 'widgets.dart';
@@ -39,8 +39,7 @@ class _CheckInTabState extends State<CheckInTab> {
         //result = qrResult;
         print(result);
         checkinDB.addData(user_devid, result, Timestamp.now());
-        roomsDB.updateData(result, rmInfo.capacity,
-            rmInfo.available - 1);
+        roomsDB.updateData(result, rmInfo.capacity, rmInfo.available - 1);
       });
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.CameraAccessDenied) {
@@ -84,6 +83,31 @@ class _CheckInTabState extends State<CheckInTab> {
         //roomInfo = rmpro.getList();
         List<CheckIn> ciList = checkinpro.checkinList;
         return Column(children: [
+          Container(
+          height: 48.0,
+          padding: EdgeInsets.only(left: 15.0, right: 15.0),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              top: BorderSide(
+                color: Colors.grey,
+                width: 0.5,
+              ),
+              bottom: BorderSide(
+                color: Colors.grey,
+                width: 0.5,
+              ),
+            ),
+          ),
+          child: Row(
+            children: [
+              Text('COVID-19 Status', style: TextStyle(fontSize: 16)),
+              Spacer(),
+              Text('NO RISK', style: TextStyle(fontSize: 16, color: Colors.green, fontWeight: FontWeight.bold)),
+            ],
+          ),
+        ),
           if (ciList.length != 0) ...[
             Container(
               padding: EdgeInsets.all(5.0),
@@ -153,10 +177,8 @@ class _CheckInTabState extends State<CheckInTab> {
                               rmInfo = await roomsDB.getData(roomNum);
                               checkinpro.updateData(user_devid,
                                   ciList[index].timeIn, Timestamp.now());
-                              roomsDB.updateData(
-                                  ciList[index].room,
-                                  rmInfo.capacity,
-                                  rmInfo.available + 1);
+                              roomsDB.updateData(ciList[index].room,
+                                  rmInfo.capacity, rmInfo.available + 1);
                             },
                             child: Icon(
                               Icons.exit_to_app,

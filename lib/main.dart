@@ -14,16 +14,16 @@ import 'providers/checkin_provider.dart';
 import 'services/user_device.dart';
 
 //String user_devid;
-Future<void> initDeviceID() async {
+/*Future<void> initDeviceID() async {
   await DeviceId.getID.then((value) {
-    user_devid = value;
+    //user_devid = value;
     print("value:$value");
   });
-}
+}*/
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  initDeviceID();
+  //initDeviceID();
   runApp(App());
 }
 
@@ -58,11 +58,12 @@ class Splash extends StatefulWidget {
 class SplashState extends State<Splash> with AfterLayoutMixin<Splash> {
   Future checkFirstSeen() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool _seen = (prefs.getBool('seen') ?? false);
+    String _seen = (prefs.getString('personalID'));
 
-    if (_seen) {
+    if (_seen != null) {
       /*Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => new MyStatefulWidget()));*/
+      user_devid = _seen;
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
@@ -71,7 +72,7 @@ class SplashState extends State<Splash> with AfterLayoutMixin<Splash> {
         ),
       );
     } else {
-      await prefs.setBool('seen', true);
+      //await prefs.setBool('seen', true);
       /*Navigator.of(context).pushReplacement(
           new MaterialPageRoute(builder: (context) => new IntroScreen()));*/
       Navigator.pushReplacement(
@@ -113,11 +114,11 @@ class App extends StatelessWidget {
         }
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          if (user_devid != null) {
+          //if (user_devid != null) {
             print('FlutterFire Loaded');
             print("After $user_devid");
             return MyApp();
-          }
+          //}
         }
         // Otherwise, show something whilst waiting for initialization to complete
         print('FlutterFire Loading');
