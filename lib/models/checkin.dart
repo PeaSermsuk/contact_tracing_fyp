@@ -6,5 +6,12 @@ class CheckIn {
   Timestamp timeIn;
   Timestamp timeOut;
   int stat;
-  CheckIn({this.deviceID, this.room, this.timeIn, this.timeOut, this.stat});
+  int roomsize;
+  CheckIn(
+      {this.deviceID,
+      this.room,
+      this.timeIn,
+      this.timeOut,
+      this.stat,
+      this.roomsize});
 }

@@ -40,7 +40,7 @@ class TimeTableDB {
         .catchError((error) => print("Failed to add input: $error"));
   }
 
-    Future<void> delData(String devid, int dy, int hr) async {
+  Future<void> delData(String devid, int dy, int hr) async {
     String dockey = devid + dy.toString() + hr.toString();
     var ttref = FirebaseFirestore.instance.collection("timetable").doc(dockey);
     return ttref
@@ -49,31 +49,3 @@ class TimeTableDB {
         .catchError((error) => print("Failed to delete: $error"));
   }
 }
-
-/* start old version of getAllData
-Future<List<RoomUse>> getAllData() async {
-    List<RoomUse> ruList = [];
-    String deviceid = this.devID.toString();
-    int ttable_day = this.day;
-    print("this.devID = $deviceid");
-    print("this.day = $ttable_day");
-// from here must be modified
-    var ttref = FirebaseFirestore.instance.collection("timetable");
-    var ruref = ttref
-        //.where('deviceid', isEqualTo: deviceid);
-        .where('deviceid', isEqualTo: this.devID)
-        .where('day', isEqualTo: this.day);
-// to here
-    await ruref.get().then((snapshot) {
-      snapshot.docs.asMap().forEach((key, value) {
-        ruList.add(RoomUse(
-            day: snapshot.docs[key]["day"],
-            hour: snapshot.docs[key]["hour"],
-            roomName: snapshot.docs[key]["roomName"]));
-      });
-    }).catchError((error) {
-      print("Failed to get roomuse: $error");
-    });
-    return ruList;
-  }
-end old version of getAllData*/

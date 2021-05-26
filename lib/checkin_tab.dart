@@ -65,6 +65,16 @@ class _CheckInTabState extends State<CheckInTab> {
   }
 
   Future _scanQR() async {
+/* start test 
+    result = 'CAGB 309';
+    rmInfo = await roomsDB.getData(result);
+    setState(() {
+      print(
+          'room = ' + result + ', room size = ' + rmInfo.available.toString());
+      checkinDB.addData(user_devid, result, Timestamp.now(), rmInfo.capacity);
+      roomsDB.updateData(result, rmInfo.capacity, rmInfo.available - 1);
+    });
+end test */
     try {
       String qrResult = await BarcodeScanner.scan();
       result = qrResult;
@@ -72,7 +82,7 @@ class _CheckInTabState extends State<CheckInTab> {
       setState(() {
         //result = qrResult;
         print(result);
-        checkinDB.addData(user_devid, result, Timestamp.now());
+        checkinDB.addData(user_devid, result, Timestamp.now(), rmInfo.capacity);
         roomsDB.updateData(result, rmInfo.capacity, rmInfo.available - 1);
       });
     } on PlatformException catch (ex) {

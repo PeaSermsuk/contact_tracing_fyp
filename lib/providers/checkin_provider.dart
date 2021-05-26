@@ -12,13 +12,14 @@ class CheckInProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void insertData(String deviceID, String roomName, Timestamp timeIn) async {
+  void insertData(
+      String deviceID, String roomName, Timestamp timeIn, int roomsize) async {
     var cidb = CheckInDB();
-    await cidb.addData(deviceID, roomName, timeIn);
+    await cidb.addData(deviceID, roomName, timeIn, roomsize);
     notifyListeners();
   }
 
-    void updateData(String deviceID, Timestamp timeIn, Timestamp timeOut) async {
+  void updateData(String deviceID, Timestamp timeIn, Timestamp timeOut) async {
     var cidb = CheckInDB();
     await cidb.updateData(deviceID, timeIn, timeOut);
     notifyListeners();

@@ -257,6 +257,7 @@ class _HealthPageState extends State<HealthPage> {
               ),
               onPressed: () {
                 print('Reported COVID Positive ID: $user_devid');
+//testline                reportedTime = Timestamp.fromDate(DateTime(2021, 5, 24, 10, 0));
                 reportedTime = Timestamp.now();
                 print('Reported COVID Time: $reportedTime');
                 var cppro = CovidPositiveProvider();
@@ -273,8 +274,8 @@ class _HealthPageState extends State<HealthPage> {
 
   void alertToDismiss() {
     showDialog(
-        context: context,
-        builder: (context) {
+      context: context,
+      builder: (context) {
         return CupertinoAlertDialog(
           //title: Text('AlertDialog Title'),
           content: SingleChildScrollView(
@@ -288,8 +289,7 @@ class _HealthPageState extends State<HealthPage> {
             ),
           ),
         );
-        },
+      },
     );
   }
-
 }

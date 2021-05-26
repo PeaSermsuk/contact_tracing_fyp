@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:contact_tracing_fyp/providers/rooms_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
@@ -299,10 +300,11 @@ class IntroScreen extends StatelessWidget {
             ),
             child: GestureDetector(
               onTap: () {
+                Timestamp rpdate = Timestamp.now();
                 if (myController.text != '') {
                   addStringToSF(myController.text);
                   user_devid = myController.text;
-                  riskpersonsDB.addData(myController.text);
+                  riskpersonsDB.addData(myController.text, rpdate, 'N', 'N/A');
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => MyStatefulWidget()),
