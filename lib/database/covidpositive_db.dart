@@ -23,16 +23,16 @@ class CovidPositiveDB {
         .catchError((error) => print("Failed to add COVID-19 Case: $error"));
   }
 
-  void handleCovidPositive(String deviceid, Timestamp reportedTime) {
+  void handleCovidPositive(String deviceid, Timestamp reportedTime) async {
     var riskpersonsDB = RiskPersonsDB();
 
     //set covid-positive as risk person with riskstatus='P'
     riskpersonsDB.addData(deviceid, reportedTime, 'P', 'Test positive');
 
     //handle Timetable Risk
-    // handleTimetableRisk(deviceid, reportedTime);
+    await handleTimetableRisk(deviceid, reportedTime);
     //handle Checkin Risk
-    handleCheckinRisk(deviceid, reportedTime);
+    await handleCheckinRisk(deviceid, reportedTime);
   }
 
   void handleCheckinRisk(String deviceid, Timestamp reportedTime) async {
@@ -60,14 +60,14 @@ class CovidPositiveDB {
     // add riskpersons who checkin the same room&time of covidpositive person
     risktype = 'L';
     for (var cr in lowriskCheckin) {
-      addCheckinRiskPersons(
+      await addCheckinRiskPersons(
           risktype, deviceid, reportedTime, cr.room, cr.timeIn, cr.timeOut);
     }
     // perform highRisk-checkin from highriskCheckin list
     // add riskpersons who checkin the same room&time of covidpositive person
     risktype = 'H';
     for (var cr in highriskCheckin) {
-      addCheckinRiskPersons(
+      await addCheckinRiskPersons(
           risktype, deviceid, reportedTime, cr.room, cr.timeIn, cr.timeOut);
     }
   }
@@ -91,11 +91,10 @@ class CovidPositiveDB {
     Timestamp sttime = Timestamp.fromDate(DateTime(yy, mm, dd, 0, 0, 0));
 
     List<CheckIn> checkinRiskList = [];
-    checkinRiskList =
-        // get all risk persons who checkin to the same room of covid-positive person
-        // start from 00:00 of that day to covid-positive's checkout time (timeOut)
-        await checkinDB.getRiskPersonsCheckinRoom(
-            cvposid, room, sttime, timeOut);
+    // get all risk persons who checkin to the same room of covid-positive person
+    // start from 00:00 of that day to covid-positive's checkout time (timeOut)
+    checkinRiskList = await checkinDB.getRiskPersonsCheckinRoom(
+        cvposid, room, sttime, timeOut);
     cpstime = timeIn.toDate(); // covidpositive-person's checkin time
     cpetime = timeOut.toDate(); // covidpositive-person's checkout time
     for (var cr in checkinRiskList) {
@@ -109,6 +108,7 @@ class CovidPositiveDB {
           cause = 'Low Risk - Checkin:';
         }
         cause = cause + room + ' ' + cr.timeIn.toDate().toString();
+//        print(cr.deviceID + ' ' + risktype + ' ' + cause);
         // insert to riskpersons collection
         await riskpersonsDB.setData(cr.deviceID, reportedTime, risktype, cause);
       }
@@ -117,21 +117,33 @@ class CovidPositiveDB {
 
   void handleTimetableRisk(String deviceid, Timestamp reportedTime) async {
     var ptimetableDB = PersonTimeTableDB();
+    var riskpersonsDB = RiskPersonsDB();
+    String cause;
     List<PersonTimeTable> pttList = [];
-
+    List<PersonTimeTable> ptRiskList = [];
+    List _days = [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ];
     // get timetable of covid-positive person
     pttList = await ptimetableDB.getAllData(deviceid);
-    print('time table of covid positive person');
     for (var pt in pttList) {
-      print(pt.devid +
-          ' ' +
-          pt.day.toString() +
-          ' ' +
-          pt.hour.toString() +
-          ' ' +
-          pt.roomName);
+      // get all risk persons who have timetable the same room&day&hour as covid-positive person
+      ptRiskList = await ptimetableDB.getRiskPersonsfromTimeTable(
+          deviceid, pt.day, pt.hour, pt.roomName);
+      for (var rt in ptRiskList) {
+        // prepare data for risk person
+        cause = 'Low Risk - Timetable: ';
+        cause = cause + _days[rt.day] + '-' + rt.hour.toString() + ':00';
+        // insert to riskpersons collection
+//        print(rt.devid + ' ' + cause);
+        await riskpersonsDB.setData(rt.devid, reportedTime, 'L', cause);
+      }
     }
-    // add riskpersons who have timetable the same time&room of covidpositive person
-    //  addTimeTableRiskPersons(risktype, deviceid, reportedTime, ...);
   }
 }

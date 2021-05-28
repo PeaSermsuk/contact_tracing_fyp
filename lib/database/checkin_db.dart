@@ -88,11 +88,11 @@ class CheckInDB {
     List<CheckIn> checkinList = [];
 
     var ciref = FirebaseFirestore.instance.collection("checkins");
+    //room - ชื่อห้องที่ผู้ติดcovidเข้าใช้งาน
+    //ftime - วันที่เช็คอิน เวลากำหนดเป็น 00:00
+    //ttime - วันเวลาที่ผู้ติดcovid checkoutออกจากห้องนี้
+    //ดูทุกคนที่เช็คอินในห้องนี้ตั้งแต่เวลา00;00ของวันนั้นจนถึงวันเวลาที่ผู้ติดcovidเช็คเอาท์
     var checkinref = ciref
-        //room - ชื่อห้องที่ผู้ติดcovidเข้าใช้งาน
-        //ftime - วันที่เช็คอิน เวลากำหนดเป็น 00:00
-        //ttime - วันเวลาที่ผู้ติดcovid checkoutออกจากห้องนี้
-        //ดูทุกคนที่เช็คอินในห้องนี้ตั้งแต่เวลา00;00ของวันนั้นจนถึงวันเวลาที่ผู้ติดcovidเช็คเอาท์
         .where('room', isEqualTo: croom)
         .where('timein', isGreaterThanOrEqualTo: ftime)
         .where('timein', isLessThanOrEqualTo: ttime);

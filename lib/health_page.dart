@@ -257,7 +257,7 @@ class _HealthPageState extends State<HealthPage> {
               ),
               onPressed: () {
                 print('Reported COVID Positive ID: $user_devid');
-//testline                reportedTime = Timestamp.fromDate(DateTime(2021, 5, 24, 10, 0));
+                //test line               reportedTime = Timestamp.fromDate(DateTime(2021, 5, 24, 10, 0));
                 reportedTime = Timestamp.now();
                 print('Reported COVID Time: $reportedTime');
                 var cppro = CovidPositiveProvider();

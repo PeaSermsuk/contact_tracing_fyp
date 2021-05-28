@@ -23,4 +23,31 @@ class PersonTimeTableDB {
     });
     return ttList;
   }
+
+  Future<List<PersonTimeTable>> getRiskPersonsfromTimeTable(
+      String cvpid, int day, int hour, String room) async {
+    List<PersonTimeTable> ttriskList = [];
+
+    var ttref = FirebaseFirestore.instance.collection("timetable");
+    // cvpid - id ผู้ติด covid
+    // day, hour, room -> timetable's day, hour, room
+    var riskttref = ttref
+        .where('day', isEqualTo: day)
+        .where('hour', isEqualTo: hour)
+        .where('roomName', isEqualTo: room);
+    await riskttref.get().then((snapshot) {
+      snapshot.docs.asMap().forEach((key, value) {
+        if (snapshot.docs[key]["deviceid"] != cvpid) {
+          ttriskList.add(PersonTimeTable(
+              devid: snapshot.docs[key]["deviceid"],
+              day: snapshot.docs[key]["day"],
+              hour: snapshot.docs[key]["hour"],
+              roomName: snapshot.docs[key]["roomName"]));
+        }
+      });
+    }).catchError((error) {
+      print("Failed to get risk of timetableList: $error");
+    });
+    return ttriskList;
+  }
 }
