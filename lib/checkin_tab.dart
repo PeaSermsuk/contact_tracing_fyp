@@ -34,8 +34,8 @@ class _CheckInTabState extends State<CheckInTab> {
   int loading = 1;
   var difference;
   var remaining = 0;
-  final isolateLdays = 14;
-  final isolateHdays = 14;
+  final isolateLdays = 10;
+  final isolateHdays = 10;
   final isolatePdays = 10;
   //var rmpro = RoomProvider();
   //List<Rooms> roomInfo = [];
@@ -158,21 +158,21 @@ end test */
                           fontWeight: FontWeight.bold)),
                 ] else ...[
                   if (riskPerson.riskType == 'L' &&
-                      difference < isolateLdays) ...[
+                      difference <= isolateLdays) ...[
                     Text('LOW RISK',
                         style: TextStyle(
                             fontSize: 16,
                             color: Colors.orange,
                             fontWeight: FontWeight.bold)),
                   ] else if (riskPerson.riskType == 'H' &&
-                      difference < isolateHdays) ...[
+                      difference <= isolateHdays) ...[
                     Text('HIGH RISK',
                         style: TextStyle(
                             fontSize: 16,
                             color: Colors.red,
                             fontWeight: FontWeight.bold)),
                   ] else if (riskPerson.riskType == 'P' &&
-                      difference < isolatePdays) ...[
+                      difference <= isolatePdays) ...[
                     Text('COVID-19 POSITIVE',
                         style: TextStyle(
                             fontSize: 16,
@@ -283,9 +283,9 @@ end test */
                 //color: Colors.black,
                 child: (loading == 0)
                     ? ((riskPerson.riskType == 'H' &&
-                                difference < isolateHdays) ||
+                                difference <= isolateHdays) ||
                             (riskPerson.riskType == 'P' &&
-                                difference < isolatePdays))
+                                difference <= isolatePdays))
                         ? (remaining == 1)
                             ? Text(
                                 'CHECK IN DISABLED\n\nPLEASE SELF-ISOLATE FOR $remaining DAY',
@@ -380,8 +380,8 @@ end test */
               // alignment: Alignment.bottomCenter,
             ),
           ] else ...[
-            if ((riskPerson.riskType == 'H' && difference < isolateHdays) ||
-                (riskPerson.riskType == 'P' && difference < isolatePdays))
+            if ((riskPerson.riskType == 'H' && difference <= isolateHdays) ||
+                (riskPerson.riskType == 'P' && difference <= isolatePdays))
               ...[]
             else ...[
               GestureDetector(

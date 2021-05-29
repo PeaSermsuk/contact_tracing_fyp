@@ -1,6 +1,6 @@
 import 'package:contact_tracing_fyp/providers/roomuse_provider.dart';
 import 'package:after_layout/after_layout.dart';
-import 'package:device_id/device_id.dart';
+//import 'package:device_id/device_id.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,6 +12,7 @@ import 'widgets.dart';
 import 'providers/checkin_provider.dart';
 //import 'settings_tab.dart';
 import 'services/user_device.dart';
+import 'intro_screen.dart';
 
 //String user_devid;
 /*Future<void> initDeviceID() async {

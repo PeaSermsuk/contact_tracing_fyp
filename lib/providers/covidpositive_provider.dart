@@ -4,10 +4,23 @@ import 'package:contact_tracing_fyp/database/covidpositive_db.dart';
 import 'package:flutter/material.dart';
 
 class CovidPositiveProvider with ChangeNotifier {
-  void insertData(String deviceid, Timestamp reportedTime) async {
+  void insertPositiveData(String deviceid, Timestamp infectedTime, Timestamp reportedTime) async {
     var cpdb = CovidPositiveDB();
-    await cpdb.addCovidPositive(deviceid, reportedTime);
-    await cpdb.handleCovidPositive(deviceid, reportedTime);
+    await cpdb.addCovidPositive(deviceid, infectedTime, 'Positive', reportedTime);
+    //await cpdb.handleCovidPositive(deviceid, infectedTime);
+    int yy = reportedTime.toDate().year;
+    int mm = reportedTime.toDate().month;
+    int dd = reportedTime.toDate().day;
+    print(dd);
+    Timestamp reportedTimeReset = Timestamp.fromDate(DateTime(yy, mm, dd, 0, 0, 0));
+    await cpdb.handleCovidPositive(deviceid, reportedTimeReset);
+    notifyListeners();
+  }
+
+  void insertNonPositiveData(String deviceid, Timestamp infectedTime, String result, int resultNumber, Timestamp reportedTime) async {
+    var cpdb = CovidPositiveDB();
+    await cpdb.addCovidPositive(deviceid, infectedTime, result, reportedTime);
+    //await cpdb.handleCovidPositive(deviceid, reportedTime);
     notifyListeners();
   }
 }

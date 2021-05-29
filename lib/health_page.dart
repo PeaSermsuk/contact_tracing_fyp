@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'services/user_device.dart';
+import 'report_page.dart';
 import 'widgets.dart';
 
 class HealthPage extends StatefulWidget {
+  static const routeName = '/healthPage';
   static const title = 'CHECK IN';
   static const setIcon = Icon(Icons.qr_code_scanner_rounded);
 
@@ -125,7 +127,7 @@ class _HealthPageState extends State<HealthPage> {
                       margin: EdgeInsets.only(left: 10.0, top: 5.0),
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Self-isolate for 14 days.\nGet tested for COVID-19 if developed symptoms.',
+                        'Self-isolate for 10 days.\nGet tested for COVID-19 if developed symptoms.',
                         style: TextStyle(fontSize: 16, height: 1.3),
                       ),
                     ),
@@ -165,7 +167,7 @@ class _HealthPageState extends State<HealthPage> {
                       margin: EdgeInsets.only(left: 10.0, top: 5.0),
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'No self-isolation required.\nMonitor symptoms for 14 days.\nGet tested if necessary.',
+                        'No self-isolation required.\nMonitor symptoms for 10 days.\nGet tested if necessary.',
                         style: TextStyle(fontSize: 16, height: 1.3),
                       ),
                     ),
@@ -179,13 +181,17 @@ class _HealthPageState extends State<HealthPage> {
               alignment: Alignment.centerLeft,
               child: Text('* for more information visit gov.uk')),
           GestureDetector(
-              onTap: _showMyDialog,
+              //onTap: _showMyDialog,
+              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ReportPage())),
               child: Container(
                 margin:
                     EdgeInsets.only(top: 10.0, bottom: 10, left: 20, right: 20),
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 alignment: Alignment.center,
-                child: Text('REPORT POSITIVE\nCOVID-19 TEST',
+                child: Text('REPORT COVID-19\nTEST RESULT',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
@@ -218,7 +224,7 @@ class _HealthPageState extends State<HealthPage> {
     );
   }
 
-  Future<void> _showMyDialog() async {
+  /*Future<void> _showMyDialog() async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -257,11 +263,12 @@ class _HealthPageState extends State<HealthPage> {
               ),
               onPressed: () {
                 print('Reported COVID Positive ID: $user_devid');
-                //test line               reportedTime = Timestamp.fromDate(DateTime(2021, 5, 24, 10, 0));
+                //test line               
+                //reportedTime = Timestamp.fromDate(DateTime(2021, 5, 24, 10, 0));
                 reportedTime = Timestamp.now();
                 print('Reported COVID Time: $reportedTime');
                 var cppro = CovidPositiveProvider();
-                cppro.insertData(user_devid, reportedTime);
+                cppro.insertPositiveData(user_devid, reportedTime);
                 Navigator.of(context).pop();
                 alertToDismiss();
               },
@@ -282,7 +289,7 @@ class _HealthPageState extends State<HealthPage> {
             child: ListBody(
               children: <Widget>[
                 Text(
-                  'Thank you for reporting your positive COVID-19 test.\n\nPlease self-isolate for 14 days.',
+                  'Thank you for reporting your positive COVID-19 test.\n\nPlease self-isolate for 10 days.',
                   style: TextStyle(fontSize: 16, height: 1.5),
                 ),
               ],
@@ -291,5 +298,5 @@ class _HealthPageState extends State<HealthPage> {
         );
       },
     );
-  }
+  }*/
 }

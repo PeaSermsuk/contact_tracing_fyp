@@ -95,6 +95,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 
   @override
+  void _stateUpdate() {
+    setState(() {});
+    print("refresh done");
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEEEEEE),
@@ -118,10 +124,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               color: const Color(0xFFFF5555),
               size: 30,
             ),
-            onPressed: (() => Navigator.push(
+            //onPressed: (() => Navigator.of(context).pushNamed(HealthPage.routeName).then((value) => setState(() {}))),
+            /*onPressed: (() => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => HealthPage()),
-                )),
+                )),*/
+            onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HealthPage()))
+                .then((value) => _stateUpdate()),
           ),
         ],
       ),
@@ -223,7 +233,7 @@ class _LoadingState extends State<Loading> {
   }
 }*/
 
-class IntroScreen extends StatelessWidget {
+/*class IntroScreen extends StatelessWidget {
   TextEditingController myController = new TextEditingController();
   var riskpersonsDB = RiskPersonsDB();
 
@@ -327,4 +337,4 @@ class IntroScreen extends StatelessWidget {
       ),
     );
   }
-}
+}*/

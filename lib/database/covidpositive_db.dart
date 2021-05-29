@@ -10,14 +10,16 @@ import 'package:contact_tracing_fyp/models/persontimetable.dart';
 class CovidPositiveDB {
   CovidPositiveDB();
 
-  Future<void> addCovidPositive(String deviceid, Timestamp reportedTime) async {
+  Future<void> addCovidPositive(String deviceid, Timestamp infectedTime, String result, Timestamp reportedTime) async {
     String dockey = deviceid + ' ' + reportedTime.toDate().toString();
     var cpref =
         FirebaseFirestore.instance.collection("covidpositive").doc(dockey);
     return cpref
         .set({
           "deviceid": deviceid,
-          "infecteddate": reportedTime,
+          "infecteddate": infectedTime,
+          "testresult": result,
+          "reporteddate" : reportedTime,
         })
         .then((value) => print("COVID-19 Case Added"))
         .catchError((error) => print("Failed to add COVID-19 Case: $error"));
@@ -27,7 +29,7 @@ class CovidPositiveDB {
     var riskpersonsDB = RiskPersonsDB();
 
     //set covid-positive as risk person with riskstatus='P'
-    riskpersonsDB.addData(deviceid, reportedTime, 'P', 'Test positive');
+    riskpersonsDB.addData(deviceid, reportedTime, 'P', 'Tested positive');
 
     //handle Timetable Risk
     await handleTimetableRisk(deviceid, reportedTime);
@@ -103,11 +105,11 @@ class CovidPositiveDB {
       rpetime = cr.timeOut.toDate(); // risk-person's checkout time
       if (cpstime.isBefore(rpetime) && rpstime.isBefore(cpetime)) {
         if (risktype == 'H') {
-          cause = 'High Risk - Checkin:';
+          cause = 'High Risk - Checkin: ';
         } else {
-          cause = 'Low Risk - Checkin:';
+          cause = 'Low Risk - Checkin: ';
         }
-        cause = cause + room + ' ' + cr.timeIn.toDate().toString();
+        cause = cause + ' ' + room + ' ' + cr.timeIn.toDate().toString()+ ' |';
 //        print(cr.deviceID + ' ' + risktype + ' ' + cause);
         // insert to riskpersons collection
         await riskpersonsDB.setData(cr.deviceID, reportedTime, risktype, cause);
@@ -139,7 +141,7 @@ class CovidPositiveDB {
       for (var rt in ptRiskList) {
         // prepare data for risk person
         cause = 'Low Risk - Timetable: ';
-        cause = cause + _days[rt.day] + '-' + rt.hour.toString() + ':00';
+        cause = cause + _days[rt.day] + ' ' + rt.hour.toString() + ':00 |';
         // insert to riskpersons collection
 //        print(rt.devid + ' ' + cause);
         await riskpersonsDB.setData(rt.devid, reportedTime, 'L', cause);

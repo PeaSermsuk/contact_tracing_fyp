@@ -50,7 +50,7 @@ class RiskPersonsDB {
 
     await rpref.get().then((docSnapshot) {
       if (docSnapshot.exists) {
-        riskCause = docSnapshot.data()["cause"] + '\n' + cause;
+        riskCause = docSnapshot.data()["cause"] + cause + '\n';
       } else {
         riskCause = cause;
       }
@@ -84,4 +84,18 @@ class RiskPersonsDB {
         .then((value) => print("Person Risk Level Added"))
         .catchError((error) => print("Failed to add person: $error"));
   }
+
+  Future<void> addNewUserData(String personalID, Timestamp reportedTime,
+      String risktype, String cause) async {
+    var rpref =
+        FirebaseFirestore.instance.collection("riskpersons").doc(personalID);
+
+    await rpref.get().then((docSnapshot) {
+      if (docSnapshot.exists) {
+      } else {
+        addData(personalID, reportedTime, risktype, cause);
+      }
+    });
+  }
+  
 }
