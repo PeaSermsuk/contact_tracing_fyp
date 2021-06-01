@@ -46,6 +46,9 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         home: new Splash(),
+        routes: {
+          "/backhome": (context) => MyStatefulWidget(),
+        },
       ),
     );
   }

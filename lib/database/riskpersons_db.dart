@@ -45,12 +45,23 @@ class RiskPersonsDB {
       String risktype, String cause) async {
     //var rp = RiskPersons();
     String riskCause;
+    String db_risktype;
+    Timestamp db_reportedTime;
+
     var rpref =
         FirebaseFirestore.instance.collection("riskpersons").doc(personalID);
 
     await rpref.get().then((docSnapshot) {
       if (docSnapshot.exists) {
-        riskCause = docSnapshot.data()["cause"] + cause + '\n';
+        riskCause = docSnapshot.data()["cause"] + '\n' + cause;
+        db_risktype = docSnapshot.data()["risktype"];
+        db_reportedTime = docSnapshot.data()["reportdate"];
+        if (reportedTime.toDate().difference(db_reportedTime.toDate()).inDays <
+            14) {
+          if (db_risktype == 'P' || db_risktype == 'H') {
+            risktype = db_risktype;
+          }
+        }
       } else {
         riskCause = cause;
       }

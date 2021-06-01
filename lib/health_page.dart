@@ -27,7 +27,8 @@ class _HealthPageState extends State<HealthPage> {
           icon: Icon(Icons.arrow_back_ios),
           color: Colors.black,
           onPressed: () {
-            Navigator.pop(context);
+            //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyStatefulWidget()));
+            Navigator.popAndPushNamed(context, "/backhome");
           },
         ),
         //leading: Icon(
