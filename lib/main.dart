@@ -1,6 +1,6 @@
 import 'package:contact_tracing_fyp/providers/roomuse_provider.dart';
 import 'package:after_layout/after_layout.dart';
-//import 'package:device_id/device_id.dart';
+import 'package:device_id/device_id.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,16 +15,16 @@ import 'services/user_device.dart';
 import 'intro_screen.dart';
 
 //String user_devid;
-/*Future<void> initDeviceID() async {
+Future<void> initDeviceID() async {
   await DeviceId.getID.then((value) {
-    //user_devid = value;
+    assigned_devid = value;
     print("value:$value");
   });
-}*/
+}
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  //initDeviceID();
+  initDeviceID();
   runApp(App());
 }
 

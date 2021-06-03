@@ -21,6 +21,7 @@ class _SettingsTabState extends State<SettingsTab> {
     double boxHeight = 48;
 
     return ListView(
+      //physics: ,
       children: [
         Padding(padding: EdgeInsets.only(top: 25)),
         Container(
@@ -53,8 +54,9 @@ class _SettingsTabState extends State<SettingsTab> {
           //tileColor: Colors.white,
         ),
         Container(
-          height: boxHeight,
-          padding: EdgeInsets.only(left: 15.0, right: 15.0),
+          //height: boxHeight,
+          padding:
+              EdgeInsets.only(left: 15.0, right: 15.0, top: 16.0, bottom: 16.0),
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -67,12 +69,38 @@ class _SettingsTabState extends State<SettingsTab> {
           ),
           child: Row(
             children: [
-              Text('Bluetooth', style: TextStyle(fontSize: 16)),
+              Text('Device ID', style: TextStyle(fontSize: 16)),
               Spacer(),
-              Text('XXXXXXXXXX', style: TextStyle(fontSize: 16)),
+              Container(
+                width: MediaQuery.of(context).size.width - 150,
+                child: Text(
+                  assigned_devid,
+                  style: TextStyle(fontSize: 16),
+                  maxLines: 2,
+                  textAlign: TextAlign.right,
+                ),
+              ),
             ],
           ),
         ),
+        GestureDetector(
+            onTap: null,
+            child: Container(
+              height: 45.0,
+              margin: EdgeInsets.only(top: 25.0),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border(
+                      bottom: BorderSide(color: Colors.grey, width: 0.5),
+                      top: BorderSide(color: Colors.grey, width: 0.5))),
+              child: Center(
+                child: Text(
+                  'Log Out',
+                  style: TextStyle(fontSize: 16, color: Colors.red),
+                ),
+              ),
+            ),
+          ),
         /*Container(
           height: boxHeight,
           padding: EdgeInsets.only(left: 15.0, right: 15.0),
@@ -174,7 +202,7 @@ class _SettingsTabState extends State<SettingsTab> {
     );
   }
 
-    Future<void> _logoutDialog() async {
+  Future<void> _logoutDialog() async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
