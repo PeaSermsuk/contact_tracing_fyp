@@ -88,7 +88,8 @@ class IntroScreen extends StatelessWidget {
                 if (myController.text != '') {
                   addStringToSF(myController.text);
                   user_devid = myController.text;
-                  riskpersonsDB.addNewUserData(myController.text, rpdate, 'N', '');
+                  riskpersonsDB.addNewUserData(
+                      myController.text, rpdate, 'N', '[]');
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => MyStatefulWidget()),

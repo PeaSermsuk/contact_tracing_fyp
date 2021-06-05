@@ -5,6 +5,7 @@ import 'package:contact_tracing_fyp/models/riskpersons.dart';
 import 'package:contact_tracing_fyp/database/rooms_db.dart';
 import 'package:contact_tracing_fyp/database/riskpersons_db.dart';
 import 'package:contact_tracing_fyp/providers/checkin_provider.dart';
+import 'package:contact_tracing_fyp/services/riskreport_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -130,13 +131,10 @@ end test */
         List<CheckIn> ciList = checkinpro.checkinList;
         return Column(children: [
           GestureDetector(
-            onTap: () {
-              print("Clicked");
-            },
-            /*onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ReportPage())),*/
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => RiskReportPage(riskp: riskPerson))),
             // put the command to the page here
             child: Container(
               height: 48.0,
