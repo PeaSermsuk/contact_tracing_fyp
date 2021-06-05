@@ -129,64 +129,72 @@ end test */
         //print('Risk Level is $riskPerson.riskType');
         List<CheckIn> ciList = checkinpro.checkinList;
         return Column(children: [
-          Container(
-            height: 48.0,
-            padding: EdgeInsets.only(left: 15.0, right: 15.0),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border(
-                top: BorderSide(
-                  color: Colors.grey,
-                  width: 0.5,
-                ),
-                bottom: BorderSide(
-                  color: Colors.grey,
-                  width: 0.5,
+          GestureDetector(
+            onTap: null,
+            /*onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ReportPage())),*/
+            // put the command to the page here
+            child: Container(
+              height: 48.0,
+              padding: EdgeInsets.only(left: 15.0, right: 15.0),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(
+                  top: BorderSide(
+                    color: Colors.grey,
+                    width: 0.5,
+                  ),
+                  bottom: BorderSide(
+                    color: Colors.grey,
+                    width: 0.5,
+                  ),
                 ),
               ),
-            ),
-            child: Row(
-              children: [
-                Text('COVID-19 Status', style: TextStyle(fontSize: 16)),
-                Spacer(),
-                if (loading == 1) ...[
-                  Text('LOADING',
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold)),
-                ] else ...[
-                  if (riskPerson.riskType == 'L' &&
-                      difference <= isolateLdays) ...[
-                    Text('LOW RISK',
+              child: Row(
+                children: [
+                  Text('COVID-19 Status', style: TextStyle(fontSize: 16)),
+                  Spacer(),
+                  if (loading == 1) ...[
+                    Text('LOADING',
                         style: TextStyle(
                             fontSize: 16,
-                            color: Colors.orange,
-                            fontWeight: FontWeight.bold)),
-                  ] else if (riskPerson.riskType == 'H' &&
-                      difference <= isolateHdays) ...[
-                    Text('HIGH RISK',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold)),
-                  ] else if (riskPerson.riskType == 'P' &&
-                      difference <= isolatePdays) ...[
-                    Text('COVID-19 POSITIVE',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
+                            color: Colors.grey,
                             fontWeight: FontWeight.bold)),
                   ] else ...[
-                    Text('NO RISK',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold)),
+                    if (riskPerson.riskType == 'L' &&
+                        difference <= isolateLdays) ...[
+                      Text('LOW RISK',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.orange,
+                              fontWeight: FontWeight.bold)),
+                    ] else if (riskPerson.riskType == 'H' &&
+                        difference <= isolateHdays) ...[
+                      Text('HIGH RISK',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold)),
+                    ] else if (riskPerson.riskType == 'P' &&
+                        difference <= isolatePdays) ...[
+                      Text('COVID-19 POSITIVE',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
+                    ] else ...[
+                      Text('NO RISK',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold)),
+                    ]
                   ]
-                ]
-              ],
+                ],
+              ),
             ),
           ),
           if (ciList.length != 0) ...[
