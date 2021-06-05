@@ -130,7 +130,9 @@ end test */
         List<CheckIn> ciList = checkinpro.checkinList;
         return Column(children: [
           GestureDetector(
-            onTap: null,
+            onTap: () {
+              print("Clicked");
+            },
             /*onTap: () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
