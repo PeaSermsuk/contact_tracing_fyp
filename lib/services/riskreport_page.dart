@@ -1,6 +1,7 @@
 import 'package:contact_tracing_fyp/models/riskdetail.dart';
 import 'package:flutter/material.dart';
 import 'package:contact_tracing_fyp/models/riskpersons.dart';
+import 'package:flutter/widgets.dart';
 
 class RiskReportPage extends StatefulWidget {
   final RiskPersons riskp;
@@ -17,10 +18,19 @@ class _RiskReportPageState extends State<RiskReportPage> {
 
     // convert json-string to list<RiskDetail>
     List<RiskDetail> riskList = riskDetailFromJson(rp.cause);
-
-    riskList.sort((a, b) =>
-        a.reportDate.compareTo(b.reportDate) &
-        -a.riskType.compareTo(b.riskType));
+    for (var rl in riskList) {
+      if (rl.riskType == 'P') {
+        rl.riskType = '3';
+      } else if (rl.riskType == 'H') {
+        rl.riskType = '2';
+      } else if (rl.riskType == 'L') {
+        rl.riskType = '1';
+      } else if (rl.riskType == 'N') {
+        rl.riskType = '0';
+      }
+    }
+    riskList.sort((a, b) => -(a.reportDate.toString() + a.riskType)
+        .compareTo((b.reportDate.toString() + b.riskType)));
     var noItem = riskList.length;
 
     return Scaffold(
@@ -35,29 +45,29 @@ class _RiskReportPageState extends State<RiskReportPage> {
             var clr;
             var riskname;
             switch (rtype) {
-              case 'P':
+              case '3': // 'P'
                 {
                   riskname = 'Positive';
                   clr = Colors.black87;
                 }
                 break;
-              case 'N':
-                {
-                  riskname = 'Normal';
-                  clr = Colors.blue;
-                }
-                break;
-              case 'H':
+              case '2': // 'H'
                 {
                   riskname = 'High Risk';
                   clr = Colors.red;
                 }
                 break;
-              case 'L':
+              case '1': // 'L'
                 {
                   riskname = 'Low Risk';
                   //           clr = Colors.yellow[600];
                   clr = Colors.amber[600];
+                }
+                break;
+              case '0': // 'N'
+                {
+                  riskname = 'Normal';
+                  clr = Colors.blue;
                 }
                 break;
               default:

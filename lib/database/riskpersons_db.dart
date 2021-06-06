@@ -41,8 +41,12 @@ class RiskPersonsDB {
         db_reportedTime = docSnapshot.data()["reportdate"];
         if (reportedTime.toDate().difference(db_reportedTime.toDate()).inDays <
             14) {
-          if (db_risktype == 'P' || db_risktype == 'H') {
+          if (db_risktype == 'P') {
             risktype = db_risktype;
+          } else if (db_risktype == 'H') {
+            if (risktype != 'P') {
+              risktype = db_risktype;
+            }
           }
         }
       }

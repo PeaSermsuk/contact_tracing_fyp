@@ -141,7 +141,7 @@ class CovidPositiveDB {
           deviceid, pt.day, pt.hour, pt.roomName);
       for (var rt in ptRiskList) {
         // prepare data for risk person
-        cause = 'Timetable: ' + rt.roomName;
+        cause = 'Timetable: ' + rt.roomName + ' ';
         cause = cause + _days[rt.day] + ' ' + rt.hour.toString() + ':00';
         // insert to riskpersons collection
 //        print(rt.devid + ' ' + cause);
