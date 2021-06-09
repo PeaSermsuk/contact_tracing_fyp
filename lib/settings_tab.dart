@@ -1,8 +1,10 @@
 import 'package:contact_tracing_fyp/services/user_device.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'widgets.dart';
+//import 'widgets.dart';
+import 'intro_screen.dart';
 
 class SettingsTab extends StatefulWidget {
   static const title = 'SETTINGS';
@@ -84,23 +86,25 @@ class _SettingsTabState extends State<SettingsTab> {
           ),
         ),
         GestureDetector(
-            onTap: null,
-            child: Container(
-              height: 45.0,
-              margin: EdgeInsets.only(top: 25.0),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border(
-                      bottom: BorderSide(color: Colors.grey, width: 0.5),
-                      top: BorderSide(color: Colors.grey, width: 0.5))),
-              child: Center(
-                child: Text(
-                  'Log Out',
-                  style: TextStyle(fontSize: 16, color: Colors.red),
-                ),
+          onTap: () {
+            _logoutDialog();
+          },
+          child: Container(
+            height: 45.0,
+            margin: EdgeInsets.only(top: 25.0),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(
+                    bottom: BorderSide(color: Colors.grey, width: 0.5),
+                    top: BorderSide(color: Colors.grey, width: 0.5))),
+            child: Center(
+              child: Text(
+                'Log Out',
+                style: TextStyle(fontSize: 16, color: Colors.red),
               ),
             ),
           ),
+        ),
         /*Container(
           height: boxHeight,
           padding: EdgeInsets.only(left: 15.0, right: 15.0),
@@ -240,7 +244,15 @@ class _SettingsTabState extends State<SettingsTab> {
                 ),
               ),
               onPressed: () {
-                Navigator.of(context).pop();
+                clearPrefs();
+                Navigator.pushReplacement(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation1, animation2) =>
+                        IntroScreen(),
+                    transitionDuration: Duration(seconds: 0),
+                  ),
+                );
               },
             ),
           ],
@@ -248,4 +260,10 @@ class _SettingsTabState extends State<SettingsTab> {
       },
     );
   }
+
+  Future clearPrefs() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.clear();
+  }
 }
+
